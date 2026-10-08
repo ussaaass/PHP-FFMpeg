@@ -22,7 +22,7 @@ class FrameRateTest extends TestCase
         new FrameRate($value);
     }
 
-    public function provideInvalidFrameRates()
+    public static function provideInvalidFrameRates()
     {
         return [
             [0], [-1.5], [-2],

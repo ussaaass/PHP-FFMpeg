@@ -35,7 +35,14 @@ class VideoProgressListenerTest extends TestCase
                 'duration' => $duration,
             ])));
 
-        $listener = new VideoProgressListener($ffprobe, __FILE__, $currentPass, $totalPass, $newVideoDuration);
+        $listener = new class($ffprobe, __FILE__, $currentPass, $totalPass, $newVideoDuration) extends VideoProgressListener {
+            private $timestamps = [100.0, 101.0, 102.0];
+
+            protected function getClockTime(): float
+            {
+                return array_shift($this->timestamps);
+            }
+        };
         $phpunit = $this;
         $n = 0;
         $listener->on('progress', function ($percent, $remaining, $rate) use (&$n, $phpunit, $expectedPercent, $expectedRemaining, $expectedRate, $expectedPercent2, $expectedRemaining2, $expectedRate2) {
@@ -53,14 +60,44 @@ class VideoProgressListenerTest extends TestCase
         });
         // first one does not trigger progress event
         $listener->handle('any-type'.mt_rand(), $data);
-        sleep(1);
         $listener->handle('any-type'.mt_rand(), $data);
-        sleep(1);
         $listener->handle('any-type'.mt_rand(), $data2);
         $this->assertEquals(2, $n);
     }
 
-    public function provideData()
+    public function testProgressDoesNotMoveBackWhenFfmpegReportsAnEarlierTimestamp()
+    {
+        $ffprobe = $this->getFFProbeMock();
+        $ffprobe->expects($this->once())
+            ->method('format')
+            ->with(__FILE__)
+            ->will($this->returnValue(new Format([
+                'size' => 102400,
+                'duration' => 10,
+            ])));
+
+        $listener = new class($ffprobe, __FILE__, 1, 1) extends VideoProgressListener {
+            private $timestamps = [100.0, 101.0, 102.0];
+
+            protected function getClockTime(): float
+            {
+                return array_shift($this->timestamps);
+            }
+        };
+        $progress = [];
+        $listener->on('progress', function ($percent) use (&$progress) {
+            $progress[] = $percent;
+        });
+
+        $listener->handle('err', 'frame= 10 fps=10 q=1.0 size=     100kB time=00:00:02.00 bitrate=1kbits/s');
+        $listener->handle('err', 'frame= 20 fps=10 q=1.0 size=     200kB time=00:00:08.00 bitrate=1kbits/s');
+        $listener->handle('err', 'frame= 15 fps=10 q=1.0 size=     250kB time=00:00:05.00 bitrate=1kbits/s');
+
+        $this->assertSame([80.0, 80.0], $progress);
+        $this->assertSame(8.0, $listener->getCurrentTime());
+    }
+
+    public static function provideData()
     {
         return [
             [

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Tests\FFMpeg\Unit\Format\ProgressListener\VideoProgressListenerTest" file="/workspace/tests/FFMpeg/Unit/Format/ProgressListener/VideoProgressListenerTest.php" tests="4" assertions="30" errors="0" warnings="0" failures="0" skipped="0" time="0.084656">
+    <testsuite name="Tests\FFMpeg\Unit\Format\ProgressListener\VideoProgressListenerTest::testHandle" tests="3" assertions="27" errors="0" warnings="0" failures="0" skipped="0" time="0.083029">
+      <testcase name="testHandle with data set #0" class="Tests\FFMpeg\Unit\Format\ProgressListener\VideoProgressListenerTest" classname="Tests.FFMpeg.Unit.Format.ProgressListener.VideoProgressListenerTest" file="/workspace/tests/FFMpeg/Unit/Format/ProgressListener/VideoProgressListenerTest.php" line="14" assertions="9" time="0.082432"/>
+      <testcase name="testHandle with data set #1" class="Tests\FFMpeg\Unit\Format\ProgressListener\VideoProgressListenerTest" classname="Tests.FFMpeg.Unit.Format.ProgressListener.VideoProgressListenerTest" file="/workspace/tests/FFMpeg/Unit/Format/ProgressListener/VideoProgressListenerTest.php" line="14" assertions="9" time="0.000488"/>
+      <testcase name="testHandle with data set #2" class="Tests\FFMpeg\Unit\Format\ProgressListener\VideoProgressListenerTest" classname="Tests.FFMpeg.Unit.Format.ProgressListener.VideoProgressListenerTest" file="/workspace/tests/FFMpeg/Unit/Format/ProgressListener/VideoProgressListenerTest.php" line="14" assertions="9" time="0.000109"/>
+    </testsuite>
+    <testcase name="testProgressDoesNotMoveBackWhenFfmpegReportsAnEarlierTimestamp" class="Tests\FFMpeg\Unit\Format\ProgressListener\VideoProgressListenerTest" classname="Tests.FFMpeg.Unit.Format.ProgressListener.VideoProgressListenerTest" file="/workspace/tests/FFMpeg/Unit/Format/ProgressListener/VideoProgressListenerTest.php" line="68" assertions="3" time="0.001627"/>
+  </testsuite>
+</testsuites>

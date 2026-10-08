@@ -17,7 +17,7 @@ class StreamTest extends TestCase
         $this->assertTrue($isAudio === $stream->isAudio());
     }
 
-    public function provideAudioCases()
+    public static function provideAudioCases()
     {
         return [
             [true, ['codec_type' => 'audio']],
@@ -34,7 +34,7 @@ class StreamTest extends TestCase
         $this->assertTrue($isVideo === $stream->isVideo());
     }
 
-    public function provideVideoCases()
+    public static function provideVideoCases()
     {
         return [
             [true, ['codec_type' => 'video']],
@@ -67,15 +67,15 @@ class StreamTest extends TestCase
             '\FFMpeg\Exception\RuntimeException',
             'Unable to extract dimensions.'
         );
-        $stream = new Stream(['codec_type' => 'video', 'width' => 960]);
+        $stream = new Stream($properties);
         $stream->getDimensions();
     }
 
-    public function provideInvalidPropertiesForDimensionsExtraction()
+    public static function provideInvalidPropertiesForDimensionsExtraction()
     {
         return [
-            ['codec_type' => 'video', 'width' => 960],
-            ['codec_type' => 'video', 'height' => 960],
+            [['codec_type' => 'video', 'width' => 960]],
+            [['codec_type' => 'video', 'height' => 960]],
         ];
     }
 
@@ -103,12 +103,12 @@ class StreamTest extends TestCase
         $this->assertEquals(new Dimension(960, 720), $stream->getDimensions());
     }
 
-    public function provideInvalidRatios()
+    public static function provideInvalidRatios()
     {
         return [['0:1'], ['2:1:3']];
     }
 
-    public function providePropertiesForDimensionsExtraction()
+    public static function providePropertiesForDimensionsExtraction()
     {
         return [
             [

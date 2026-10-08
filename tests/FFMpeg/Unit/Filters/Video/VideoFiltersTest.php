@@ -33,7 +33,7 @@ class VideoFiltersTest extends TestCase
         $this->assertSame($dimension, $capturedFilter->getDimension());
     }
 
-    public function provideResizeOptions()
+    public static function provideResizeOptions()
     {
         return [
             [ResizeFilter::RESIZEMODE_FIT, true],

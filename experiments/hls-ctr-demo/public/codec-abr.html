@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Codec and ABR tests — HLS CTR Demo</title>
+    <style>
+      :root { color-scheme: light dark; font: 16px/1.5 system-ui, sans-serif; }
+      body { max-width: 920px; margin: 2rem auto; padding: 0 1rem; }
+      video { display: block; width: 100%; max-height: 60vh; background: #111; }
+      fieldset { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; margin: 1rem 0; }
+      button, select { padding: .5rem .75rem; }
+      pre { overflow: auto; max-height: 24rem; padding: 1rem; background: #171717; }
+      .note { opacity: .8; }
+      .status { padding: .75rem; border: 1px solid #888; }
+    </style>
+  </head>
+  <body>
+    <p><a href="/">Back to the CTR streaming test</a></p>
+    <h1>Codec and ABR tests</h1>
+    <p class="note">This page uses clear local test streams. It does not test CTR-encrypted multi-rendition playback.</p>
+    <section id="fixture-status" class="status" aria-live="polite">Preparing test streams… HEVC 720p CRF encodes are in progress.</section>
+    <section id="codec-status" class="status" aria-live="polite">Checking Media Source codec support…</section>
+    <video id="video" controls playsinline></video>
+    <fieldset>
+      <label>Stream
+        <select id="stream">
+          <option value="/output/abrt-master.m3u8">H.264 ABR: 360p / 480p / 720p</option>
+          <option value="/output/hevc-crf-32.m3u8">H.265 HEVC: 720p · CRF 32</option>
+          <option value="/output/hevc-crf-30.m3u8">H.265 HEVC: 720p · CRF 30</option>
+          <option value="/output/hevc-crf-28.m3u8">H.265 HEVC: 720p · CRF 28</option>
+        </select>
+      </label>
+      <label>Level
+        <select id="level"><option value="-1">Automatic ABR</option></select>
+      </label>
+      <label>Network limit
+        <select id="throttle">
+          <option value="0">Unlimited</option>
+          <option value="5000">5000 KiB/s</option>
+          <option value="512">512 KiB/s</option>
+          <option value="128" selected>128 KiB/s</option>
+          <option value="64">64 KiB/s</option>
+        </select>
+      </label>
+      <button id="play">Play selected stream</button>
+      <button id="stop">Stop and reset network limit</button>
+    </fieldset>
+    <h2>Playback events</h2>
+    <pre id="log" aria-live="polite"></pre>
+    <script type="module" src="/public/codec-abr.mjs"></script>
+  </body>
+</html>

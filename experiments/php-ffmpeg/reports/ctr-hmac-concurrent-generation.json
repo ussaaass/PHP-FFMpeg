@@ -1,0 +1,23 @@
+{
+    "status": "passed",
+    "gitCommit": "41fa00949ea2758cd34f076a8030df7198d57759",
+    "workingTreeWasDirty": true,
+    "dockerImageId": "sha256:90d2633391308230beba70888d22c70dd235f4e9964fe38d13e5305f5c9ca4fc",
+    "phpVersion": "8.5.11",
+    "concurrentRuns": 2,
+    "renditionsPerRun": 2,
+    "segmentsPerRun": 4,
+    "contentIds": [
+        "5cedcd8f-fac4-418b-8a12-cc6e331fea52",
+        "57204851-8a2e-4d2f-80b5-d4e0c52df3e3",
+        "7dbf92f6-cfad-4bbb-8f84-d9205b3d3779",
+        "f0140ada-fe2b-41e0-839d-b681991253fe",
+        "8a86e929-bb56-4677-96b3-c3e78cdacf9b",
+        "fb6a8c2f-4307-4151-b5e0-7830c6ac53dc",
+        "aa549d0f-670e-42e9-99d1-7896a64f634d",
+        "2e5fdbef-1206-413f-9b66-29a2646ed20d"
+    ],
+    "contentIdsUniqueAcrossBothRuns": true,
+    "recordCountersUniqueWithinEverySegment": true,
+    "masterKeyMaterialRecorded": false
+}

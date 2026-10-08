@@ -87,7 +87,7 @@ class GifTest extends AbstractMediaTestCase
         $this->assertSame($gif, $gif->save($pathfile));
     }
 
-    public function provideSaveOptions()
+    public static function provideSaveOptions()
     {
         return [
             [

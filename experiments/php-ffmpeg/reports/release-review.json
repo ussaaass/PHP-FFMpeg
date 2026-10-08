@@ -1,0 +1,117 @@
+{
+  "reviewStatus": "pre-launch-acceptance-complete-with-post-merge-release-gates",
+  "reviewDate": "2026-10-09",
+  "sourceBaseline": {
+    "commit": "41fa00949ea2758cd34f076a8030df7198d57759",
+    "workingTreeDirty": true,
+    "releaseCommit": null,
+    "releaseTag": null
+  },
+  "runtimeImages": {
+    "php85Ffmpeg5": {
+      "image": "php-ffmpeg-php:latest",
+      "digest": "sha256:90d2633391308230beba70888d22c70dd235f4e9964fe38d13e5305f5c9ca4fc",
+      "platform": "linux/arm64",
+      "php": "8.5.11",
+      "ffmpeg": "5.1.9"
+    },
+    "php85Ffmpeg9": {
+      "image": "php-ffmpeg-php-ffmpeg9:latest",
+      "digest": "sha256:baa9ec8821f9a01812f3158609aeafd60aec26ea1bf0dd35d6067c2370088d08",
+      "platform": "linux/arm64",
+      "php": "8.5.11",
+      "ffmpeg": "9.0.2"
+    },
+    "php80HlsMinimumDependencies": {
+      "image": "php:8.0-cli-bullseye",
+      "digest": "sha256:d411cd4fa78edd19c44d830b3aaba665c201e4e9fcb899dd91cd06665d746d8b",
+      "platform": "linux/amd64 (emulated on linux/arm64 Docker daemon)",
+      "php": "8.0.30",
+      "phpunit": "9.6.33"
+    },
+    "playwrightNode24Chrome153": "sha256:5536bbbd0ffc106a9fdab13fbff6b3abab01418cceff67ff246552b64cf5623d",
+    "nginx": "sha256:7f7dcd27f920b22e980508bd5009b452e3d30b68c1041aa82e98e471d367db03"
+  },
+  "packagePolicy": {
+    "composer": "php-ffmpeg/php-ffmpeg follows upstream Git tags; composer.json does not pin a separate version",
+    "player": {
+      "name": "@php-ffmpeg/hls-ctr-player",
+      "version": "0.1.0",
+      "private": true,
+      "publishNow": false
+    },
+    "format": {
+      "descriptorSchemaVersion": 1,
+      "profile": "phpffmpeg-ctr-hmac-v1",
+      "unknownSchemaOrProfile": "reject"
+    },
+    "compatibility": "V1 accepts only optional non-semantic extensions; incompatible record, derivation, or required-field changes require a new profile/schema and migration notes"
+  },
+  "keyProviderReview": {
+    "owner": "integrating application",
+    "requiredGate": "authenticate the caller and authorize access to the specific video asset before returning its key",
+    "keyScope": "one stable keyId and master key per video asset; no periodic rotation in this release",
+    "diagnostics": "never log or return key bytes, authorization tokens, or provider secrets",
+    "evidence": [
+      "CtrHmacV1Test secret scanning and KeyMaterial redaction assertions",
+      "key-provider-rejection.json",
+      "key-provider-timeout.json"
+    ]
+  },
+  "regression": {
+    "php85Ffmpeg5": {
+      "runtime": "PHP 8.5.11 Docker + FFmpeg 5.1.9",
+      "tests": 587,
+      "assertions": 1379,
+      "skipped": 9,
+      "status": "passed",
+      "junit": "phpunit-php85-ffmpeg5-junit.xml"
+    },
+    "php85Ffmpeg9": {
+      "runtime": "PHP 8.5.11 Docker + FFmpeg 9.0.2",
+      "tests": 587,
+      "assertions": 1405,
+      "skipped": 9,
+      "status": "passed",
+      "junit": "phpunit-php85-ffmpeg9-junit.xml"
+    },
+    "ffmpeg9ProgressStability": "ffmpeg9-transcode-progress-stability.json",
+    "php80HlsMinimumDependencies": {
+      "runtime": "PHP 8.0.30 Docker; isolated dependency resolution constrained to PHP 8.0.30 and prefer-lowest",
+      "hlsTests": 30,
+      "hlsAssertions": 206,
+      "progressRegressionTests": 4,
+      "progressRegressionAssertions": 30,
+      "status": "passed",
+      "report": "php80-runtime-hls.json"
+    },
+    "playerNode": "24.20.0",
+    "playerSyntaxBuild": "passed",
+    "workerInteroperability": "27 encrypted segments passed PHP-to-Worker clear SHA-256 checks",
+    "automaticAbrDockerChromium": [
+      "h264-constant-64kibs.json",
+      "h264-constant-128kibs.json",
+      "h264-constant-512kibs.json",
+      "h264-bandwidth-up-64-to-512.json",
+      "h264-bandwidth-down-512-to-64.json",
+      "h264-bandwidth-fluctuation.json",
+      "h264-abr-auto-seek.json"
+    ],
+    "macosChromeAutomaticAbr": "h264-abr-auto-macos-official-player.json",
+    "rustfsObjectReplacement": "rustfs-object-replacement.json",
+    "localDockerNginxProxy": [
+      "nginx-proxy-e2e.json",
+      "nginx-proxy-weak-e2e.json",
+      "nginx-proxy-range-resume.json",
+      "nginx-proxy-three-retries.json",
+      "nginx-proxy-seek.json"
+    ]
+  },
+  "knownBoundaries": [
+    "Final release commit/tag is created after the dirty worktree is reviewed and merged.",
+    "Production CDN behavior has not been accepted; the maintainer selected the local Docker Nginx proxy as the reproducible acceptance endpoint.",
+    "Physical Safari/iOS and Android acceptance is deferred until after launch and remains unverified.",
+    "Application-specific entitlement implementation and production KeyProvider are not part of this library acceptance.",
+    "The custom CTR/HMAC profile requires the packaged compatible player and is not standard HLS encryption or DRM."
+  ]
+}

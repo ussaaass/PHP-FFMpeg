@@ -1,0 +1,50 @@
+services:
+  browser-test:
+    image: mcr.microsoft.com/playwright:v1.63.0-noble
+    working_dir: /workspace/player
+    volumes:
+      - ../../..:/workspace
+    environment:
+      CTR_TEST_OUTPUT: ${CTR_TEST_OUTPUT:-/workspace/experiments/php-ffmpeg/output/run-abr-auto}
+      CTR_TEST_RUSTFS_PREFIX: ${CTR_TEST_RUSTFS_PREFIX:-http://127.0.0.1:8081/}
+      RUSTFS_FAULT_UPSTREAM_URL: ${RUSTFS_FAULT_UPSTREAM_URL:-}
+      TRUNCATE_FIRST_RESPONSE: ${TRUNCATE_FIRST_RESPONSE:-0}
+      TRUNCATE_RESPONSE_COUNT: ${TRUNCATE_RESPONSE_COUNT:-}
+      MUTATE_ETAG_AFTER_TRUNCATION: ${MUTATE_ETAG_AFTER_TRUNCATION:-0}
+      PLAYER_TEST_URL: http://127.0.0.1:8080/
+      PLAYER_BROWSER_URL: ${PLAYER_BROWSER_URL:-}
+      PLAYER_CDP_ENDPOINT: ${PLAYER_CDP_ENDPOINT:-}
+      PLAYER_BROWSER_ENVIRONMENT: ${PLAYER_BROWSER_ENVIRONMENT:-}
+      PLAYER_ORIGIN_URL: http://127.0.0.1:8791/
+      PLAYER_TEST_MODE: ${PLAYER_TEST_MODE:-proxy}
+      EXPECT_KEY_PROVIDER_TIMEOUT: ${EXPECT_KEY_PROVIDER_TIMEOUT:-0}
+      EXPECT_KEY_PROVIDER_REJECTION: ${EXPECT_KEY_PROVIDER_REJECTION:-0}
+      PLAYER_TEST_REPORT: /workspace/experiments/php-ffmpeg/reports/${PLAYER_TEST_REPORT:-nginx-proxy-e2e.json}
+      PLAYER_TEST_COMMIT: ${PLAYER_TEST_COMMIT:-unknown}
+      PLAYER_TEST_WORKTREE_DIRTY: ${PLAYER_TEST_WORKTREE_DIRTY:-true}
+      PLAYER_TEST_IMAGE_ID: ${PLAYER_TEST_IMAGE_ID:-unknown}
+      PLAYER_TEST_PROXY_IMAGE_ID: ${PLAYER_TEST_PROXY_IMAGE_ID:-unknown}
+      PLAYER_TEST_SAMPLE_SHA256: ${PLAYER_TEST_SAMPLE_SHA256:-unknown}
+      PLAYER_TEST_NETWORK_PATH: ${PLAYER_TEST_NETWORK_PATH:-nginx-reverse-proxy-to-test-origin}
+    command: ["sh", "-lc", "npm run test:browser"]
+    expose:
+      - "8080"
+      - "8081"
+      - "8791"
+    ports:
+      - "127.0.0.1:${PLAYER_TEST_HOST_PORT:-18791}:8791"
+      - "127.0.0.1:${PLAYER_PROXY_HOST_PORT:-18792}:8081"
+    init: true
+
+  nginx:
+    image: nginx:1.29-alpine
+    network_mode: service:browser-test
+    depends_on:
+      - browser-test
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - nginx-cache:/var/cache/nginx
+    init: true
+
+volumes:
+  nginx-cache:

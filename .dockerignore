@@ -1,0 +1,8 @@
+.git
+.idea
+.phpunit.result.cache
+.phpunit.cache
+.php-cs-fixer.cache
+vendor
+tests/FFMpeg/Functional/output/*
+tests/Functional/output/*

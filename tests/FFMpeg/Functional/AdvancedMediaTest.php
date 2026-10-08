@@ -170,7 +170,7 @@ class AdvancedMediaTest extends FunctionalTestCase
     {
         $xStack = new XStackFilter('', 0);
         $ffmpeg = $this->getFFMpeg();
-        $ffmpegVersion = $ffmpeg->getFFMpegDriver()->getVersion();
+        $ffmpegVersion = $ffmpeg->getFFMpegDriver()->getVersionNumber();
         if (version_compare($ffmpegVersion, $xStack->getMinimalFFMpegVersion(), '<')) {
             $this->markTestSkipped('XStack filter is supported starting from ffmpeg version '
                 .$xStack->getMinimalFFMpegVersion().', your version is '

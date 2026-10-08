@@ -1,0 +1,63 @@
+{
+  "acceptance": "faststart-default-normalization",
+  "status": "passed",
+  "gitCommit": "41fa00949ea2758cd34f076a8030df7198d57759",
+  "workingTreeWasDirty": true,
+  "containerImage": "php-ffmpeg-php:latest",
+  "containerImageId": "sha256:90d2633391308230beba70888d22c70dd235f4e9964fe38d13e5305f5c9ca4fc",
+  "environment": {
+    "php": "8.5.11",
+    "phpunit": "10.5.65",
+    "ffmpeg": "5.1.9-0+deb12u1",
+    "ffprobe": "5.1.9-0+deb12u1",
+    "browser": null
+  },
+  "sample": {
+    "path": "experiments/php-ffmpeg/output/nonfaststart-source.mp4",
+    "sha256Before": "64ed2e24c863bfa6ed50de8c615c6adceffc261e90e34b08ecb3047acb483310",
+    "sha256After": "64ed2e24c863bfa6ed50de8c615c6adceffc261e90e34b08ecb3047acb483310",
+    "sourceWasFaststart": false,
+    "normalizedIntermediateWasFaststart": true
+  },
+  "parameters": {
+    "normalization": "Docker WorkflowRunner default; stream-copy remux; no source overwrite",
+    "unitCommand": "docker compose run --rm php ./vendor/bin/phpunit -c phpunit.xml.dist tests/FFMpeg/Unit/Format/Hls/WorkflowTest.php",
+    "workflowCommand": "docker compose run --rm php php experiments/php-ffmpeg/run-workflow-smoke.php /workspace/experiments/php-ffmpeg/output/nonfaststart-source.mp4 /workspace/experiments/php-ffmpeg/output/acceptance-faststart",
+    "requestHeaders": null,
+    "rawBrowserEvents": null
+  },
+  "unitResult": {
+    "tests": 13,
+    "assertions": 22,
+    "status": "passed",
+    "cases": [
+      "normal top-level boxes",
+      "extended-size boxes",
+      "size-zero final box",
+      "truncated header",
+      "out-of-bounds box",
+      "truncated extended header",
+      "size-zero box consuming the remaining file",
+      "missing moov",
+      "missing mdat",
+      "non-faststart ordering",
+      "already-faststart source skips remux",
+      "malformed source fails before remux"
+    ]
+  },
+  "workflowResult": {
+    "status": "passed",
+    "findingCount": 1,
+    "finding": "INPUT_FASTSTART_WILL_BE_NORMALIZED (informational)",
+    "outputDirectory": "experiments/php-ffmpeg/output/acceptance-faststart",
+    "masterPlaylistSha256": "be33f576cd96de66baf5f75edae22be71e2acf58a41c22d17060f21a8d286c81",
+    "playbackDescriptorSha256": "3c3135d4111f9433d16ce59319b23553a5ca277e0623bb1fffc125a6f3aabdb0",
+    "first360pEncryptedSegmentSha256": "e873f9e967f5c278c929759ca93c21f0b647ea8c76e0d330374a0cfde205fc15",
+    "renditions": ["360p", "480p", "720p"],
+    "encryptedSegments": 9
+  },
+  "limitations": [
+    "This run validates Docker faststart normalization and packaging; it is not a browser, CDN, or mobile-device acceptance run.",
+    "The checked-out working tree contained unrelated changes during this run; the commit field identifies HEAD, not the dirty worktree contents."
+  ]
+}

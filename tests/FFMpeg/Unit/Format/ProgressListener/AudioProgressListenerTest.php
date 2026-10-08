@@ -34,7 +34,14 @@ class AudioProgressListenerTest extends TestCase
                 'duration' => $duration,
             ])));
 
-        $listener = new AudioProgressListener($ffprobe, __FILE__, $currentPass, $totalPass);
+        $listener = new class($ffprobe, __FILE__, $currentPass, $totalPass) extends AudioProgressListener {
+            private $timestamps = [100.0, 101.0, 102.0];
+
+            protected function getClockTime(): float
+            {
+                return array_shift($this->timestamps);
+            }
+        };
         $phpunit = $this;
         $n = 0;
         $listener->on('progress', function ($percent, $remaining, $rate) use (&$n, $phpunit, $expectedPercent, $expectedRemaining, $expectedRate, $expectedPercent2, $expectedRemaining2, $expectedRate2) {
@@ -52,14 +59,12 @@ class AudioProgressListenerTest extends TestCase
         });
         // first one does not trigger progress event
         $listener->handle('any-type'.mt_rand(), $data);
-        sleep(1);
         $listener->handle('any-type'.mt_rand(), $data);
-        sleep(1);
         $listener->handle('any-type'.mt_rand(), $data2);
         $this->assertEquals(2, $n);
     }
 
-    public function provideData()
+    public static function provideData()
     {
         return [
             [

@@ -27,7 +27,7 @@ class SpectrumTest extends AbstractMediaTestCase
         $this->assertSame($spectrum, $spectrum->save($pathfile));
     }
 
-    public function provideSaveOptions()
+    public static function provideSaveOptions()
     {
         return array(
             array(

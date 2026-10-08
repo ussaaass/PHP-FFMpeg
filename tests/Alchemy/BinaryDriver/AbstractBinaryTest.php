@@ -156,7 +156,6 @@ class AbstractBinaryTest extends BinaryDriverTestCase
 
         $reflexion = new \ReflectionClass('Alchemy\BinaryDriver\AbstractBinary');
         $prop      = $reflexion->getProperty('listenersManager');
-        $prop->setAccessible(true);
         $prop->setValue($imp, $listeners);
 
         $imp->listen($listener);
@@ -196,6 +195,14 @@ class AbstractBinaryTest extends BinaryDriverTestCase
      */
     public function testCommandWithTemporaryListeners($parameters, $bypassErrors, $expectedParameters, $output, $count, $listeners)
     {
+        if ('two-listeners' === $listeners) {
+            $listeners = [$this->getMockListener(), $this->getMockListener()];
+        } elseif ('one-listener-array' === $listeners) {
+            $listeners = [$this->getMockListener()];
+        } elseif ('one-listener' === $listeners) {
+            $listeners = $this->getMockListener();
+        }
+
         $imp           = Implementation::load('php');
         $factory       = $this->getMockBuilder('Alchemy\BinaryDriver\ProcessBuilderFactoryInterface')->getMock();
         $processRunner = $this->getMockBuilder('Alchemy\BinaryDriver\ProcessRunnerInterface')->getMock();
@@ -233,17 +240,17 @@ class AbstractBinaryTest extends BinaryDriverTestCase
         $this->assertCount(0, $secondStorage);
     }
 
-    public function provideCommandWithListenersParameters()
+    public static function provideCommandWithListenersParameters()
     {
         return [
-            ['-a', false, ['-a'], 'loubda', 2, [$this->getMockListener(), $this->getMockListener()]],
-            ['-a', false, ['-a'], 'loubda', 1, [$this->getMockListener()]],
-            ['-a', false, ['-a'], 'loubda', 1, $this->getMockListener()],
+            ['-a', false, ['-a'], 'loubda', 2, 'two-listeners'],
+            ['-a', false, ['-a'], 'loubda', 1, 'one-listener-array'],
+            ['-a', false, ['-a'], 'loubda', 1, 'one-listener'],
             ['-a', false, ['-a'], 'loubda', 0, []],
         ];
     }
 
-    public function provideCommandParameters()
+    public static function provideCommandParameters()
     {
         return [
             ['-a', false, ['-a'], 'loubda'],
@@ -271,7 +278,6 @@ class AbstractBinaryTest extends BinaryDriverTestCase
 
         $reflexion = new \ReflectionClass('Alchemy\BinaryDriver\AbstractBinary');
         $prop      = $reflexion->getProperty('listenersManager');
-        $prop->setAccessible(true);
         $prop->setValue($imp, $listeners);
 
         $imp->unlisten($listener);

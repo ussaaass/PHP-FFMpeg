@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Progressive CTR to MSE experiment</title>
+  <style>
+    body { max-width: 900px; margin: 2rem auto; padding: 0 1rem; font: 16px/1.5 system-ui, sans-serif; }
+    video { display: block; width: 100%; background: #111; }
+    button, select { padding: .5rem .75rem; }
+    pre { max-height: 30rem; overflow: auto; padding: 1rem; background: #171717; color: #eee; }
+  </style>
+</head>
+<body>
+  <h1>Progressive authenticated CTR → MSE</h1>
+  <p>This isolated H.264 test fetches encrypted records, authenticates and decrypts them in a Dedicated Worker, then appends each complete fMP4 movie fragment with MSE backpressure.</p>
+  <label>Network limit
+    <select id="throttle"><option value="128">128 KiB/s</option><option value="64" selected>64 KiB/s</option><option value="0">unlimited</option></select>
+  </label>
+  <button id="play">Start progressive playback</button>
+  <video id="video" controls playsinline></video>
+  <pre id="log" aria-live="polite"></pre>
+  <script type="module" src="/public/progressive-player.mjs"></script>
+</body>
+</html>

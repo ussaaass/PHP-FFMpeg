@@ -23,7 +23,8 @@ class FiltersCollection implements \Countable, \IteratorAggregate
      */
     public function add(FilterInterface $filter)
     {
-        $this->filters[$filter->getPriority()][] = $filter;
+        $priority = $filter->getPriority();
+        $this->filters[null === $priority ? '' : $priority][] = $filter;
         $this->sorted                            = null;
 
         return $this;

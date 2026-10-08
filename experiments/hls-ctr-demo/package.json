@@ -1,0 +1,12 @@
+{
+  "name": "php-ffmpeg-hls-ctr-demo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "dependencies": {
+    "hls.js": "1.7.3"
+  }
+}

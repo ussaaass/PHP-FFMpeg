@@ -78,7 +78,7 @@ class FrameTest extends AbstractMediaTestCase
         }
     }
 
-    public function provideSaveOptions()
+    public static function provideSaveOptions()
     {
         return [
             [false, false, [

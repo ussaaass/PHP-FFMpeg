@@ -1,0 +1,54 @@
+{
+    "acceptance": "faststart-remux-failure-transcode-fallback",
+    "status": "passed",
+    "environment": {
+        "php": "8.5.11",
+        "ffmpeg": "ffmpeg version n9.0.2-14-gebafaee10a-20260928 Copyright (c) 2000-2026 the FFmpeg developers",
+        "ffprobe": "ffprobe version n9.0.2-14-gebafaee10a-20260928 Copyright (c) 2007-2026 the FFmpeg developers"
+    },
+    "source": {
+        "sha256Before": "67b99515d87cc60b09a53286c3323af73f7a89026b0c808f2e13c819dc431947",
+        "sha256After": "67b99515d87cc60b09a53286c3323af73f7a89026b0c808f2e13c819dc431947",
+        "faststartBefore": false,
+        "boxesBefore": [
+            "ftyp",
+            "free",
+            "mdat",
+            "moov"
+        ]
+    },
+    "faultInjection": "The wrapper failed the first stream-copy remux with exit 42, then delegated the decode/transcode fallback to FFmpeg 9.",
+    "normalized": {
+        "sha256": "828ead6825f3bc6646090f7650cec6166e5ac3264ec698f20e4691cad6a4b2ff",
+        "faststartAfter": true,
+        "boxesAfter": [
+            "ftyp",
+            "moov",
+            "free",
+            "mdat"
+        ],
+        "ffprobe": {
+            "programs": [],
+            "stream_groups": [],
+            "streams": [
+                {
+                    "codec_name": "h264",
+                    "codec_type": "video"
+                },
+                {
+                    "codec_name": "aac",
+                    "codec_type": "audio"
+                }
+            ],
+            "format": {
+                "duration": "3.036367"
+            }
+        }
+    },
+    "checks": {
+        "stream-copy-remux-attempted-first": true,
+        "decode-transcode-fallback-created-faststart-copy": true,
+        "source-hash-unchanged": true,
+        "output-video-audio-streams-probed": true
+    }
+}

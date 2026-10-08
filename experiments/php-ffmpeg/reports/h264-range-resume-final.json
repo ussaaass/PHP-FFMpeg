@@ -1,0 +1,235 @@
+{
+  "browserVersion": "153.0.8010.12",
+  "testMode": "range",
+  "networkTimeline": [],
+  "status": "passed",
+  "result": {
+    "mode": "range",
+    "failures": [],
+    "warnings": [],
+    "events": [
+      {
+        "type": "descriptor-loaded",
+        "profile": "phpffmpeg-ctr-hmac-v1",
+        "segmentCount": 9
+      },
+      {
+        "type": "waiting",
+        "currentTime": 0,
+        "duration": 6.005999999999999,
+        "readyState": 0
+      },
+      {
+        "type": "loadedmetadata",
+        "currentTime": 0,
+        "duration": 6.005999999999999,
+        "readyState": 1
+      },
+      {
+        "type": "segment-buffered",
+        "level": 0,
+        "sequence": 0,
+        "duration": 2.0687333333333333,
+        "bytes": 191450,
+        "bandwidthEstimate": 253597.15208212598,
+        "loadMilliseconds": 6127.700000047684,
+        "processingMilliseconds": 10.600000023841858
+      },
+      {
+        "type": "canplay",
+        "currentTime": 0.001015,
+        "duration": 6.005999999999999,
+        "readyState": 4
+      },
+      {
+        "type": "playing",
+        "currentTime": 0.001058,
+        "duration": 6.005999999999999,
+        "readyState": 4
+      },
+      {
+        "type": "level-switched",
+        "level": 0,
+        "width": 640,
+        "height": 360,
+        "automatic": true
+      },
+      {
+        "type": "segment-buffered",
+        "level": 0,
+        "sequence": 1,
+        "duration": 2.002,
+        "bytes": 205132,
+        "bandwidthEstimate": 590453.2311453043,
+        "loadMilliseconds": 50.800000071525574,
+        "processingMilliseconds": 1.5
+      },
+      {
+        "type": "segment-buffered",
+        "level": 0,
+        "sequence": 2,
+        "duration": 2.0020000000000007,
+        "bytes": 265711,
+        "bandwidthEstimate": 1022901.0707221455,
+        "loadMilliseconds": 48.39999997615814,
+        "processingMilliseconds": 2.299999952316284
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 0.253616,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 0.519187,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 0.786195,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 1.050468,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 1.316851,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 1.582741,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 1.847996,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 2.112818,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 2.37891,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 2.644281,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 2.910551,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 3.180982,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 3.441289,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 3.707033,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 3.972332,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 4.23844,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 4.50361,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 4.770111,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 5.035172,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 5.302217,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 5.566241,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 5.831814,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 6.072732,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "ended",
+        "currentTime": 6.072732,
+        "duration": 6.072732,
+        "readyState": 4
+      }
+    ],
+    "serverStatus": {
+      "forcedTruncation": true,
+      "rangeRequests": 1
+    },
+    "duration": 6.072732,
+    "currentTime": 6.072732,
+    "videoWidth": 640,
+    "videoHeight": 360
+  },
+  "pageErrors": [],
+  "consoleErrors": [
+    "Failed to load resource: net::ERR_CONTENT_LENGTH_MISMATCH"
+  ]
+}

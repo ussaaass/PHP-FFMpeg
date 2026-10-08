@@ -1,0 +1,1949 @@
+{
+  "gitCommit": "41fa00949ea2758cd34f076a8030df7198d57759",
+  "workingTreeWasDirty": true,
+  "dockerImageId": "sha256:5536bbbd0ffc106a9fdab13fbff6b3abab01418cceff67ff246552b64cf5623d",
+  "proxyImageId": null,
+  "networkPath": "local-test-server",
+  "sampleSha256": "11481cb7a9fc1023b618911ed86297192bfc5f4999ad0b2e958d0d5c87ce5258",
+  "environment": {
+    "browserVersion": "153.0.8010.12",
+    "nodeVersion": "v24.20.0",
+    "runnerPlatform": "linux",
+    "browserPlatform": "docker-linux"
+  },
+  "browserVersion": "153.0.8010.12",
+  "testMode": "constant",
+  "networkTimeline": [
+    {
+      "label": "initial-64-kibps",
+      "bytesPerSecond": 65536,
+      "at": 1791473051675
+    }
+  ],
+  "status": "passed",
+  "expectedBrowserConsoleMessages": [],
+  "injectedShortReadMessages": 0,
+  "expectedOutcome": null,
+  "proxyResumeVerification": null,
+  "rampUpDiagnostics": null,
+  "result": {
+    "mode": "constant",
+    "failures": [],
+    "warnings": [
+      {
+        "source": "hls",
+        "type": "mediaError",
+        "details": "bufferStalledError",
+        "fatal": false,
+        "error": "Playback stalling at @0.872628 due to low buffer ({\"len\":1.1961039999999998,\"start\":0.066733,\"end\":2.068732,\"buffered\":[{\"start\":0.066733,\"end\":2.068732}],\"bufferedIndex\":0})"
+      },
+      {
+        "source": "hls",
+        "type": "mediaError",
+        "details": "bufferStalledError",
+        "fatal": false,
+        "error": "Playback stalling at @1.936824 due to low buffer ({\"len\":0.1319079999999997,\"start\":0.066733,\"end\":2.068732,\"buffered\":[{\"start\":0.066733,\"end\":2.068732}],\"bufferedIndex\":0})"
+      },
+      {
+        "source": "hls",
+        "type": "mediaError",
+        "details": "bufferStalledError",
+        "fatal": false,
+        "error": "Playback stalling at @3.925568 due to low buffer ({\"len\":0.1451639999999994,\"start\":0.066733,\"end\":4.070732,\"buffered\":[{\"start\":0.066733,\"end\":4.070732}],\"bufferedIndex\":0})"
+      },
+      {
+        "source": "hls",
+        "type": "mediaError",
+        "details": "bufferStalledError",
+        "fatal": false,
+        "error": "Playback stalling at @5.952141 due to low buffer ({\"len\":0.12059100000000011,\"start\":0.066733,\"end\":6.072732,\"buffered\":[{\"start\":0.066733,\"end\":6.072732}],\"bufferedIndex\":0})"
+      },
+      {
+        "source": "hls",
+        "type": "mediaError",
+        "details": "bufferStalledError",
+        "fatal": false,
+        "error": "Playback stalling at @7.951788 due to low buffer ({\"len\":0.1229439999999995,\"start\":2.068733,\"end\":8.074732,\"buffered\":[{\"start\":2.068733,\"end\":8.074732}],\"bufferedIndex\":0})"
+      },
+      {
+        "source": "hls",
+        "type": "mediaError",
+        "details": "bufferStalledError",
+        "fatal": false,
+        "error": "Playback stalling at @9.240155 due to low buffer ({\"len\":0.8365770000000001,\"start\":4.070733,\"end\":10.076732,\"buffered\":[{\"start\":4.070733,\"end\":10.076732}],\"bufferedIndex\":0})"
+      },
+      {
+        "source": "hls",
+        "type": "mediaError",
+        "details": "bufferStalledError",
+        "fatal": false,
+        "error": "Playback stalling at @9.982757 due to low buffer ({\"len\":0.09397500000000036,\"start\":4.070733,\"end\":10.076732,\"buffered\":[{\"start\":4.070733,\"end\":10.076732}],\"bufferedIndex\":0})"
+      },
+      {
+        "source": "hls",
+        "type": "mediaError",
+        "details": "bufferStalledError",
+        "fatal": false,
+        "error": "Playback stalling at @11.949058 due to low buffer ({\"len\":0.12967399999999962,\"start\":6.072733,\"end\":12.078732,\"buffered\":[{\"start\":6.072733,\"end\":12.078732}],\"bufferedIndex\":0})"
+      },
+      {
+        "source": "hls",
+        "type": "mediaError",
+        "details": "bufferStalledError",
+        "fatal": false,
+        "error": "Playback stalling at @13.952736 due to low buffer ({\"len\":0.12799599999999955,\"start\":8.074733,\"end\":14.080732,\"buffered\":[{\"start\":8.074733,\"end\":14.080732}],\"bufferedIndex\":0})"
+      },
+      {
+        "source": "hls",
+        "type": "mediaError",
+        "details": "bufferStalledError",
+        "fatal": false,
+        "error": "Playback stalling at @15.949711 due to low buffer ({\"len\":0.1330209999999994,\"start\":10.076733,\"end\":16.082732,\"buffered\":[{\"start\":10.076733,\"end\":16.082732}],\"bufferedIndex\":0})"
+      }
+    ],
+    "events": [
+      {
+        "type": "descriptor-loaded",
+        "profile": "phpffmpeg-ctr-hmac-v1",
+        "segmentCount": 27
+      },
+      {
+        "type": "waiting",
+        "currentTime": 0,
+        "duration": 18.017999999999994,
+        "readyState": 0
+      },
+      {
+        "type": "segment-authenticated",
+        "level": 0,
+        "sequence": 0,
+        "keyId": "interop-test-key",
+        "recordCount": 3,
+        "cipherBytes": 190254,
+        "clearBytes": 190086,
+        "clearSha256": "f8aafdc52180746ff9cfd8291f3bce2c93679af931df9748dec0ae914966a0aa",
+        "mediaFragmentCount": 1
+      },
+      {
+        "type": "segment-authenticated",
+        "level": 0,
+        "sequence": 0,
+        "keyId": "interop-test-key",
+        "recordCount": 3,
+        "cipherBytes": 190254,
+        "clearBytes": 190086,
+        "clearSha256": "f8aafdc52180746ff9cfd8291f3bce2c93679af931df9748dec0ae914966a0aa",
+        "mediaFragmentCount": 1
+      },
+      {
+        "type": "loadedmetadata",
+        "currentTime": 0,
+        "duration": 18.017999999999994,
+        "readyState": 1
+      },
+      {
+        "type": "segment-buffered",
+        "level": 0,
+        "sequence": 0,
+        "duration": 2.0687333333333333,
+        "bytes": 190254,
+        "bandwidthEstimate": 527786.6545397976,
+        "loadMilliseconds": 3158.5,
+        "processingMilliseconds": 6.8999998569488525
+      },
+      {
+        "type": "canplay",
+        "currentTime": 0.006712,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "playing",
+        "currentTime": 0.006862,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "level-switched",
+        "level": 0,
+        "width": 640,
+        "height": 360,
+        "automatic": true,
+        "atMilliseconds": 6915.399999856949
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 0.236341,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 0.508439,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 0.872628,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 0.872628,
+        "duration": 18.017999999999994,
+        "readyState": 2
+      },
+      {
+        "type": "waiting",
+        "currentTime": 0.872628,
+        "duration": 18.017999999999994,
+        "readyState": 2
+      },
+      {
+        "type": "rebuffer-started",
+        "atMilliseconds": 7826.899999856949
+      },
+      {
+        "type": "canplay",
+        "currentTime": 0.888143,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "playing",
+        "currentTime": 0.888177,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "rebuffer-ended",
+        "durationMilliseconds": 16.5,
+        "atMilliseconds": 7843.399999856949
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 1.129485,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 1.392684,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 1.6578,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 1.922917,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 1.936824,
+        "duration": 18.017999999999994,
+        "readyState": 2
+      },
+      {
+        "type": "waiting",
+        "currentTime": 1.936824,
+        "duration": 18.017999999999994,
+        "readyState": 2
+      },
+      {
+        "type": "rebuffer-started",
+        "atMilliseconds": 8892.599999904633
+      },
+      {
+        "type": "segment-authenticated",
+        "level": 0,
+        "sequence": 1,
+        "keyId": "interop-test-key",
+        "recordCount": 4,
+        "cipherBytes": 206024,
+        "clearBytes": 205800,
+        "clearSha256": "7015c30a824407bdf2b5abd444720768511f17db3d4f0ec7a75990fc8aaacb5f",
+        "mediaFragmentCount": 1
+      },
+      {
+        "type": "segment-buffered",
+        "level": 0,
+        "sequence": 1,
+        "duration": 2.002,
+        "bytes": 206024,
+        "bandwidthEstimate": 508900.4989119258,
+        "loadMilliseconds": 3535.2999999523163,
+        "processingMilliseconds": 1.2000000476837158
+      },
+      {
+        "type": "canplay",
+        "currentTime": 1.937575,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "playing",
+        "currentTime": 1.937609,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "rebuffer-ended",
+        "durationMilliseconds": 1561.2000000476837,
+        "atMilliseconds": 10453.799999952316
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 1.955842,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 2.221433,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 2.487108,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 2.752732,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 3.018321,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 3.284017,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 3.549958,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 3.815194,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 3.925568,
+        "duration": 18.017999999999994,
+        "readyState": 2
+      },
+      {
+        "type": "waiting",
+        "currentTime": 3.925568,
+        "duration": 18.017999999999994,
+        "readyState": 2
+      },
+      {
+        "type": "rebuffer-started",
+        "atMilliseconds": 12442.099999904633
+      },
+      {
+        "type": "segment-authenticated",
+        "level": 0,
+        "sequence": 2,
+        "keyId": "interop-test-key",
+        "recordCount": 5,
+        "cipherBytes": 263362,
+        "clearBytes": 263082,
+        "clearSha256": "09828584f5cf02194e81c6d0908467e358335846e19cd18892b620fdf2d353d4",
+        "mediaFragmentCount": 1
+      },
+      {
+        "type": "segment-buffered",
+        "level": 0,
+        "sequence": 2,
+        "duration": 2.0020000000000007,
+        "bytes": 263362,
+        "bandwidthEstimate": 522894.94530550466,
+        "loadMilliseconds": 4280.399999856949,
+        "processingMilliseconds": 2.4000000953674316
+      },
+      {
+        "type": "canplay",
+        "currentTime": 3.925951,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "playing",
+        "currentTime": 3.925982,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "rebuffer-ended",
+        "durationMilliseconds": 2293.5,
+        "atMilliseconds": 14735.599999904633
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 4.021714,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 4.287326,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 4.55308,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 4.818521,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 5.084122,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 5.351334,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 5.615809,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 5.881269,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 5.952141,
+        "duration": 18.017999999999994,
+        "readyState": 2
+      },
+      {
+        "type": "waiting",
+        "currentTime": 5.952141,
+        "duration": 18.017999999999994,
+        "readyState": 2
+      },
+      {
+        "type": "rebuffer-started",
+        "atMilliseconds": 16762
+      },
+      {
+        "type": "segment-authenticated",
+        "level": 0,
+        "sequence": 3,
+        "keyId": "interop-test-key",
+        "recordCount": 3,
+        "cipherBytes": 186119,
+        "clearBytes": 185951,
+        "clearSha256": "3700407cb9e61068ce3f0f20acf02d3b2dfce498f8e4e5272e7f5d5f956464cc",
+        "mediaFragmentCount": 1
+      },
+      {
+        "type": "segment-buffered",
+        "level": 0,
+        "sequence": 3,
+        "duration": 2.001999999999999,
+        "bytes": 186119,
+        "bandwidthEstimate": 525055.0610402367,
+        "loadMilliseconds": 3087.2999999523163,
+        "processingMilliseconds": 1.2999999523162842
+      },
+      {
+        "type": "canplay",
+        "currentTime": 5.953331,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "playing",
+        "currentTime": 5.953365,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "rebuffer-ended",
+        "durationMilliseconds": 1064.7999999523163,
+        "atMilliseconds": 17826.799999952316
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 6.208065,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 6.473475,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 6.744768,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 7.004695,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 7.270293,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 7.536076,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 7.801564,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 7.951788,
+        "duration": 18.017999999999994,
+        "readyState": 2
+      },
+      {
+        "type": "waiting",
+        "currentTime": 7.951788,
+        "duration": 18.017999999999994,
+        "readyState": 2
+      },
+      {
+        "type": "rebuffer-started",
+        "atMilliseconds": 19825.699999809265
+      },
+      {
+        "type": "segment-authenticated",
+        "level": 0,
+        "sequence": 4,
+        "keyId": "interop-test-key",
+        "recordCount": 3,
+        "cipherBytes": 180221,
+        "clearBytes": 180053,
+        "clearSha256": "09d067a8be95f30bd4248c8405c544aff9af5b913353dd4dfd4289642378475b",
+        "mediaFragmentCount": 1
+      },
+      {
+        "type": "segment-buffered",
+        "level": 0,
+        "sequence": 4,
+        "duration": 2.0020000000000007,
+        "bytes": 180221,
+        "bandwidthEstimate": 526353.5236959088,
+        "loadMilliseconds": 2993.7000000476837,
+        "processingMilliseconds": 1.4000000953674316
+      },
+      {
+        "type": "canplay",
+        "currentTime": 7.952084,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "playing",
+        "currentTime": 7.952163,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "rebuffer-ended",
+        "durationMilliseconds": 1000.4000000953674,
+        "atMilliseconds": 20826.199999809265
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 8.004275,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 8.270081,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 8.53559,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 9.173367,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 9.240125,
+        "duration": 18.017999999999994,
+        "readyState": 2
+      },
+      {
+        "type": "waiting",
+        "currentTime": 9.240125,
+        "duration": 18.017999999999994,
+        "readyState": 2
+      },
+      {
+        "type": "rebuffer-started",
+        "atMilliseconds": 22114.5
+      },
+      {
+        "type": "canplay",
+        "currentTime": 9.240155,
+        "duration": 18.017999999999994,
+        "readyState": 2
+      },
+      {
+        "type": "playing",
+        "currentTime": 9.240155,
+        "duration": 18.017999999999994,
+        "readyState": 2
+      },
+      {
+        "type": "rebuffer-ended",
+        "durationMilliseconds": 13.299999952316284,
+        "atMilliseconds": 22127.89999985695
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 9.240155,
+        "duration": 18.017999999999994,
+        "readyState": 2
+      },
+      {
+        "type": "waiting",
+        "currentTime": 9.240155,
+        "duration": 18.017999999999994,
+        "readyState": 2
+      },
+      {
+        "type": "rebuffer-started",
+        "atMilliseconds": 22128
+      },
+      {
+        "type": "canplay",
+        "currentTime": 9.240572,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "playing",
+        "currentTime": 9.240609,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "rebuffer-ended",
+        "durationMilliseconds": 7.3999998569488525,
+        "atMilliseconds": 22135.39999985695
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 9.604341,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 9.868168,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 9.982757,
+        "duration": 18.017999999999994,
+        "readyState": 2
+      },
+      {
+        "type": "waiting",
+        "currentTime": 9.982757,
+        "duration": 18.017999999999994,
+        "readyState": 2
+      },
+      {
+        "type": "rebuffer-started",
+        "atMilliseconds": 22976.39999985695
+      },
+      {
+        "type": "segment-authenticated",
+        "level": 0,
+        "sequence": 5,
+        "keyId": "interop-test-key",
+        "recordCount": 4,
+        "cipherBytes": 244233,
+        "clearBytes": 244009,
+        "clearSha256": "452312e9001c61ced2584aa211fce5b4d00fa2f4fb7e58d771e742cb3b572818",
+        "mediaFragmentCount": 1
+      },
+      {
+        "type": "segment-buffered",
+        "level": 0,
+        "sequence": 5,
+        "duration": 2.0020000000000007,
+        "bytes": 244233,
+        "bandwidthEstimate": 502718.9722616137,
+        "loadMilliseconds": 4164.900000095367,
+        "processingMilliseconds": 2.9000000953674316
+      },
+      {
+        "type": "canplay",
+        "currentTime": 9.98536,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "playing",
+        "currentTime": 9.985431,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "rebuffer-ended",
+        "durationMilliseconds": 2036.7000000476837,
+        "atMilliseconds": 25013.099999904633
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 10.040522,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 10.305906,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 10.57169,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 10.837167,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 11.102808,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 11.368377,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 11.634244,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 11.899565,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 11.949058,
+        "duration": 18.017999999999994,
+        "readyState": 2
+      },
+      {
+        "type": "waiting",
+        "currentTime": 11.949058,
+        "duration": 18.017999999999994,
+        "readyState": 2
+      },
+      {
+        "type": "rebuffer-started",
+        "atMilliseconds": 26974.89999985695
+      },
+      {
+        "type": "segment-authenticated",
+        "level": 0,
+        "sequence": 6,
+        "keyId": "interop-test-key",
+        "recordCount": 3,
+        "cipherBytes": 184336,
+        "clearBytes": 184168,
+        "clearSha256": "3ad63e336d471340cb5953965bc16fefee12402b1906fb1dbbf77a6aef836ad5",
+        "mediaFragmentCount": 1
+      },
+      {
+        "type": "segment-buffered",
+        "level": 0,
+        "sequence": 6,
+        "duration": 2.001999999999999,
+        "bytes": 184336,
+        "bandwidthEstimate": 502118.503696786,
+        "loadMilliseconds": 3236.9000000953674,
+        "processingMilliseconds": 2
+      },
+      {
+        "type": "canplay",
+        "currentTime": 11.956744,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "playing",
+        "currentTime": 11.956883,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "rebuffer-ended",
+        "durationMilliseconds": 1270.6000001430511,
+        "atMilliseconds": 28245.5
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 12.012066,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 12.278004,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 12.543178,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 12.808851,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 13.074791,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 13.340283,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 13.605712,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 13.871324,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 13.952736,
+        "duration": 18.017999999999994,
+        "readyState": 2
+      },
+      {
+        "type": "waiting",
+        "currentTime": 13.952736,
+        "duration": 18.017999999999994,
+        "readyState": 2
+      },
+      {
+        "type": "rebuffer-started",
+        "atMilliseconds": 30241.199999809265
+      },
+      {
+        "type": "segment-authenticated",
+        "level": 0,
+        "sequence": 7,
+        "keyId": "interop-test-key",
+        "recordCount": 3,
+        "cipherBytes": 178737,
+        "clearBytes": 178569,
+        "clearSha256": "dc8feb711b2916bc4a6f3cd06fd3394be3d0760e86b2dac567995938fce96052",
+        "mediaFragmentCount": 1
+      },
+      {
+        "type": "segment-buffered",
+        "level": 0,
+        "sequence": 7,
+        "duration": 2.0020000000000007,
+        "bytes": 178737,
+        "bandwidthEstimate": 516943.49102577666,
+        "loadMilliseconds": 2972.100000143051,
+        "processingMilliseconds": 0.8999998569488525
+      },
+      {
+        "type": "canplay",
+        "currentTime": 13.952921,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "playing",
+        "currentTime": 13.952954,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "rebuffer-ended",
+        "durationMilliseconds": 969.6000001430511,
+        "atMilliseconds": 31210.799999952316
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 14.042228,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 14.30797,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 14.573497,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 14.839392,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 15.104877,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 15.370289,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 15.635932,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 15.901595,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 15.949711,
+        "duration": 18.017999999999994,
+        "readyState": 2
+      },
+      {
+        "type": "waiting",
+        "currentTime": 15.949711,
+        "duration": 18.017999999999994,
+        "readyState": 2
+      },
+      {
+        "type": "rebuffer-started",
+        "atMilliseconds": 33207.89999985695
+      },
+      {
+        "type": "segment-authenticated",
+        "level": 0,
+        "sequence": 8,
+        "keyId": "interop-test-key",
+        "recordCount": 4,
+        "cipherBytes": 246129,
+        "clearBytes": 245905,
+        "clearSha256": "f3ef65834c6f2bb3871096e757db407595441b21c9874c62b0106605fd54d2e1",
+        "mediaFragmentCount": 1
+      },
+      {
+        "type": "segment-buffered",
+        "level": 0,
+        "sequence": 8,
+        "duration": 2.001999999999999,
+        "bytes": 246129,
+        "bandwidthEstimate": 522907.5061206932,
+        "loadMilliseconds": 4003.899999856949,
+        "processingMilliseconds": 1
+      },
+      {
+        "type": "canplay",
+        "currentTime": 15.949873,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "playing",
+        "currentTime": 15.949956,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "rebuffer-ended",
+        "durationMilliseconds": 2006.9000000953674,
+        "atMilliseconds": 35214.799999952316
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 16.066489,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 16.332051,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 16.597992,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 16.863849,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 17.129101,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 17.396236,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 17.666725,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 17.926259,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 18.084732,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "ended",
+        "currentTime": 18.084732,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "playback-completed",
+        "startedAt": 20415.300000190735,
+        "levelSwitches": 1,
+        "automaticLevelSwitches": 1,
+        "manualLevelSwitches": 0,
+        "rebufferCount": 11,
+        "rebufferMilliseconds": 12240.900000333786,
+        "bufferedSegments": 9,
+        "fatalErrors": 0,
+        "completed": true,
+        "elapsedMilliseconds": 37356
+      }
+    ],
+    "playbackMetrics": {
+      "startedAt": 20415.300000190735,
+      "levelSwitches": 1,
+      "automaticLevelSwitches": 1,
+      "manualLevelSwitches": 0,
+      "rebufferCount": 11,
+      "rebufferMilliseconds": 12240.900000333786,
+      "bufferedSegments": 9,
+      "fatalErrors": 0,
+      "completed": true,
+      "elapsedMilliseconds": 37409
+    },
+    "serverStatus": {
+      "forcedTruncation": false,
+      "truncatedResponses": 0,
+      "rangeRequests": 0,
+      "objectChanged": false
+    },
+    "rustfsRange": null,
+    "duration": 18.084732,
+    "currentTime": 18.084732,
+    "videoWidth": 640,
+    "videoHeight": 360
+  },
+  "requestLog": [
+    {
+      "url": "http://127.0.0.1:8791/",
+      "method": "GET",
+      "headers": {
+        "upgrade-insecure-requests": "1",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"Linux\""
+      },
+      "resourceType": "document"
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/index.js",
+      "method": "GET",
+      "headers": {
+        "origin": "http://127.0.0.1:8791",
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=constant",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/playback.json",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=constant",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/master.m3u8",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=constant",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/index.m3u8",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=constant",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00000.enc.m4s.json",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=constant",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*"
+      },
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00000.enc.m4s",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=constant",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/init_360p.mp4",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=constant",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00000.enc.m4s.json",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=constant",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*"
+      },
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00000.enc.m4s",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=constant",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00001.enc.m4s.json",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=constant",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*"
+      },
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00001.enc.m4s",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=constant",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00002.enc.m4s.json",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=constant",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*"
+      },
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00002.enc.m4s",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=constant",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00003.enc.m4s.json",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=constant",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*"
+      },
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00003.enc.m4s",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=constant",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00004.enc.m4s.json",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=constant",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*"
+      },
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00004.enc.m4s",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=constant",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00005.enc.m4s.json",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=constant",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*"
+      },
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00005.enc.m4s",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=constant",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00006.enc.m4s.json",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=constant",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*"
+      },
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00006.enc.m4s",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=constant",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00007.enc.m4s.json",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=constant",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*"
+      },
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00007.enc.m4s",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=constant",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00008.enc.m4s.json",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=constant",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*"
+      },
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00008.enc.m4s",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=constant",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/test-status",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=constant",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    }
+  ],
+  "responseLog": [
+    {
+      "url": "http://127.0.0.1:8791/",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "14439",
+        "etag": "\"14439-1791471706607.1262\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/index.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "1311533",
+        "etag": "\"1311533-1791472850727.0723\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/playback.json",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "159",
+        "etag": "\"159-1791360957862.7156\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/master.m3u8",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "386",
+        "etag": "\"386-1791360957267.8362\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/index.m3u8",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "533",
+        "etag": "\"533-1791360957442.8857\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00000.enc.m4s.json",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "1019",
+        "etag": "\"1019-1791360957306.2786\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "7562",
+        "etag": "\"7562-1791472850282.7427\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00000.enc.m4s",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "190254",
+        "etag": "\"190254-1791360957297.1929\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/init_360p.mp4",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "867",
+        "etag": "\"867-1791360957276.6006\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00000.enc.m4s.json",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "1019",
+        "etag": "\"1019-1791360957306.2786\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "7562",
+        "etag": "\"7562-1791472850282.7427\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00000.enc.m4s",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "190254",
+        "etag": "\"190254-1791360957297.1929\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00001.enc.m4s.json",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "1184",
+        "etag": "\"1184-1791360957335.6895\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "7562",
+        "etag": "\"7562-1791472850282.7427\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00001.enc.m4s",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "206024",
+        "etag": "\"206024-1791360957329.1104\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00002.enc.m4s.json",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "1349",
+        "etag": "\"1349-1791360957359.6404\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "7562",
+        "etag": "\"7562-1791472850282.7427\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00002.enc.m4s",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "263362",
+        "etag": "\"263362-1791360957355.1729\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00003.enc.m4s.json",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "1019",
+        "etag": "\"1019-1791360957376.9724\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "7562",
+        "etag": "\"7562-1791472850282.7427\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00003.enc.m4s",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "186119",
+        "etag": "\"186119-1791360957369.484\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00004.enc.m4s.json",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "1019",
+        "etag": "\"1019-1791360957392.943\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "7562",
+        "etag": "\"7562-1791472850282.7427\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00004.enc.m4s",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "180221",
+        "etag": "\"180221-1791360957386.6338\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00005.enc.m4s.json",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "1185",
+        "etag": "\"1185-1791360957411.9028\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "7562",
+        "etag": "\"7562-1791472850282.7427\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00005.enc.m4s",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "244233",
+        "etag": "\"244233-1791360957410.167\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00006.enc.m4s.json",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "1019",
+        "etag": "\"1019-1791360957420.038\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "7562",
+        "etag": "\"7562-1791472850282.7427\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00006.enc.m4s",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "184336",
+        "etag": "\"184336-1791360957418.1553\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00007.enc.m4s.json",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "1019",
+        "etag": "\"1019-1791360957430.452\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "7562",
+        "etag": "\"7562-1791472850282.7427\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00007.enc.m4s",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "178737",
+        "etag": "\"178737-1791360957429.5728\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00008.enc.m4s.json",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "1185",
+        "etag": "\"1185-1791360957441.5764\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "7562",
+        "etag": "\"7562-1791472850282.7427\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00008.enc.m4s",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "246129",
+        "etag": "\"246129-1791360957438.6338\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/test-status",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store"
+      }
+    }
+  ],
+  "outputHashes": [],
+  "failedRequests": [
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00000.enc.m4s",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00000.enc.m4s",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00001.enc.m4s",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00002.enc.m4s",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00003.enc.m4s",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00004.enc.m4s",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00005.enc.m4s",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00006.enc.m4s",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00007.enc.m4s",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v360p/segment_00008.enc.m4s",
+      "error": "net::ERR_ABORTED"
+    }
+  ],
+  "badResponses": [],
+  "pageErrors": [],
+  "consoleErrors": []
+}

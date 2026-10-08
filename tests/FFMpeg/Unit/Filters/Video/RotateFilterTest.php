@@ -31,7 +31,7 @@ class RotateFilterTest extends TestCase
         $this->assertEquals(320, $stream->get('height'));
     }
 
-    public function provide90degresTranspositions()
+    public static function provide90degresTranspositions()
     {
         return [
             [RotateFilter::ROTATE_90],
@@ -54,7 +54,7 @@ class RotateFilterTest extends TestCase
         $this->assertEquals(['-vf', $value, '-metadata:s:v:0', 'rotate=0'], $filter->apply($video, $format));
     }
 
-    public function provideDegresWithoutTranspositions()
+    public static function provideDegresWithoutTranspositions()
     {
         return [
             [RotateFilter::ROTATE_180],

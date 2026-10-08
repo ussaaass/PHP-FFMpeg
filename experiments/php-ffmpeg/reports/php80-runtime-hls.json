@@ -1,0 +1,44 @@
+{
+  "acceptance": "php80-runtime-hls-and-progress-regression",
+  "status": "passed",
+  "date": "2026-10-09",
+  "runtime": {
+    "php": "8.0.30",
+    "phpunit": "9.6.33",
+    "image": "php:8.0-cli-bullseye",
+    "imageId": "sha256:d411cd4fa78edd19c44d830b3aaba665c201e4e9fcb899dd91cd06665d746d8b",
+    "platform": "linux/amd64",
+    "dockerDaemonArchitecture": "linux/arm64",
+    "composer": "2.10.3",
+    "dependencyResolution": "isolated copy; Composer config platform.php=8.0.30; composer update --prefer-lowest --prefer-stable"
+  },
+  "selectedDependencies": {
+    "evenement/evenement": "3.0.0",
+    "psr/log": "1.1.0",
+    "spatie/temporary-directory": "2.0.0",
+    "symfony/cache": "v5.4.52",
+    "symfony/process": "v5.4.51",
+    "phpunit/phpunit": "9.6.33"
+  },
+  "suites": {
+    "hls": {
+      "command": "vendor/bin/phpunit -c phpunit-9.xml.dist tests/FFMpeg/Unit/Format/Hls",
+      "tests": 30,
+      "assertions": 206,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "junit": "php80-runtime-hls-junit.xml"
+    },
+    "progressMonotonicityRegression": {
+      "command": "vendor/bin/phpunit -c phpunit-9.xml.dist tests/FFMpeg/Unit/Format/ProgressListener/VideoProgressListenerTest.php",
+      "tests": 4,
+      "assertions": 30,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "junit": "php80-runtime-progress-junit.xml"
+    }
+  },
+  "source": "isolated /tmp copy of the current PHP-FFMpeg working tree; composer.json and composer.lock in the repository were not modified"
+}

@@ -1,0 +1,16 @@
+{
+  "browserVersion": "153.0.8010.12",
+  "testMode": "etag-change",
+  "networkTimeline": [],
+  "status": "passed",
+  "result": {
+    "mode": "etag-change",
+    "expectedRejection": true,
+    "error": "HTTP Error 0 Range resume response did not match the original object and record boundary"
+  },
+  "pageErrors": [],
+  "consoleErrors": [
+    "Failed to load resource: net::ERR_CONTENT_LENGTH_MISMATCH",
+    "Failed to load resource: the server responded with a status of 416 (Range Not Satisfiable)"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "profile": "phpffmpeg-ctr-hmac-v1",
+  "masterKeyHex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+  "contentId": "00000000-0000-4000-8000-000000000001",
+  "baseCounterBase64": "AAECAwQFBgcICQoLDA0ODw==",
+  "clearUtf8": "CTR-HMAC-V1 fixed interoperability vector\n",
+  "clearBytes": 42,
+  "clearSha256": "24393ca988d5e424962e524ddb92b819b783caef2d9a0b0e7c4b2220a9f611ae",
+  "ciphertextHex": "b771fbc4bc18ee74b19f5a9c22e38038c7fa8b5466192ea3b66d7c65a56b149341e8d7bbc789618e3f3a",
+  "tagHex": "84a79936644db4af4608fe4dd23b5edb807edf7dfd5b4c683d4ad5d0ca1d1087",
+  "recordHex": "00000000000102030405060708090a0b0c0d0e0f0000002ab771fbc4bc18ee74b19f5a9c22e38038c7fa8b5466192ea3b66d7c65a56b149341e8d7bbc789618e3f3a84a79936644db4af4608fe4dd23b5edb807edf7dfd5b4c683d4ad5d0ca1d1087",
+  "recordBytes": 98
+}

@@ -55,16 +55,13 @@ class FFProbeTest extends TestCase
         $this->assertSame($cache, $ffprobe->getCache());
     }
 
-    public function provideDataWhitoutCache()
+    public static function provideDataWhitoutCache()
     {
-        $stream = $this->getStreamMock();
-        $format = $this->getFormatMock();
-
         return [
-            [$stream, 'streams', ['-show_streams', '-print_format'], FFProbe::TYPE_STREAMS, [__FILE__, '-show_streams', '-print_format', 'json'], false],
-            [$format, 'format', ['-show_format', '-print_format'], FFProbe::TYPE_FORMAT, [__FILE__, '-show_format', '-print_format', 'json'], false],
-            [$stream, 'streams', ['-show_streams'], FFProbe::TYPE_STREAMS, [__FILE__, '-show_streams'], true],
-            [$format, 'format', ['-show_format'], FFProbe::TYPE_FORMAT, [__FILE__, '-show_format'], true],
+            ['stream', 'streams', ['-show_streams', '-print_format'], FFProbe::TYPE_STREAMS, [__FILE__, '-show_streams', '-print_format', 'json'], false],
+            ['format', 'format', ['-show_format', '-print_format'], FFProbe::TYPE_FORMAT, [__FILE__, '-show_format', '-print_format', 'json'], false],
+            ['stream', 'streams', ['-show_streams'], FFProbe::TYPE_STREAMS, [__FILE__, '-show_streams'], true],
+            ['format', 'format', ['-show_format'], FFProbe::TYPE_FORMAT, [__FILE__, '-show_format'], true],
         ];
     }
 
@@ -73,6 +70,7 @@ class FFProbeTest extends TestCase
      */
     public function testProbeWithoutCache($output, $method, $commands, $type, $caughtCommands, $isRaw)
     {
+        $output = 'stream' === $output ? $this->getStreamMock() : $this->getFormatMock();
         $pathfile = __FILE__;
         $data = ['key' => 'value'];
         $rawData = 'raw data';
@@ -125,14 +123,11 @@ class FFProbeTest extends TestCase
         $this->assertEquals($output, call_user_func([$ffprobe, $method], $pathfile));
     }
 
-    public function provideDataForInvalidJson()
+    public static function provideDataForInvalidJson()
     {
-        $stream = $this->getStreamMock();
-        $format = $this->getFormatMock();
-
         return [
-            [$stream, 'streams', ['-show_streams', '-print_format'], FFProbe::TYPE_STREAMS, [__FILE__, '-show_streams', '-print_format', 'json']],
-            [$format, 'format', ['-show_format', '-print_format'], FFProbe::TYPE_FORMAT, [__FILE__, '-show_format', '-print_format', 'json']],
+            ['stream', 'streams', ['-show_streams', '-print_format'], FFProbe::TYPE_STREAMS, [__FILE__, '-show_streams', '-print_format', 'json']],
+            ['format', 'format', ['-show_format', '-print_format'], FFProbe::TYPE_FORMAT, [__FILE__, '-show_format', '-print_format', 'json']],
         ];
     }
 
@@ -141,6 +136,7 @@ class FFProbeTest extends TestCase
      */
     public function testProbeWithWrongJson($output, $method, $commands, $type, $caughtCommands)
     {
+        $output = 'stream' === $output ? $this->getStreamMock() : $this->getFormatMock();
         $pathfile = __FILE__;
         $data = ['key' => 'value'];
 
@@ -182,14 +178,11 @@ class FFProbeTest extends TestCase
         $this->assertEquals($output, call_user_func([$ffprobe, $method], $pathfile));
     }
 
-    public function provideProbingDataWithCache()
+    public static function provideProbingDataWithCache()
     {
-        $stream = $this->getStreamMock();
-        $format = $this->getFormatMock();
-
         return [
-            [$stream, 'streams'],
-            [$format, 'format'],
+            ['stream', 'streams'],
+            ['format', 'format'],
         ];
     }
 
@@ -198,6 +191,7 @@ class FFProbeTest extends TestCase
      */
     public function testProbeWithCache($output, $method)
     {
+        $output = 'stream' === $output ? $this->getStreamMock() : $this->getFormatMock();
         $pathfile = __FILE__;
 
         $ffprobe = new FFProbe($this->getFFProbeDriverMock(), $this->getCacheMock());
@@ -233,7 +227,7 @@ class FFProbeTest extends TestCase
         $this->assertEquals($output, call_user_func([$ffprobe, $method], $pathfile));
     }
 
-    public function provideProbeMethod()
+    public static function provideProbeMethod()
     {
         return [
             ['streams'],
@@ -259,6 +253,9 @@ class FFProbeTest extends TestCase
      */
     public function testCreate($logger, $conf, $cache)
     {
+        $logger = $logger ? $this->getLoggerMock() : null;
+        $conf = 'object' === $conf ? new Configuration() : ['key' => 'value'];
+        $cache = $cache ? $this->getCacheMock() : null;
         $finder = new ExecutableFinder();
 
         $found = false;
@@ -289,13 +286,13 @@ class FFProbeTest extends TestCase
         }
     }
 
-    public function provideCreateOptions()
+    public static function provideCreateOptions()
     {
         return [
-            [null, ['key' => 'value'], null],
-            [$this->getLoggerMock(), ['key' => 'value'], null],
-            [null, new Configuration(), null],
-            [null, ['key' => 'value'], $this->getCacheMock()],
+            [false, 'array', false],
+            [true, 'array', false],
+            [false, 'object', false],
+            [false, 'array', true],
         ];
     }
 }

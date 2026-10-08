@@ -132,8 +132,10 @@ class AudioTest extends AbstractStreamableTestCase
     /**
      * @dataProvider provideSaveData
      */
-    public function testSaveShouldSave($threads, $expectedCommands, $expectedListeners, $format)
+    public function testSaveShouldSave($case)
     {
+        list($threads, $expectedCommands, $expectedListeners, $format) = $this->buildSaveData()[$case];
+
         $driver = $this->getFFMpegDriverMock();
         $ffprobe = $this->getFFProbeMock();
 
@@ -177,7 +179,12 @@ class AudioTest extends AbstractStreamableTestCase
         $this->assertEquals($expectedListeners, $capturedListeners);
     }
 
-    public function provideSaveData()
+    public static function provideSaveData()
+    {
+        return [[0], [1], [2], [3], [4], [5], [6]];
+    }
+
+    private function buildSaveData()
     {
         $format = $this->getMockBuilder('FFMpeg\Format\AudioInterface')->getMock();
         $format->expects($this->any())

@@ -333,7 +333,7 @@ class AdvancedMedia extends AbstractMediaType
     protected function assertFiltersAreCompatibleToCurrentFFMpegVersion()
     {
         $messages = [];
-        $currentVersion = $this->getFFMpegDriver()->getVersion();
+        $currentVersion = $this->getFFMpegDriver()->getVersionNumber();
         /** @var ComplexFilterInterface $filter */
         foreach ($this->filters as $filter) {
             if (version_compare($currentVersion, $filter->getMinimalFFMpegVersion(), '<')) {
@@ -343,7 +343,8 @@ class AdvancedMedia extends AbstractMediaType
         }
 
         if (!empty($messages)) {
-            throw new RuntimeException(implode('; ', $messages).'; your ffmpeg version is '.$currentVersion);
+            $reportedVersion = $this->getFFMpegDriver()->getVersion();
+            throw new RuntimeException(implode('; ', $messages).'; your ffmpeg version is '.$reportedVersion);
         }
     }
 

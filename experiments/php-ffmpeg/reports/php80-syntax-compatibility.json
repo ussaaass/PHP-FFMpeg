@@ -1,0 +1,10 @@
+{
+    "acceptance": "php80-source-syntax-compatibility",
+    "status": "passed-static-grammar-only",
+    "targetPhp": "8.0",
+    "runtimePhp": "8.5.11",
+    "parserVersion": "v5.9.0",
+    "fileCount": 50,
+    "filesSha256": "d0a9d6154276642427e3d3ab54d7980b3ab873318ea69c7f3c0c52460b673d1a",
+    "runtimeAcceptance": "passed; PHP 8.0.30 Docker ran the HLS unit suite (30 tests, 206 assertions) and progress monotonicity regression (4 tests, 30 assertions); see php80-runtime-hls.json"
+}

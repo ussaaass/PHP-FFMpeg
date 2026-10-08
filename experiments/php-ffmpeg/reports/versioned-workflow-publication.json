@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "gitCommit": "41fa00949ea2758cd34f076a8030df7198d57759",
+  "workingTreeWasDirty": true,
+  "dockerImageId": "sha256:90d2633391308230beba70888d22c70dd235f4e9964fe38d13e5305f5c9ca4fc",
+  "sampleSha256": "11481cb7a9fc1023b618911ed86297192bfc5f4999ad0b2e958d0d5c87ce5258",
+  "phpVersion": "8.5.11",
+  "ffmpegVersion": "5.1.9-0+deb12u1",
+  "ffprobeVersion": "5.1.9-0+deb12u1",
+  "outputRoot": "experiments/php-ffmpeg/output/versioned-workflow-test",
+  "publicationMode": "versioned",
+  "currentPointer": {
+    "version": "20261007T172341Z-801fd270a3d993ab",
+    "directory": "versions/20261007T172341Z-801fd270a3d993ab"
+  },
+  "versions": [
+    {
+      "versionId": "20261007T172308Z-f49996ec74021e71",
+      "packageDirectory": "versions/20261007T172308Z-f49996ec74021e71/package",
+      "segmentCount": 27,
+      "sidecarCount": 27,
+      "masterPlaylistExists": true,
+      "descriptorExists": true
+    },
+    {
+      "versionId": "20261007T172341Z-801fd270a3d993ab",
+      "packageDirectory": "versions/20261007T172341Z-801fd270a3d993ab/package",
+      "segmentCount": 27,
+      "sidecarCount": 27,
+      "masterPlaylistExists": true,
+      "descriptorExists": true
+    }
+  ],
+  "assertions": {
+    "secondRunAtomicallyReplacedPointer": true,
+    "previousVersionRemainsReadable": true,
+    "stagingAndPointerTemporaryFilesAbsent": true,
+    "publishedArtifactsContainNoRawHexOrBase64MasterKey": true,
+    "commitFailureInjectionPhpunit": "passed (1 test, 10 assertions)"
+  }
+}

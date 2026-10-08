@@ -1,0 +1,22 @@
+services:
+  demo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: php-ffmpeg-hls-ctr-demo:0.1.0
+    environment:
+      SAMPLE_PATH: /input/source.mp4
+      OUTPUT_DIR: /app/output
+      PORT: "8789"
+    ports:
+      - "127.0.0.1:8789:8789"
+    volumes:
+      - type: bind
+        source: ./output
+        target: /app/output
+      - type: bind
+        source: ${SAMPLE_FILE:?Set SAMPLE_FILE to an absolute MP4 file path}
+        target: /input/source.mp4
+        read_only: true
+    init: true
+    restart: "no"

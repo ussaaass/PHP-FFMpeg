@@ -1,0 +1,295 @@
+{
+  "gitCommit": "41fa00949ea2758cd34f076a8030df7198d57759",
+  "workingTreeWasDirty": true,
+  "dockerImageId": "sha256:5536bbbd0ffc106a9fdab13fbff6b3abab01418cceff67ff246552b64cf5623d",
+  "proxyImageId": "sha256:7f7dcd27f920b22e980508bd5009b452e3d30b68c1041aa82e98e471d367db03",
+  "networkPath": "nginx-reverse-proxy-to-test-origin",
+  "sampleSha256": "11481cb7a9fc1023b618911ed86297192bfc5f4999ad0b2e958d0d5c87ce5258",
+  "environment": {
+    "browserVersion": "153.0.8010.12",
+    "nodeVersion": "v24.20.0",
+    "platform": "linux"
+  },
+  "browserVersion": "153.0.8010.12",
+  "testMode": "key-timeout",
+  "networkTimeline": [],
+  "status": "passed",
+  "expectedOutcome": {
+    "type": "key-provider-rejection",
+    "code": "PLAYER_KEY_PROVIDER_TIMEOUT",
+    "observed": true
+  },
+  "result": {
+    "mode": "key-timeout",
+    "failures": [
+      {
+        "source": "key-provider",
+        "code": "PLAYER_KEY_PROVIDER_TIMEOUT",
+        "type": "key-provider-timeout",
+        "fatal": true,
+        "error": "Application key provider exceeded its configured timeout"
+      }
+    ],
+    "metrics": {
+      "startedAt": 181,
+      "levelSwitches": 0,
+      "automaticLevelSwitches": 0,
+      "manualLevelSwitches": 0,
+      "rebufferCount": 0,
+      "rebufferMilliseconds": 0,
+      "bufferedSegments": 0,
+      "fatalErrors": 1,
+      "completed": false,
+      "elapsedMilliseconds": 286.5
+    }
+  },
+  "requestLog": [
+    {
+      "url": "http://127.0.0.1:8080/",
+      "method": "GET",
+      "headers": {
+        "upgrade-insecure-requests": "1",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"Linux\""
+      },
+      "resourceType": "document"
+    },
+    {
+      "url": "http://127.0.0.1:8080/dist/index.js",
+      "method": "GET",
+      "headers": {
+        "origin": "http://127.0.0.1:8080",
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8080/?mode=key-timeout",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:8080/media/playback.json",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8080/?mode=key-timeout",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8080/media/master.m3u8",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8080/?mode=key-timeout",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8081/v360p/index.m3u8",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8080/",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8081/v360p/init_360p.mp4",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8080/",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8081/v360p/segment_00000.enc.m4s.json",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8080/",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8081/v720p/index.m3u8",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8080/",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8081/v720p/init_720p.mp4",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8080/",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8081/v720p/segment_00000.enc.m4s.json",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8080/",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    }
+  ],
+  "responseLog": [
+    {
+      "url": "http://127.0.0.1:8080/",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "9462",
+        "etag": "\"9462-1791388269801.3396\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8080/dist/index.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "1310174",
+        "etag": "\"1310174-1791387059838.3718\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8080/media/playback.json",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "159",
+        "etag": "\"159-1791360957862.7156\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8080/media/master.m3u8",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "452"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8081/v360p/index.m3u8",
+      "status": 200,
+      "headers": {
+        "accept-ranges": "bytes",
+        "cache-control": "no-store",
+        "content-length": "533",
+        "etag": "\"533-1791360957442.8857\"",
+        "access-control-allow-origin": "http://127.0.0.1:8080",
+        "access-control-expose-headers": "ETag, Content-Range, Content-Length, Accept-Ranges, Age, X-Cache",
+        "vary": "Origin",
+        "x-cache": "MISS"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8081/v360p/init_360p.mp4",
+      "status": 200,
+      "headers": {
+        "accept-ranges": "bytes",
+        "cache-control": "no-store",
+        "content-length": "867",
+        "etag": "\"867-1791360957276.6006\"",
+        "access-control-allow-origin": "http://127.0.0.1:8080",
+        "access-control-expose-headers": "ETag, Content-Range, Content-Length, Accept-Ranges, Age, X-Cache",
+        "vary": "Origin",
+        "x-cache": "MISS"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8081/v360p/segment_00000.enc.m4s.json",
+      "status": 200,
+      "headers": {
+        "accept-ranges": "bytes",
+        "cache-control": "no-store",
+        "content-length": "1019",
+        "etag": "\"1019-1791360957306.2786\"",
+        "access-control-allow-origin": "http://127.0.0.1:8080",
+        "access-control-expose-headers": "ETag, Content-Range, Content-Length, Accept-Ranges, Age, X-Cache",
+        "vary": "Origin",
+        "x-cache": "MISS"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8081/v720p/index.m3u8",
+      "status": 200,
+      "headers": {
+        "accept-ranges": "bytes",
+        "cache-control": "no-store",
+        "content-length": "533",
+        "etag": "\"533-1791360957861.6292\"",
+        "access-control-allow-origin": "http://127.0.0.1:8080",
+        "access-control-expose-headers": "ETag, Content-Range, Content-Length, Accept-Ranges, Age, X-Cache",
+        "vary": "Origin",
+        "x-cache": "MISS"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8081/v720p/init_720p.mp4",
+      "status": 200,
+      "headers": {
+        "accept-ranges": "bytes",
+        "cache-control": "no-store",
+        "content-length": "866",
+        "etag": "\"866-1791360957597.219\"",
+        "access-control-allow-origin": "http://127.0.0.1:8080",
+        "access-control-expose-headers": "ETag, Content-Range, Content-Length, Accept-Ranges, Age, X-Cache",
+        "vary": "Origin",
+        "x-cache": "MISS"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8081/v720p/segment_00000.enc.m4s.json",
+      "status": 200,
+      "headers": {
+        "accept-ranges": "bytes",
+        "cache-control": "no-store",
+        "content-length": "2348",
+        "etag": "\"2348-1791360957622.03\"",
+        "access-control-allow-origin": "http://127.0.0.1:8080",
+        "access-control-expose-headers": "ETag, Content-Range, Content-Length, Accept-Ranges, Age, X-Cache",
+        "vary": "Origin",
+        "x-cache": "MISS"
+      }
+    }
+  ],
+  "outputHashes": [],
+  "failedRequests": [],
+  "badResponses": [],
+  "pageErrors": [],
+  "consoleErrors": []
+}

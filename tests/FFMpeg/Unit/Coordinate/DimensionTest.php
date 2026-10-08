@@ -16,7 +16,7 @@ class DimensionTest extends TestCase
         new Dimension($width, $height);
     }
 
-    public function provideInvalidDimensions()
+    public static function provideInvalidDimensions()
     {
         return [
             [320, 0],

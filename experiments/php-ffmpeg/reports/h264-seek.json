@@ -1,0 +1,160 @@
+{
+  "browserVersion": "153.0.8010.12",
+  "testMode": "seek",
+  "status": "passed",
+  "result": {
+    "mode": "seek",
+    "failures": [],
+    "warnings": [],
+    "events": [
+      {
+        "type": "descriptor-loaded",
+        "profile": "phpffmpeg-ctr-hmac-v1",
+        "segmentCount": 9
+      },
+      {
+        "type": "waiting",
+        "currentTime": 4,
+        "duration": 6.005999999999999,
+        "readyState": 0
+      },
+      {
+        "type": "loadedmetadata",
+        "currentTime": 4,
+        "duration": 6.005999999999999,
+        "readyState": 1
+      },
+      {
+        "type": "segment-buffered",
+        "level": 0,
+        "sequence": 0,
+        "duration": 2.0687333333333333
+      },
+      {
+        "type": "segment-buffered",
+        "level": 0,
+        "sequence": 1,
+        "duration": 2.002
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 4.00072,
+        "duration": 6.005999999999999,
+        "readyState": 4
+      },
+      {
+        "type": "level-switched",
+        "level": 0,
+        "width": 640,
+        "height": 360,
+        "automatic": true
+      },
+      {
+        "type": "canplay",
+        "currentTime": 4.00135,
+        "duration": 6.005999999999999,
+        "readyState": 4
+      },
+      {
+        "type": "playing",
+        "currentTime": 4.00137,
+        "duration": 6.005999999999999,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 4.005917,
+        "duration": 6.005999999999999,
+        "readyState": 2
+      },
+      {
+        "type": "waiting",
+        "currentTime": 4.005917,
+        "duration": 6.005999999999999,
+        "readyState": 2
+      },
+      {
+        "type": "segment-buffered",
+        "level": 0,
+        "sequence": 2,
+        "duration": 2.0020000000000007
+      },
+      {
+        "type": "canplay",
+        "currentTime": 4.006113,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "playing",
+        "currentTime": 4.006134,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 4.233372,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 4.49859,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 4.76548,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 5.030452,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 5.295942,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 5.561827,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 5.826708,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 6.072732,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "ended",
+        "currentTime": 6.072732,
+        "duration": 6.072732,
+        "readyState": 4
+      }
+    ],
+    "serverStatus": {
+      "forcedTruncation": false,
+      "rangeRequests": 0
+    },
+    "duration": 6.072732,
+    "currentTime": 6.072732,
+    "videoWidth": 640,
+    "videoHeight": 360
+  },
+  "pageErrors": [],
+  "consoleErrors": []
+}

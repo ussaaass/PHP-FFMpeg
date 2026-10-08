@@ -173,7 +173,7 @@ class ProcessRunnerTest extends BinaryDriverTestCase
 
         $listener = new TestListener();
         $storage = new \SplObjectStorage();
-        $storage->attach($listener);
+        $storage->offsetSet($listener);
 
         $capturedType = $capturedData = null;
 

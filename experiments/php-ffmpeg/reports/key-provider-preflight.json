@@ -1,0 +1,35 @@
+{
+  "acceptance": "ctr-hmac-workflow-key-provider-preflight",
+  "status": "passed",
+  "gitCommit": "41fa00949ea2758cd34f076a8030df7198d57759",
+  "workingTreeWasDirty": true,
+  "containerImage": "php-ffmpeg-php:latest",
+  "containerImageId": "sha256:90d2633391308230beba70888d22c70dd235f4e9964fe38d13e5305f5c9ca4fc",
+  "environment": { "php": "8.5.11", "phpunit": "10.5.65", "browser": null },
+  "parameters": {
+    "profile": "phpffmpeg-ctr-hmac-v1",
+    "keyProvider": "omitted",
+    "keyUriResolver": "omitted",
+    "runner": "WorkflowRunner.execute",
+    "toolExecutables": "temporary marker executables that write a marker if invoked"
+  },
+  "result": {
+    "finding": "KEY_PROVIDER_REQUIRED",
+    "executionRejected": true,
+    "ffmpegStarted": false,
+    "ffprobeStarted": false,
+    "outputPublished": false,
+    "test": "WorkflowTest::testMissingCtrKeyProviderBlocksBeforeStartingFfmpegOrFfprobe",
+    "assertions": 2
+  },
+  "rawEvents": [
+    "Docker PHPUnit: 1 test, 2 assertions, passed.",
+    "The temporary tool-start marker was absent after WorkflowRunner.execute rejected the plan."
+  ],
+  "requestHeaders": null,
+  "outputHashes": [],
+  "limitations": [
+    "This is an isolated execution-preflight test; it does not validate application KeyProvider authorization, timeouts, or production key custody.",
+    "The git commit identifies HEAD; the worktree was dirty during this acceptance run."
+  ]
+}

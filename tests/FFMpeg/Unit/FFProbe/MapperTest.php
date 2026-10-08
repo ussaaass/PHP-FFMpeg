@@ -27,7 +27,7 @@ class MapperTest extends TestCase
         $mapper->map('cool type', 'data');
     }
 
-    public function provideMappings()
+    public static function provideMappings()
     {
         $format = json_decode(file_get_contents(__DIR__.'/../../fixtures/ffprobe/show_format.json'), true);
         $streams = json_decode(file_get_contents(__DIR__.'/../../fixtures/ffprobe/show_streams.json'), true);

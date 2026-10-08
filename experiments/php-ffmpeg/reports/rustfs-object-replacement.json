@@ -1,0 +1,332 @@
+{
+  "gitCommit": "41fa00949ea2758cd34f076a8030df7198d57759",
+  "workingTreeWasDirty": true,
+  "dockerImageId": "sha256:5536bbbd0ffc106a9fdab13fbff6b3abab01418cceff67ff246552b64cf5623d",
+  "proxyImageId": "sha256:7f7dcd27f920b22e980508bd5009b452e3d30b68c1041aa82e98e471d367db03",
+  "networkPath": "Playwright Chromium -> Docker Nginx cross-origin proxy -> isolated RustFS fault proxy -> tools_vue RustFS",
+  "sampleSha256": "11481cb7a9fc1023b618911ed86297192bfc5f4999ad0b2e958d0d5c87ce5258",
+  "environment": {
+    "browserVersion": "153.0.8010.12",
+    "nodeVersion": "v24.20.0",
+    "platform": "linux"
+  },
+  "browserVersion": "153.0.8010.12",
+  "testMode": "rustfs-etag-change",
+  "networkTimeline": [],
+  "status": "passed",
+  "expectedBrowserConsoleMessages": [],
+  "injectedShortReadMessages": 0,
+  "expectedOutcome": {
+    "type": "changed-object-etag-rejected",
+    "observed": true,
+    "originalEtag": "\"96a6258aae717909cd3d9baa6b996265\"",
+    "replacementEtag": "\"45454167662e7e482b351c56014431e8\"",
+    "resumeRequest": {
+      "range": "bytes=65592-",
+      "ifRange": "\"96a6258aae717909cd3d9baa6b996265\"",
+      "status": 206,
+      "etag": "\"45454167662e7e482b351c56014431e8\"",
+      "contentRange": "bytes 65592-190253/190254"
+    },
+    "rustfsIfRangeMismatchBehavior": "206 with the replacement ETag; client rejected the changed ETag",
+    "temporaryBucketDeleted": true
+  },
+  "proxyResumeVerification": null,
+  "result": {
+    "mode": "rustfs-etag-change",
+    "expectedRejection": true,
+    "fault": {
+      "enabled": true,
+      "initialInterrupted": true,
+      "awaitingReplacement": false,
+      "replacementConfirmed": true,
+      "originalEtag": "\"96a6258aae717909cd3d9baa6b996265\"",
+      "replacementEtag": "\"45454167662e7e482b351c56014431e8\"",
+      "resumeRequest": {
+        "range": "bytes=65592-",
+        "ifRange": "\"96a6258aae717909cd3d9baa6b996265\"",
+        "status": 206,
+        "etag": "\"45454167662e7e482b351c56014431e8\"",
+        "contentRange": "bytes 65592-190253/190254"
+      }
+    },
+    "error": "HTTP Error 0 Range resume response did not match the original object and record boundary",
+    "failures": []
+  },
+  "requestLog": [
+    {
+      "url": "http://127.0.0.1:8080/",
+      "method": "GET",
+      "headers": {
+        "upgrade-insecure-requests": "1",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"Linux\""
+      },
+      "resourceType": "document"
+    },
+    {
+      "url": "http://127.0.0.1:8080/dist/index.js",
+      "method": "GET",
+      "headers": {
+        "origin": "http://127.0.0.1:8080",
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8080/?mode=rustfs-etag-change",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:8080/media/playback.json",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8080/?mode=rustfs-etag-change",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8080/media/master.m3u8",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8080/?mode=rustfs-etag-change",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8081/rustfs-proxy/phpffmpeg-ctr-replace-c6a86d5f8068/v360p/index.m3u8",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8080/",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8081/rustfs-proxy/phpffmpeg-ctr-replace-c6a86d5f8068/v360p/init_360p.mp4",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8080/",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8081/rustfs-proxy/phpffmpeg-ctr-replace-c6a86d5f8068/v360p/segment_00000.enc.m4s.json",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8080/",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8080/dist/record-worker.js",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*"
+      },
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:8081/rustfs-proxy/phpffmpeg-ctr-replace-c6a86d5f8068/v360p/segment_00000.enc.m4s",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8080/",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8081/rustfs-proxy/phpffmpeg-ctr-replace-c6a86d5f8068/v360p/segment_00000.enc.m4s",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8080/",
+        "if-range": "\"96a6258aae717909cd3d9baa6b996265\"",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "range": "bytes=65592-",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8080/rustfs-fault-status",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8080/?mode=rustfs-etag-change",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    }
+  ],
+  "responseLog": [
+    {
+      "url": "http://127.0.0.1:8080/",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "11112",
+        "etag": "\"11112-1791395215746.8792\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8080/dist/index.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "1310753",
+        "etag": "\"1310753-1791392773491.7827\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8080/media/playback.json",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "148",
+        "etag": "\"148-1791394774571.2043\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8080/media/master.m3u8",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "213"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8081/rustfs-proxy/phpffmpeg-ctr-replace-c6a86d5f8068/v360p/index.m3u8",
+      "status": 200,
+      "headers": {
+        "accept-ranges": "bytes",
+        "content-length": "184",
+        "etag": "\"24be6bb89bcbf7db5e44ba3d3b365c7c\"",
+        "access-control-allow-origin": "http://127.0.0.1:8080",
+        "access-control-expose-headers": "ETag, Content-Range, Content-Length, Accept-Ranges",
+        "vary": "Origin"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8081/rustfs-proxy/phpffmpeg-ctr-replace-c6a86d5f8068/v360p/segment_00000.enc.m4s.json",
+      "status": 200,
+      "headers": {
+        "accept-ranges": "bytes",
+        "content-length": "1019",
+        "etag": "\"c81fefe8a53e1ca1161800803374b202\"",
+        "access-control-allow-origin": "http://127.0.0.1:8080",
+        "access-control-expose-headers": "ETag, Content-Range, Content-Length, Accept-Ranges",
+        "vary": "Origin"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8081/rustfs-proxy/phpffmpeg-ctr-replace-c6a86d5f8068/v360p/init_360p.mp4",
+      "status": 200,
+      "headers": {
+        "accept-ranges": "bytes",
+        "content-length": "867",
+        "etag": "\"c6b3b790493a786e482a153e4e7d4a56\"",
+        "access-control-allow-origin": "http://127.0.0.1:8080",
+        "access-control-expose-headers": "ETag, Content-Range, Content-Length, Accept-Ranges",
+        "vary": "Origin"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8080/dist/record-worker.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "7562",
+        "etag": "\"7562-1791392772756.9465\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8081/rustfs-proxy/phpffmpeg-ctr-replace-c6a86d5f8068/v360p/segment_00000.enc.m4s",
+      "status": 200,
+      "headers": {
+        "accept-ranges": "bytes",
+        "content-length": "190254",
+        "etag": "\"96a6258aae717909cd3d9baa6b996265\"",
+        "access-control-allow-origin": "http://127.0.0.1:8080",
+        "access-control-expose-headers": "ETag, Content-Range, Content-Length, Accept-Ranges",
+        "vary": "Origin"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8081/rustfs-proxy/phpffmpeg-ctr-replace-c6a86d5f8068/v360p/segment_00000.enc.m4s",
+      "status": 206,
+      "headers": {
+        "accept-ranges": "bytes",
+        "content-range": "bytes 65592-190253/190254",
+        "content-length": "124662",
+        "etag": "\"45454167662e7e482b351c56014431e8\"",
+        "access-control-allow-origin": "http://127.0.0.1:8080",
+        "access-control-expose-headers": "ETag, Content-Range, Content-Length, Accept-Ranges",
+        "vary": "Origin"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8080/rustfs-fault-status",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store"
+      }
+    }
+  ],
+  "outputHashes": [
+    {
+      "url": "http://127.0.0.1:8081/rustfs-proxy/phpffmpeg-ctr-replace-c6a86d5f8068/v360p/segment_00000.enc.m4s",
+      "status": 206,
+      "sha256": "2185da350c4400413317d85660b628ea64fc94aa725c2e4a9c1a3e80a0c7f22b",
+      "bytes": 124662
+    }
+  ],
+  "failedRequests": [
+    {
+      "url": "http://127.0.0.1:8081/rustfs-proxy/phpffmpeg-ctr-replace-c6a86d5f8068/v360p/segment_00000.enc.m4s",
+      "error": "net::ERR_CONTENT_LENGTH_MISMATCH"
+    }
+  ],
+  "badResponses": [],
+  "pageErrors": [],
+  "consoleErrors": [
+    "Failed to load resource: net::ERR_CONTENT_LENGTH_MISMATCH"
+  ],
+  "rustfsObjectReplacement": {
+    "objectKey": "v360p/segment_00000.enc.m4s",
+    "initialResponseTruncatedAfterBytes": 70000,
+    "replacementSameLength": true,
+    "rangeStartsAtCompleteAuthenticatedRecordByte": 65592,
+    "staleIfRange": "\"96a6258aae717909cd3d9baa6b996265\"",
+    "replacementEtag": "\"45454167662e7e482b351c56014431e8\"",
+    "playerOutcome": "explicitly rejected before appending resumed bytes",
+    "temporaryBucketDeleted": true
+  }
+}

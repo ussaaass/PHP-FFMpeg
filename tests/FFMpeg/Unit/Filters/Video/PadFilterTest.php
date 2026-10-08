@@ -32,7 +32,7 @@ class PadFilterTest extends TestCase
         $this->assertEquals($expected, $filter->apply($video, $format));
     }
 
-    public function provideDimensions()
+    public static function provideDimensions()
     {
         return [
             [new Dimension(1000, 800), 640, 480, ['-vf', 'scale=iw*min(1000/iw\,800/ih):ih*min(1000/iw\,800/ih),pad=1000:800:(1000-iw)/2:(800-ih)/2']],

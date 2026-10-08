@@ -38,7 +38,7 @@ class ExtractMultipleFramesFilterTest extends TestCase
         $this->assertEquals($expected, $filter->apply($video, $format));
     }
 
-    public function provideFrameRates()
+    public static function provideFrameRates()
     {
         return [
             [ExtractMultipleFramesFilter::FRAMERATE_EVERY_SEC, 'jpg', '/', 100, 2, ['-vf', 'fps=1/1', '/frame-%03d.jpg']],

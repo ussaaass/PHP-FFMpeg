@@ -31,6 +31,25 @@ The recommended way to install PHP-FFMpeg is through [Composer](https://getcompo
 $ composer require php-ffmpeg/php-ffmpeg
 ```
 
+## Docker development environment
+
+This repository includes a Docker-based development environment with PHP, Composer, FFmpeg, and FFprobe. See the [Docker development guide](doc/DOCKER.md) for image build, dependency installation, and test commands.
+
+### HLS VOD workflow
+
+An initial typed HLS VOD workflow API is available under `FFMpeg\Format\Hls\Workflow`. It runs the configured FFmpeg/FFprobe binaries in the current container, normalizes non-faststart MP4/MOV inputs into a task-local intermediate, verifies the generated fMP4 playlists, and publishes multi-rendition output. It currently accepts one local video input and one output per execution; separate audio/subtitle inputs and live HLS are not part of this initial implementation.
+
+Run the sample entirely in Docker, passing container paths:
+
+```sh
+docker compose --profile ffmpeg9 run --rm \
+  -v "$PWD/media:/media:ro" \
+  -v "$PWD/output:/output" \
+  php-ffmpeg9 php examples/hls-workflow.php /media/input.mp4 /output/movie-v1
+```
+
+The example emits clear fMP4 HLS. CTR/HMAC output requires an application-owned `KeyProviderInterface` and `KeyUriResolverInterface`; the library does not provide a default key. See the [player integration guide](player/README.md) and the [HLS workflow specifications](doc/README.md) for the encrypted profile and its compatibility limits.
+
 ## Basic Usage
 
 ```php

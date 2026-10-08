@@ -1,0 +1,29 @@
+{
+  "name": "@php-ffmpeg/hls-ctr-player",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Browser player for PHP-FFMpeg's authenticated CTR/HMAC HLS profile",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "node ./scripts/build.mjs",
+    "check": "node --check src/index.js && node --check src/constants.js && node --check src/ctr-fragment-loader.js && node --check src/record-worker.js && node --check scripts/build.mjs && node --check test/worker-interop.mjs && node --check test/generate-vector.mjs && node --check test/server.mjs && node --check test/chrome-cdp-check.mjs && node --check test/browser-smoke.mjs",
+    "test:browser": "node test/browser-smoke.mjs"
+  },
+  "dependencies": {
+    "hls.js": "1.7.3"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12",
+    "playwright-core": "1.63.0"
+  }
+}

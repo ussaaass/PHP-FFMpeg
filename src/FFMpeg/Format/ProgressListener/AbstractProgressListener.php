@@ -171,8 +171,11 @@ abstract class AbstractProgressListener extends EventEmitter implements Listener
             return null;
         }
 
-        $currentDuration = $this->convertDuration($matches[2]);
-        $currentTime = microtime(true);
+        // FFmpeg may briefly report an earlier timestamp (for example when
+        // handling discontinuous input timestamps). Progress exposed to callers
+        // must remain monotonic for the lifetime of this listener.
+        $currentDuration = max($this->currentTime ?? 0, $this->convertDuration($matches[2]));
+        $currentTime = $this->getClockTime();
         $currentSize = trim(str_replace('kb', '', strtolower(($matches[1]))));
         $percent = max(0, min(1, $currentDuration / $this->duration));
 
@@ -185,7 +188,7 @@ abstract class AbstractProgressListener extends EventEmitter implements Listener
             }
 
             $deltaSize = $currentSize - $this->currentSize;
-            $rate = $deltaSize * $delta;
+            $rate = $delta > 0 && $deltaSize > 0 ? $deltaSize / $delta : 0;
             if ($rate > 0) {
                 $totalDuration = $this->totalSize / $rate;
                 $this->remaining = floor($totalDuration - ($totalDuration * $percent));
@@ -256,5 +259,10 @@ abstract class AbstractProgressListener extends EventEmitter implements Listener
         $this->duration = (int) $this->duration > 0 ? $this->duration : $format->get('duration');
         $this->totalSize = $format->get('size') / 1024 * ($this->duration / $format->get('duration'));
         $this->initialized = true;
+    }
+
+    protected function getClockTime(): float
+    {
+        return microtime(true);
     }
 }

@@ -39,7 +39,7 @@ class ResizeFilterTest extends TestCase
         $this->assertEquals($expected, $filter->apply($video, $format));
     }
 
-    public function provideDimensions()
+    public static function provideDimensions()
     {
         return [
             [new Dimension(320, 240), ResizeFilter::RESIZEMODE_FIT, 640, 480, 2, ['-vf', '[in]scale=320:240 [out]']],

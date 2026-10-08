@@ -5,9 +5,13 @@ composer.phar
 composer.lock
 phpunit.xml
 .phpunit.result.cache
+/.phpunit.cache/
 .php-cs-fixer.cache
 /tests/Functional/output/output-*
 /docs/doctum.phar
+/experiments/checkpoints/*.tar.gz
+/experiments/php-ffmpeg/output/
+/experiments/php-ffmpeg/sample*.mp4
 /docs/source/API/API/cache/twig/*
 .idea/
 /phpunit

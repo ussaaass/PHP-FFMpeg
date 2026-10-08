@@ -1,0 +1,1490 @@
+{
+  "gitCommit": "41fa00949ea2758cd34f076a8030df7198d57759",
+  "workingTreeWasDirty": true,
+  "dockerImageId": "sha256:5536bbbd0ffc106a9fdab13fbff6b3abab01418cceff67ff246552b64cf5623d",
+  "proxyImageId": null,
+  "networkPath": "local-test-server",
+  "sampleSha256": "11481cb7a9fc1023b618911ed86297192bfc5f4999ad0b2e958d0d5c87ce5258",
+  "environment": {
+    "browserVersion": "153.0.8010.12",
+    "nodeVersion": "v24.20.0",
+    "runnerPlatform": "linux",
+    "browserPlatform": "docker-linux"
+  },
+  "browserVersion": "153.0.8010.12",
+  "testMode": "manual-2",
+  "networkTimeline": [],
+  "status": "passed",
+  "expectedBrowserConsoleMessages": [],
+  "injectedShortReadMessages": 0,
+  "expectedOutcome": null,
+  "proxyResumeVerification": null,
+  "result": {
+    "mode": "manual-2",
+    "failures": [],
+    "warnings": [
+      {
+        "source": "hls",
+        "type": "mediaError",
+        "details": "bufferSeekOverHole",
+        "fatal": false,
+        "error": "fragment loaded with buffer holes, seeking from 0 to 0.16673300000000002"
+      }
+    ],
+    "events": [
+      {
+        "type": "descriptor-loaded",
+        "profile": "phpffmpeg-ctr-hmac-v1",
+        "segmentCount": 27
+      },
+      {
+        "type": "manual-level-lock-requested",
+        "level": 2
+      },
+      {
+        "type": "waiting",
+        "currentTime": 0,
+        "duration": 18.017999999999994,
+        "readyState": 0
+      },
+      {
+        "type": "segment-authenticated",
+        "level": 2,
+        "sequence": 0,
+        "keyId": "interop-test-key",
+        "recordCount": 11,
+        "cipherBytes": 719473,
+        "clearBytes": 718857,
+        "clearSha256": "44bfd626b7fea36775b44035256e8bc56a40c664588fccc64f9730288de0fb4c",
+        "mediaFragmentCount": 1
+      },
+      {
+        "type": "loadedmetadata",
+        "currentTime": 0,
+        "duration": 18.017999999999994,
+        "readyState": 1
+      },
+      {
+        "type": "segment-buffered",
+        "level": 2,
+        "sequence": 0,
+        "duration": 2.0687333333333333,
+        "bytes": 719473,
+        "bandwidthEstimate": 36637708.43258392,
+        "loadMilliseconds": 194,
+        "processingMilliseconds": 13.799999952316284
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 0.167134,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "level-switched",
+        "level": 2,
+        "width": 1280,
+        "height": 720,
+        "automatic": false,
+        "atMilliseconds": 378.40000009536743
+      },
+      {
+        "type": "canplay",
+        "currentTime": 0.167921,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "playing",
+        "currentTime": 0.167948,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "segment-authenticated",
+        "level": 2,
+        "sequence": 1,
+        "keyId": "interop-test-key",
+        "recordCount": 11,
+        "cipherBytes": 711297,
+        "clearBytes": 710681,
+        "clearSha256": "97bc946a8af874aa309dff57dee0ada7f30deb3239fbafd1ac959577ae8d4350",
+        "mediaFragmentCount": 1
+      },
+      {
+        "type": "segment-buffered",
+        "level": 2,
+        "sequence": 1,
+        "duration": 2.002,
+        "bytes": 711297,
+        "bandwidthEstimate": 35709610.924184814,
+        "loadMilliseconds": 207.09999990463257,
+        "processingMilliseconds": 4.099999904632568
+      },
+      {
+        "type": "segment-authenticated",
+        "level": 2,
+        "sequence": 2,
+        "keyId": "interop-test-key",
+        "recordCount": 14,
+        "cipherBytes": 862274,
+        "clearBytes": 861490,
+        "clearSha256": "fe5475b4e0c6cdbfff5eb011f7abd75e99c84c8cb41b4da34559261274905b99",
+        "mediaFragmentCount": 1
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 0.491589,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "segment-buffered",
+        "level": 2,
+        "sequence": 2,
+        "duration": 2.0020000000000007,
+        "bytes": 862274,
+        "bandwidthEstimate": 43984239.40910597,
+        "loadMilliseconds": 123.70000004768372,
+        "processingMilliseconds": 20.90000009536743
+      },
+      {
+        "type": "segment-authenticated",
+        "level": 2,
+        "sequence": 3,
+        "keyId": "interop-test-key",
+        "recordCount": 11,
+        "cipherBytes": 708952,
+        "clearBytes": 708336,
+        "clearSha256": "03a8b06166d78492dd163863852de145084a635bdb24bcf630a453fba3f27680",
+        "mediaFragmentCount": 1
+      },
+      {
+        "type": "segment-buffered",
+        "level": 2,
+        "sequence": 3,
+        "duration": 2.001999999999999,
+        "bytes": 708952,
+        "bandwidthEstimate": 45134288.46983002,
+        "loadMilliseconds": 156.90000009536743,
+        "processingMilliseconds": 4.599999904632568
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 0.697903,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 0.96359,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 1.22911,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 1.494794,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 1.760935,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 2.025923,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "segment-authenticated",
+        "level": 2,
+        "sequence": 4,
+        "keyId": "interop-test-key",
+        "recordCount": 11,
+        "cipherBytes": 676108,
+        "clearBytes": 675492,
+        "clearSha256": "efe35777900c3042bb1445d387d8ec6fedeb44f8519ebe438fb8fe73af9e9045",
+        "mediaFragmentCount": 1
+      },
+      {
+        "type": "segment-buffered",
+        "level": 2,
+        "sequence": 4,
+        "duration": 2.0020000000000007,
+        "bytes": 676108,
+        "bandwidthEstimate": 48595600.60641703,
+        "loadMilliseconds": 94.70000004768372,
+        "processingMilliseconds": 2.6999998092651367
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 2.291775,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 2.557196,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 2.822774,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 3.088565,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 3.35412,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 3.619758,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 3.886034,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 4.150985,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "segment-authenticated",
+        "level": 2,
+        "sequence": 5,
+        "keyId": "interop-test-key",
+        "recordCount": 13,
+        "cipherBytes": 801986,
+        "clearBytes": 801258,
+        "clearSha256": "01d2e12615b1e6574b4452a849306adb163e4995b2f6a33186bb81bd023a17a3",
+        "mediaFragmentCount": 1
+      },
+      {
+        "type": "segment-buffered",
+        "level": 2,
+        "sequence": 5,
+        "duration": 2.0020000000000007,
+        "bytes": 801986,
+        "bandwidthEstimate": 53206129.74741737,
+        "loadMilliseconds": 93,
+        "processingMilliseconds": 2.700000047683716
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 4.416702,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 4.682247,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 4.94793,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 5.213535,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 5.479105,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 5.744903,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 6.010424,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "segment-authenticated",
+        "level": 2,
+        "sequence": 6,
+        "keyId": "interop-test-key",
+        "recordCount": 11,
+        "cipherBytes": 690371,
+        "clearBytes": 689755,
+        "clearSha256": "87200f9a48dcf4b85e51c1cf0a5bb36881be78fc8abd96aea87efed3ca54343f",
+        "mediaFragmentCount": 1
+      },
+      {
+        "type": "segment-buffered",
+        "level": 2,
+        "sequence": 6,
+        "duration": 2.001999999999999,
+        "bytes": 690371,
+        "bandwidthEstimate": 56319545.98324753,
+        "loadMilliseconds": 91.5,
+        "processingMilliseconds": 3.299999952316284
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 6.275962,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 6.541771,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 6.807315,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 7.072847,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 7.338532,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 7.604185,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 7.869848,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 8.135302,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "segment-authenticated",
+        "level": 2,
+        "sequence": 7,
+        "keyId": "interop-test-key",
+        "recordCount": 10,
+        "cipherBytes": 647981,
+        "clearBytes": 647421,
+        "clearSha256": "a086b80c2d74d313a744c1fc0933930cb71cab9536b17731a33b4de47e17bf62",
+        "mediaFragmentCount": 1
+      },
+      {
+        "type": "segment-buffered",
+        "level": 2,
+        "sequence": 7,
+        "duration": 2.0020000000000007,
+        "bytes": 647981,
+        "bandwidthEstimate": 56611936.10521852,
+        "loadMilliseconds": 124.40000009536743,
+        "processingMilliseconds": 3.5
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 8.400987,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 8.666779,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 8.932244,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 9.19794,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 9.463536,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 9.729139,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 9.994873,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 10.260427,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "segment-authenticated",
+        "level": 2,
+        "sequence": 8,
+        "keyId": "interop-test-key",
+        "recordCount": 12,
+        "cipherBytes": 772151,
+        "clearBytes": 771479,
+        "clearSha256": "e0d78021a809f584432a9b9e5c206c56aba636ef92294dc7578389803a3a985e",
+        "mediaFragmentCount": 1
+      },
+      {
+        "type": "segment-buffered",
+        "level": 2,
+        "sequence": 8,
+        "duration": 2.001999999999999,
+        "bytes": 772151,
+        "bandwidthEstimate": 50045364.43405773,
+        "loadMilliseconds": 274.59999990463257,
+        "processingMilliseconds": 7.1000001430511475
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 10.525961,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 10.791766,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 11.057289,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 11.328122,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 11.59771,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 11.854789,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 12.119739,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 12.385462,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 12.651094,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 12.916736,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 13.182326,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 13.447902,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 13.713546,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 13.979166,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 14.245131,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 14.510477,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 14.776096,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 15.041837,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 15.307266,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 15.572984,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 15.838582,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 16.104107,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 16.369701,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 16.635393,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 16.901052,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 17.166584,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 17.435069,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 17.611614,
+        "duration": 18.084732,
+        "readyState": 2
+      },
+      {
+        "type": "waiting",
+        "currentTime": 17.611614,
+        "duration": 18.084732,
+        "readyState": 2
+      },
+      {
+        "type": "rebuffer-started",
+        "atMilliseconds": 17831.200000047684
+      },
+      {
+        "type": "canplay",
+        "currentTime": 17.614655,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "playing",
+        "currentTime": 17.614709,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "rebuffer-ended",
+        "durationMilliseconds": 5,
+        "atMilliseconds": 17836.200000047684
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 17.858937,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 18.084732,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "ended",
+        "currentTime": 18.084732,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "playback-completed",
+        "startedAt": 122.59999990463257,
+        "levelSwitches": 1,
+        "automaticLevelSwitches": 0,
+        "manualLevelSwitches": 1,
+        "rebufferCount": 1,
+        "rebufferMilliseconds": 5,
+        "bufferedSegments": 9,
+        "fatalErrors": 0,
+        "completed": true,
+        "elapsedMilliseconds": 18308.60000014305
+      }
+    ],
+    "playbackMetrics": {
+      "startedAt": 122.59999990463257,
+      "levelSwitches": 1,
+      "automaticLevelSwitches": 0,
+      "manualLevelSwitches": 1,
+      "rebufferCount": 1,
+      "rebufferMilliseconds": 5,
+      "bufferedSegments": 9,
+      "fatalErrors": 0,
+      "completed": true,
+      "elapsedMilliseconds": 18360.60000014305
+    },
+    "serverStatus": {
+      "forcedTruncation": false,
+      "truncatedResponses": 0,
+      "rangeRequests": 0,
+      "objectChanged": false
+    },
+    "rustfsRange": null,
+    "duration": 18.084732,
+    "currentTime": 18.084732,
+    "videoWidth": 1280,
+    "videoHeight": 720
+  },
+  "requestLog": [
+    {
+      "url": "http://127.0.0.1:8791/",
+      "method": "GET",
+      "headers": {
+        "upgrade-insecure-requests": "1",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"Linux\""
+      },
+      "resourceType": "document"
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/index.js",
+      "method": "GET",
+      "headers": {
+        "origin": "http://127.0.0.1:8791",
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=manual-2",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/playback.json",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=manual-2",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/master.m3u8",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=manual-2",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/index.m3u8",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=manual-2",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/init_720p.mp4",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=manual-2",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00000.enc.m4s.json",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=manual-2",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*"
+      },
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00000.enc.m4s",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=manual-2",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00001.enc.m4s.json",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=manual-2",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*"
+      },
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00001.enc.m4s",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=manual-2",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00002.enc.m4s.json",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=manual-2",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*"
+      },
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00002.enc.m4s",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=manual-2",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00003.enc.m4s.json",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=manual-2",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*"
+      },
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00003.enc.m4s",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=manual-2",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00004.enc.m4s.json",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=manual-2",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*"
+      },
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00004.enc.m4s",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=manual-2",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00005.enc.m4s.json",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=manual-2",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*"
+      },
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00005.enc.m4s",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=manual-2",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00006.enc.m4s.json",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=manual-2",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*"
+      },
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00006.enc.m4s",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=manual-2",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00007.enc.m4s.json",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=manual-2",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*"
+      },
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00007.enc.m4s",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=manual-2",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00008.enc.m4s.json",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=manual-2",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*"
+      },
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00008.enc.m4s",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=manual-2",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:8791/test-status",
+      "method": "GET",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "http://127.0.0.1:8791/?mode=manual-2",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"153\", \"Not_A Brand\";v=\"8\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "resourceType": "fetch"
+    }
+  ],
+  "responseLog": [
+    {
+      "url": "http://127.0.0.1:8791/",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "14439",
+        "etag": "\"14439-1791471706607.1262\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/index.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "1311294",
+        "etag": "\"1311294-1791471759155.535\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/playback.json",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "159",
+        "etag": "\"159-1791360957862.7156\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/master.m3u8",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "386",
+        "etag": "\"386-1791360957267.8362\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/index.m3u8",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "533",
+        "etag": "\"533-1791360957861.6292\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00000.enc.m4s.json",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "2348",
+        "etag": "\"2348-1791360957622.03\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/init_720p.mp4",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "866",
+        "etag": "\"866-1791360957597.219\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "7562",
+        "etag": "\"7562-1791471758799.9722\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00000.enc.m4s",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "719473",
+        "etag": "\"719473-1791360957620.3997\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00001.enc.m4s.json",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "2348",
+        "etag": "\"2348-1791360957643.3765\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "7562",
+        "etag": "\"7562-1791471758799.9722\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00001.enc.m4s",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "711297",
+        "etag": "\"711297-1791360957641.373\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00002.enc.m4s.json",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "2848",
+        "etag": "\"2848-1791360957678.5723\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "7562",
+        "etag": "\"7562-1791471758799.9722\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00002.enc.m4s",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "862274",
+        "etag": "\"862274-1791360957675.3252\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00003.enc.m4s.json",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "2348",
+        "etag": "\"2348-1791360957708.3105\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "7562",
+        "etag": "\"7562-1791471758799.9722\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00003.enc.m4s",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "708952",
+        "etag": "\"708952-1791360957706.6824\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00004.enc.m4s.json",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "2348",
+        "etag": "\"2348-1791360957739.9194\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "7562",
+        "etag": "\"7562-1791471758799.9722\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00004.enc.m4s",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "676108",
+        "etag": "\"676108-1791360957735.2222\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00005.enc.m4s.json",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "2682",
+        "etag": "\"2682-1791360957775.8765\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "7562",
+        "etag": "\"7562-1791471758799.9722\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00005.enc.m4s",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "801986",
+        "etag": "\"801986-1791360957771.6165\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00006.enc.m4s.json",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "2348",
+        "etag": "\"2348-1791360957803.1135\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "7562",
+        "etag": "\"7562-1791471758799.9722\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00006.enc.m4s",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "690371",
+        "etag": "\"690371-1791360957801.3655\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00007.enc.m4s.json",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "2181",
+        "etag": "\"2181-1791360957825.087\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "7562",
+        "etag": "\"7562-1791471758799.9722\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00007.enc.m4s",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "647981",
+        "etag": "\"647981-1791360957823.2202\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00008.enc.m4s.json",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "2515",
+        "etag": "\"2515-1791360957861.107\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/dist/record-worker.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "7562",
+        "etag": "\"7562-1791471758799.9722\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00008.enc.m4s",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "772151",
+        "etag": "\"772151-1791360957859.3757\""
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8791/test-status",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store"
+      }
+    }
+  ],
+  "outputHashes": [
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00000.enc.m4s",
+      "status": 200,
+      "sha256": "c5d55b58f7388a55b7c73cdb8ee4f654e2bbaa63b8d962c96bc1f335b910234a",
+      "bytes": 719473
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00001.enc.m4s",
+      "status": 200,
+      "sha256": "4cf1505a1338e398a91a9b78286ec6add9f829de1acb564153aec5ae63e57918",
+      "bytes": 711297
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00002.enc.m4s",
+      "status": 200,
+      "sha256": "36e4c0a6ea9660e50d3d335dc7d3f973e69b8a7ac6a196d3198936873cc59184",
+      "bytes": 862274
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00003.enc.m4s",
+      "status": 200,
+      "sha256": "41df1450791b86feaf7b54fc581a4f5b57e460d9031f05fa867136b1febfb964",
+      "bytes": 708952
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00005.enc.m4s",
+      "status": 200,
+      "sha256": "94ed04a5aea92afba53b1cf64f42b69702dbfce7505fc35970956d8767aa7043",
+      "bytes": 801986
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00006.enc.m4s",
+      "status": 200,
+      "sha256": "3a08634e1557ca7763ffaee1cb395ed2cec77fb03219abbd863c23d086e1b806",
+      "bytes": 690371
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00007.enc.m4s",
+      "status": 200,
+      "sha256": "c291920cf8f4344a9833a9d7b4b9e54cff036b89e0d577ca816f2a690c72fcd4",
+      "bytes": 647981
+    },
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00008.enc.m4s",
+      "status": 200,
+      "sha256": "9815874c8fa805af2b6bfbb922119c56d6bd355949beb6a7a6ddb4bc79689fdc",
+      "bytes": 772151
+    }
+  ],
+  "failedRequests": [
+    {
+      "url": "http://127.0.0.1:8791/media/v720p/segment_00004.enc.m4s",
+      "error": "net::ERR_ABORTED"
+    }
+  ],
+  "badResponses": [],
+  "pageErrors": [],
+  "consoleErrors": []
+}

@@ -24,7 +24,7 @@ class OutputParserTest extends TestCase
         $parser->parse('comme ca', 'data');
     }
 
-    public function provideTypeDataAndOutput()
+    public static function provideTypeDataAndOutput()
     {
         $expectedFormat = json_decode(file_get_contents(__DIR__.'/../../fixtures/ffprobe/show_format.json'), true);
         $expectedStreams = json_decode(file_get_contents(__DIR__.'/../../fixtures/ffprobe/show_streams.json'), true);

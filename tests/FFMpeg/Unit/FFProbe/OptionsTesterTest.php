@@ -58,7 +58,7 @@ class OptionsTesterTest extends TestCase
         $this->assertTrue($isPresent === $tester->has($optionName));
     }
 
-    public function provideOptions()
+    public static function provideOptions()
     {
         $data = file_get_contents(__DIR__ . '/../../fixtures/ffprobe/help.raw');
 

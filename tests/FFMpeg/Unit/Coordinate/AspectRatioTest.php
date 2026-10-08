@@ -20,7 +20,7 @@ class AspectRatioTest extends TestCase
         $this->assertEquals($calculatedWidth, $ratio->calculateWidth(320, $modulus));
     }
 
-    public function provideDimensionsAndExpectedratio()
+    public static function provideDimensionsAndExpectedratio()
     {
         return [
             //AR_5_4

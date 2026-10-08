@@ -1,0 +1,33 @@
+x-php-service: &php-service
+  working_dir: /workspace
+  init: true
+  environment:
+    COMPOSER_CACHE_DIR: /tmp/composer-cache
+    FFMPEG_TEMPORARY_FILES_ROOT: /workspace
+  volumes:
+    - .:/workspace
+    - vendor:/workspace/vendor
+    - composer-cache:/tmp/composer-cache
+
+services:
+  php:
+    build:
+      context: .
+      target: default
+      args:
+        PHP_VERSION: ${PHP_VERSION:-8.5}
+    <<: *php-service
+
+  php-ffmpeg9:
+    profiles: [ffmpeg9]
+    build:
+      context: .
+      target: ffmpeg9
+      args:
+        PHP_VERSION: ${PHP_VERSION:-8.5}
+        FFMPEG_BUILD_TAG: ${FFMPEG_BUILD_TAG:-autobuild-2026-09-28-13-06}
+    <<: *php-service
+
+volumes:
+  vendor:
+  composer-cache:

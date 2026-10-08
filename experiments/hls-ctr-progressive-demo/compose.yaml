@@ -1,0 +1,15 @@
+services:
+  progressive-demo:
+    build:
+      context: .
+    image: php-ffmpeg-hls-progressive-demo:0.1.0
+    container_name: php-ffmpeg-hls-progressive-demo
+    environment:
+      PORT: "8790"
+      OUTPUT_DIR: /experiment-output
+      SAMPLE_PATH: /input/source.mp4
+    ports:
+      - "127.0.0.1:8790:8790"
+    volumes:
+      - ${SAMPLE_FILE:?Set SAMPLE_FILE to a local fast-start MP4}:/input/source.mp4:ro
+      - ./output:/experiment-output

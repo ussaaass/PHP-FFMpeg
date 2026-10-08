@@ -50,7 +50,7 @@ class ClipTest extends AbstractMediaTestCase
         $this->assertStringStartsWith(implode(' ', $commands), $fc[0]);
     }
 
-    public function provideBuildOptions()
+    public static function provideBuildOptions()
     {
         return [
             ['SS01', null, [

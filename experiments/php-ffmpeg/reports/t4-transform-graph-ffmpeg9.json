@@ -1,0 +1,118 @@
+{
+    "acceptance": "typed-transform-graph-docker-ffmpeg",
+    "status": "passed",
+    "fixture": {
+        "derivedFrom": "26.mp4",
+        "originalSampleSha256": "aede768d644abe0d4252181b7186bb531578f84063a142277f0d3fd9d1def289",
+        "audio": "The original sample has no audio; a synthetic 440 Hz AAC track was muxed in Docker for the AudioGain check."
+    },
+    "sourceSha256": "56ddff7d33c59eea27f1a6b884f2c550b11c6c630269a74af8d5c1c95cffefc5",
+    "environment": {
+        "php": "8.5.11",
+        "ffmpeg": "ffmpeg version n9.0.2-14-gebafaee10a-20260928 Copyright (c) 2000-2026 the FFmpeg developers"
+    },
+    "ffmpegFamily": "ffmpeg9",
+    "plan": {
+        "trimSeconds": [
+            0,
+            3
+        ],
+        "crop": [
+            320,
+            180
+        ],
+        "transpose": "clockwise",
+        "audioGainDb": 6,
+        "rendition": [
+            360,
+            640
+        ]
+    },
+    "output": {
+        "masterPlaylist": "/workspace/experiments/php-ffmpeg/output/t4-final-ffmpeg9-audio/master.m3u8",
+        "renditionPlaylist": "/workspace/experiments/php-ffmpeg/output/t4-final-ffmpeg9-audio/vportrait/index.m3u8",
+        "video": {
+            "codec_type": "video",
+            "width": 360,
+            "height": 640
+        },
+        "audio": {
+            "codec_type": "audio",
+            "sample_rate": "48000"
+        },
+        "durationSeconds": 3.002998,
+        "segmentCount": 2,
+        "ffprobe": {
+            "programs": [
+                {
+                    "streams": [
+                        {
+                            "codec_type": "video",
+                            "width": 360,
+                            "height": 640
+                        },
+                        {
+                            "codec_type": "audio",
+                            "sample_rate": "48000"
+                        }
+                    ]
+                }
+            ],
+            "stream_groups": [],
+            "streams": [
+                {
+                    "codec_type": "video",
+                    "width": 360,
+                    "height": 640
+                },
+                {
+                    "codec_type": "audio",
+                    "sample_rate": "48000"
+                }
+            ],
+            "format": {
+                "duration": "3.002998"
+            }
+        }
+    },
+    "toolVersions": {
+        "ffmpeg": "ffmpeg version n9.0.2-14-gebafaee10a-20260928 Copyright (c) 2000-2026 the FFmpeg developers",
+        "ffprobe": "ffprobe version n9.0.2-14-gebafaee10a-20260928 Copyright (c) 2007-2026 the FFmpeg developers"
+    },
+    "commandSummary": {
+        "tool": "ffmpeg",
+        "operation": "hls-vod-transcode",
+        "codec": "h264",
+        "container": "fmp4",
+        "playlistMode": "master",
+        "audioPresent": true,
+        "inputNormalization": {
+            "method": "already-faststart",
+            "sourceFaststart": true,
+            "outputFaststart": true,
+            "sourceUnchanged": true,
+            "remuxFallbackUsed": false
+        },
+        "typedSteps": [
+            "Trim",
+            "Crop",
+            "Transpose",
+            "AudioGain"
+        ],
+        "renditions": [
+            {
+                "id": "portrait",
+                "width": 360,
+                "height": 640,
+                "videoBitrate": 500000,
+                "audioBitrate": 128000
+            }
+        ]
+    },
+    "checks": {
+        "crop-and-transpose-reflected-in-output-dimensions": true,
+        "trim-duration-verified-by-ffprobe": true,
+        "audio-stream-present-after-gain-step": true,
+        "fmp4-segments-present": true
+    }
+}

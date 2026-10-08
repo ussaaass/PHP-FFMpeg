@@ -89,7 +89,7 @@ class ConcatTest extends AbstractMediaTestCase
         }
     }
 
-    public function provideSaveFromSameCodecsOptions()
+    public static function provideSaveFromSameCodecsOptions()
     {
         $fs      = (new TemporaryDirectory())->create();
         $tmpFile = $fs->path('ffmpeg-concat');
@@ -143,7 +143,7 @@ class ConcatTest extends AbstractMediaTestCase
         $this->assertSame($concat, $concat->saveFromDifferentCodecs($format, $pathfile));
     }
 
-    public function provideSaveFromDifferentCodecsOptions()
+    public static function provideSaveFromDifferentCodecsOptions()
     {
         return [
             [

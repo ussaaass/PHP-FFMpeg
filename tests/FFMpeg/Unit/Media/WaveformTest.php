@@ -55,7 +55,7 @@ class WaveformTest extends AbstractMediaTestCase
         $this->assertSame($waveform, $waveform->save($pathfile));
     }
 
-    public function provideSaveOptions()
+    public static function provideSaveOptions()
     {
         return [
             [

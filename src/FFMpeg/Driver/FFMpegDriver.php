@@ -74,4 +74,21 @@ class FFMpegDriver extends AbstractBinary
 
         return $version[1];
     }
+
+    /**
+     * Get the numeric FFmpeg version suitable for version comparisons.
+     *
+     * @return string
+     *
+     * @throws RuntimeException
+     */
+    public function getVersionNumber()
+    {
+        $version = $this->getVersion();
+        if (preg_match('/^n?(\d+(?:\.\d+){1,3})(?:[-+].*)?$/i', $version, $matches)) {
+            return $matches[1];
+        }
+
+        throw new RuntimeException(sprintf('Cannot to parse the numeric ffmpeg version from "%s"!', $version));
+    }
 }

@@ -1,0 +1,639 @@
+{
+  "browserVersion": "153.0.8010.12",
+  "testMode": "weak-rustfs",
+  "networkTimeline": [
+    {
+      "label": "initial-128-kibps",
+      "bytesPerSecond": 131072,
+      "at": 1791365566727
+    },
+    {
+      "label": "uplink-8-mibps",
+      "bytesPerSecond": 8388608,
+      "at": 1791365587950
+    }
+  ],
+  "status": "passed",
+  "result": {
+    "mode": "weak-rustfs",
+    "failures": [],
+    "warnings": [],
+    "events": [
+      {
+        "type": "descriptor-loaded",
+        "profile": "phpffmpeg-ctr-hmac-v1",
+        "segmentCount": 27
+      },
+      {
+        "type": "waiting",
+        "currentTime": 0,
+        "duration": 18.017999999999994,
+        "readyState": 0
+      },
+      {
+        "type": "loadedmetadata",
+        "currentTime": 0,
+        "duration": 18.017999999999994,
+        "readyState": 1
+      },
+      {
+        "type": "segment-buffered",
+        "level": 0,
+        "sequence": 0,
+        "duration": 2.0687333333333333,
+        "bytes": 190254,
+        "bandwidthEstimate": 1051259.928849679,
+        "loadMilliseconds": 1689.1000000238419,
+        "processingMilliseconds": 7.699999928474426
+      },
+      {
+        "type": "canplay",
+        "currentTime": 0.000431,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "playing",
+        "currentTime": 0.000527,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "level-switched",
+        "level": 0,
+        "width": 640,
+        "height": 360,
+        "automatic": true
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 0.250783,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 0.516672,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 0.781792,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 1.047526,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 1.313085,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 1.596313,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "segment-buffered",
+        "level": 0,
+        "sequence": 1,
+        "duration": 2.002,
+        "bytes": 206024,
+        "bandwidthEstimate": 1042894.3607504367,
+        "loadMilliseconds": 1806.5,
+        "processingMilliseconds": 2.5
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 1.860035,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "segment-buffered",
+        "level": 0,
+        "sequence": 2,
+        "duration": 2.0020000000000007,
+        "bytes": 263362,
+        "bandwidthEstimate": 1576963.4174684274,
+        "loadMilliseconds": 169.60000002384186,
+        "processingMilliseconds": 1.100000023841858
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 2.155365,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 2.166507,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "waiting",
+        "currentTime": 2.166662,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "canplay",
+        "currentTime": 2.166762,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "playing",
+        "currentTime": 2.166811,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 2.42166,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 2.687192,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 2.952989,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 3.224357,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "segment-buffered",
+        "level": 0,
+        "sequence": 3,
+        "duration": 2.001999999999999,
+        "bytes": 186119,
+        "bandwidthEstimate": 1896845.073459233,
+        "loadMilliseconds": 241.60000002384186,
+        "processingMilliseconds": 2.299999952316284
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 3.484089,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 3.749853,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 4.015306,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 4.281126,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 4.551977,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 4.822454,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 5.077843,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "segment-buffered",
+        "level": 0,
+        "sequence": 4,
+        "duration": 2.0020000000000007,
+        "bytes": 180221,
+        "bandwidthEstimate": 2234475.7753197756,
+        "loadMilliseconds": 157.29999995231628,
+        "processingMilliseconds": 2.399999976158142
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 5.343516,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 5.609062,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 5.875143,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 6.140283,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 6.415652,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 6.671764,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 6.937519,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 7.202703,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "segment-buffered",
+        "level": 0,
+        "sequence": 5,
+        "duration": 2.0020000000000007,
+        "bytes": 244233,
+        "bandwidthEstimate": 2693639.356333913,
+        "loadMilliseconds": 142.29999995231628,
+        "processingMilliseconds": 1.1999999284744263
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 7.46862,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 7.734084,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 7.999857,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 8.265413,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 8.531367,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 8.796646,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 9.062244,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "segment-buffered",
+        "level": 1,
+        "sequence": 6,
+        "duration": 2.001999999999999,
+        "bytes": 321099,
+        "bandwidthEstimate": 3291148.300661049,
+        "loadMilliseconds": 169.39999997615814,
+        "processingMilliseconds": 2.600000023841858
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 9.32798,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 9.593519,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 9.859068,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 10.124832,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 10.390312,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 10.655873,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 10.921509,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 11.187107,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "segment-buffered",
+        "level": 1,
+        "sequence": 7,
+        "duration": 2.0020000000000007,
+        "bytes": 314201,
+        "bandwidthEstimate": 3810272.277371334,
+        "loadMilliseconds": 209.20000004768372,
+        "processingMilliseconds": 3.8000000715255737
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 11.453072,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 11.718827,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 11.986706,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "level-switched",
+        "level": 1,
+        "width": 854,
+        "height": 480,
+        "automatic": true
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 12.249702,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 12.515375,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 12.781149,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 13.046699,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 13.312221,
+        "duration": 18.017999999999994,
+        "readyState": 4
+      },
+      {
+        "type": "segment-buffered",
+        "level": 1,
+        "sequence": 8,
+        "duration": 2.001999999999999,
+        "bytes": 430878,
+        "bandwidthEstimate": 4460425.521598321,
+        "loadMilliseconds": 318.2000000476837,
+        "processingMilliseconds": 24.199999928474426
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 13.662599,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 13.921521,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 14.18801,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 14.453036,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 14.724065,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 15.040632,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 15.31438,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 15.577943,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 15.864759,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 15.97532,
+        "duration": 18.084732,
+        "readyState": 2
+      },
+      {
+        "type": "waiting",
+        "currentTime": 15.97532,
+        "duration": 18.084732,
+        "readyState": 2
+      },
+      {
+        "type": "canplay",
+        "currentTime": 16.001044,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "playing",
+        "currentTime": 16.001141,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 16.22848,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 16.494014,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 16.759398,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 17.024988,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 17.290611,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 17.556122,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 17.821839,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 18.084732,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 18.084732,
+        "duration": 18.084732,
+        "readyState": 4
+      },
+      {
+        "type": "ended",
+        "currentTime": 18.084732,
+        "duration": 18.084732,
+        "readyState": 4
+      }
+    ],
+    "serverStatus": {
+      "forcedTruncation": false,
+      "rangeRequests": 0,
+      "objectChanged": false
+    },
+    "rustfsRange": {
+      "headStatus": 200,
+      "rangeStatus": 206,
+      "contentRange": "bytes 0-65591/190254",
+      "etag": "\"96a6258aae717909cd3d9baa6b996265\"",
+      "responseEtag": "\"96a6258aae717909cd3d9baa6b996265\"",
+      "expectedBytes": 65592,
+      "actualBytes": 65592
+    },
+    "duration": 18.084732,
+    "currentTime": 18.084732,
+    "videoWidth": 854,
+    "videoHeight": 480
+  },
+  "pageErrors": [],
+  "consoleErrors": []
+}

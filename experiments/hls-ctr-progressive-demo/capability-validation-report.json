@@ -1,0 +1,161 @@
+{
+  "checks": {
+    "hevcCapability": {
+      "h264": true,
+      "hev1L93": true,
+      "hvc1L93": true,
+      "status": ""
+    },
+    "hevcClearPlayback": {
+      "video": {
+        "width": 1280,
+        "height": 720,
+        "duration": 8.074732,
+        "ended": true
+      },
+      "log": "2026-10-06T10:32:08.873Z fragment-buffered {\"level\":0,\"duration\":1.9686333333333332,\"url\":\"http://127.0.0.1:8790/output/hevc-crf-32-000.m4s\"}\n2026-10-06T10:32:08.878Z hls-error {\"type\":\"mediaError\",\"details\":\"bufferSeekOverHole\",\"fatal\":false,\"reason\":\"fragment loaded with buffer holes, seeking from 0 to 0.16673300000000002\"}\n2026-10-06T10:32:08.925Z fragment-buffered {\"level\":0,\"duration\":2.002,\"url\":\"http://127.0.0.1:8790/output/hevc-crf-32-001.m4s\"}\n2026-10-06T10:32:08.972Z level-switched {\"level\":0,\"height\":0,\"automatic\":true}\n2026-10-06T10:32:08.978Z fragment-buffered {\"level\":0,\"duration\":2.0020000000000002,\"url\":\"http://127.0.0.1:8790/output/hevc-crf-32-002.m4s\"}\n2026-10-06T10:32:09.008Z fragment-buffered {\"level\":0,\"duration\":2.102099999999999,\"url\":\"http://127.0.0.1:8790/output/hevc-crf-32-003.m4s\"}"
+    },
+    "abrAuto": {
+      "video": {
+        "width": 640,
+        "height": 360,
+        "duration": 8.074732,
+        "ended": true,
+        "currentTime": 8.074732
+      },
+      "levels": [
+        {
+          "label": "Automatic ABR",
+          "value": "-1"
+        },
+        {
+          "label": "360p · 487 kbit/s",
+          "value": "0"
+        },
+        {
+          "label": "480p · 956 kbit/s",
+          "value": "1"
+        },
+        {
+          "label": "720p · 1888 kbit/s",
+          "value": "2"
+        }
+      ],
+      "log": "2026-10-06T10:32:19.628Z fragment-buffered {\"level\":0,\"duration\":2.0687333333333333,\"url\":\"http://127.0.0.1:8790/output/abrt-360p-000.m4s\"}\n2026-10-06T10:32:19.639Z level-switched {\"level\":0,\"height\":360,\"automatic\":true}\n2026-10-06T10:32:20.895Z fragment-buffered {\"level\":0,\"duration\":2.002,\"url\":\"http://127.0.0.1:8790/output/abrt-360p-001.m4s\"}\n2026-10-06T10:32:22.669Z fragment-buffered {\"level\":0,\"duration\":2.0020000000000007,\"url\":\"http://127.0.0.1:8790/output/abrt-360p-002.m4s\"}\n2026-10-06T10:32:23.931Z fragment-buffered {\"level\":0,\"duration\":2.001999999999999,\"url\":\"http://127.0.0.1:8790/output/abrt-360p-003.m4s\"}"
+    },
+    "abr": {
+      "availableLevels": [
+        {
+          "label": "Automatic ABR",
+          "value": "-1"
+        },
+        {
+          "label": "360p · 487 kbit/s",
+          "value": "0"
+        },
+        {
+          "label": "480p · 956 kbit/s",
+          "value": "1"
+        },
+        {
+          "label": "720p · 1888 kbit/s",
+          "value": "2"
+        }
+      ],
+      "currentVideo": {
+        "width": 854,
+        "height": 480,
+        "currentTime": 1.098056
+      },
+      "log": "2026-10-06T10:32:29.727Z fragment-buffered {\"level\":1,\"duration\":2.0687333333333333,\"url\":\"http://127.0.0.1:8790/output/abrt-480p-000.m4s\"}\n2026-10-06T10:32:29.738Z level-switched {\"level\":1,\"height\":480,\"automatic\":true}\n2026-10-06T10:32:30.577Z manual-level-selected {\"level\":2}\n2026-10-06T10:32:30.579Z hls-error {\"type\":\"networkError\",\"details\":\"aborted\",\"fatal\":false}\n2026-10-06T10:32:32.887Z level-switched {\"level\":2,\"height\":720,\"automatic\":false}\n2026-10-06T10:32:32.887Z fragment-buffered {\"level\":2,\"duration\":2.0687333333333333,\"url\":\"http://127.0.0.1:8790/output/abrt-720p-000.m4s\"}\n2026-10-06T10:32:33.065Z hls-error {\"type\":\"mediaError\",\"details\":\"bufferStalledError\",\"fatal\":false}"
+    },
+    "encryptedAbr": {
+      "video": {
+        "width": 1280,
+        "height": 720,
+        "duration": 8.074732,
+        "ended": true,
+        "currentTime": 8.074732,
+        "buffered": [
+          [
+            0.066733,
+            8.074732
+          ]
+        ]
+      },
+      "log": "2026-10-06T10:32:33.731Z video-waiting {\"currentTime\":0,\"buffered\":[],\"bufferAhead\":0,\"readyState\":0,\"networkState\":2,\"paused\":false}\n2026-10-06T10:32:33.752Z encrypted-stream-metadata {\"fragment\":\"abrt-ctr-360p-000.m4s\",\"recordCount\":2,\"clearBytes\":75013,\"expectedClearSha256\":\"4b26eac8e240004b354c532567a2c28238a409b6d602a038caae6f9bbc86eff4\"}\n2026-10-06T10:32:34.801Z firstVerifiedClearRecord {\"millisecondsFromStart\":1097.5}\n2026-10-06T10:32:34.808Z encryptedFragmentDownloadComplete {\"millisecondsFromStart\":1104.5}\n2026-10-06T10:32:34.808Z decrypted-fragment-sha256 {\"actual\":\"4b26eac8e240004b354c532567a2c28238a409b6d602a038caae6f9bbc86eff4\",\"expected\":\"4b26eac8e240004b354c532567a2c28238a409b6d602a038caae6f9bbc86eff4\",\"matches\":true}\n2026-10-06T10:32:34.814Z abr-fragment-buffered {\"level\":0,\"uri\":\"/output/abrt-ctr-360p-000.m4s\",\"sn\":0,\"duration\":2.0687333333333333}\n2026-10-06T10:32:34.821Z video-playing {\"currentTime\":0.001,\"buffered\":[{\"start\":0.067,\"end\":2.069}],\"bufferAhead\":0,\"readyState\":4,\"networkState\":2,\"paused\":false}\n2026-10-06T10:32:34.822Z abr-level-switched {\"level\":0,\"width\":640,\"height\":360,\"automatic\":true}\n2026-10-06T10:32:34.828Z firstDecodedVideoFrame {\"millisecondsFromStart\":1124.7}\n2026-10-06T10:32:34.829Z first-frame-metadata {\"mediaTime\":0.066733,\"presentedFrames\":1}\n2026-10-06T10:32:34.830Z encrypted-stream-metadata {\"fragment\":\"abrt-ctr-360p-001.m4s\",\"recordCount\":2,\"clearBytes\":91735,\"expectedClearSha256\":\"c66baa54ede67950983114ddbd84ac7cde0d88accbd5811094f833136eb1ab6f\"}\n2026-10-06T10:32:35.213Z firstVerifiedClearRecord {\"millisecondsFromStart\":1509.7}\n2026-10-06T10:32:35.242Z encryptedFragmentDownloadComplete {\"millisecondsFromStart\":1538.7}\n2026-10-06T10:32:35.242Z decrypted-fragment-sha256 {\"actual\":\"c66baa54ede67950983114ddbd84ac7cde0d88accbd5811094f833136eb1ab6f\",\"expected\":\"c66baa54ede67950983114ddbd84ac7cde0d88accbd5811094f833136eb1ab6f\",\"matches\":true}\n2026-10-06T10:32:35.245Z abr-fragment-buffered {\"level\":0,\"uri\":\"/output/abrt-ctr-360p-001.m4s\",\"sn\":1,\"duration\":2.002}\n2026-10-06T10:32:35.253Z encrypted-stream-metadata {\"fragment\":\"abrt-ctr-720p-002.m4s\",\"recordCount\":8,\"clearBytes\":472568,\"expectedClearSha256\":\"3d6f64276c2fd5dd9530d6293c61dc2fd0cc26da5e0e4df25c04acb5a951ec92\"}\n2026-10-06T10:32:35.403Z firstVerifiedClearRecord {\"millisecondsFromStart\":1700}\n2026-10-06T10:32:36.194Z encryptedFragmentDownloadComplete {\"millisecondsFromStart\":2490.9}\n2026-10-06T10:32:36.195Z decrypted-fragment-sha256 {\"actual\":\"3d6f64276c2fd5dd9530d6293c61dc2fd0cc26da5e0e4df25c04acb5a951ec92\",\"expected\":\"3d6f64276c2fd5dd9530d6293c61dc2fd0cc26da5e0e4df25c04acb5a951ec92\",\"matches\":true}\n2026-10-06T10:32:36.199Z abr-fragment-buffered {\"level\":2,\"uri\":\"/output/abrt-ctr-720p-002.m4s\",\"sn\":2,\"duration\":2.0020000000000007}\n2026-10-06T10:32:36.208Z encrypted-stream-metadata {\"fragment\":\"abrt-ctr-720p-003.m4s\",\"recordCount\":6,\"clearBytes\":387269,\"expectedClearSha256\":\"2dd5385440b01e9622939c9937881d767381bc474de446049142eeecfa26fb10\"}\n2026-10-06T10:32:36.368Z firstVerifiedClearRecord {\"millisecondsFromStart\":2665.1}\n2026-10-06T10:32:36.985Z encryptedFragmentDownloadComplete {\"millisecondsFromStart\":3281.3}\n2026-10-06T10:32:36.985Z decrypted-fragment-sha256 {\"actual\":\"2dd5385440b01e9622939c9937881d767381bc474de446049142eeecfa26fb10\",\"expected\":\"2dd5385440b01e9622939c9937881d767381bc474de446049142eeecfa26fb10\",\"matches\":true}\n2026-10-06T10:32:36.988Z abr-fragment-buffered {\"level\":2,\"uri\":\"/output/abrt-ctr-720p-003.m4s\",\"sn\":3,\"duration\":2.001999999999999}\n2026-10-06T10:32:38.931Z abr-level-switched {\"level\":2,\"width\":1280,\"height\":720,\"automatic\":true}\n2026-10-06T10:32:42.901Z video-ended {\"currentTime\":8.075,\"buffered\":[{\"start\":0.067,\"end\":8.075}],\"bufferAhead\":0,\"readyState\":4,\"networkState\":2,\"paused\":true}"
+    },
+    "progressivePlayerState": {
+      "url": "http://127.0.0.1:8790/public/progressive.html",
+      "title": "Progressive CTR to MSE experiment",
+      "log": "mse-media-fragment-appended {\"elapsedMs\":41.4,\"mediaPairs\":1,\"bytes\":32086,\"bufferedEnd\":0.567232,\"encryptedBytesReceived\":98016,\"encryptedContentLength\":561831}\nmse-media-fragment-appended {\"elapsedMs\":41.8,\"mediaPairs\":2,\"bytes\":31020,\"bufferedEnd\":1.067732,\"encryptedBytesReceived\":98016,\"encryptedContentLength\":561831}\nmse-media-fragment-appended {\"elapsedMs\":50.4,\"mediaPairs\":3,\"bytes\":29656,\"bufferedEnd\":1.568232,\"encryptedBytesReceived\":561831,\"encryptedContentLength\":561831}\nmse-media-fragment-appended {\"elapsedMs\":50.8,\"mediaPairs\":4,\"bytes\":29324,\"bufferedEnd\":2.068732,\"encryptedBytesReceived\":561831,\"encryptedContentLength\":561831}\nvideo-playing {\"elapsedMs\":51.2,\"time\":0.000184,\"bufferedEnd\":2.068732}\nmse-media-fragment-appended {\"elapsedMs\":57.1,\"mediaPairs\":5,\"bytes\":27527,\"bufferedEnd\":2.569232,\"encryptedBytesReceived\":561831,\"encryptedContentLength\":561831}\nmse-media-fragment-appended {\"elapsedMs\":57.5,\"mediaPairs\":6,\"bytes\":32027,\"bufferedEnd\":3.069732,\"encryptedBytesReceived\":561831,\"encryptedContentLength\":561831}\nmse-media-fragment-appended {\"elapsedMs\":62,\"mediaPairs\":7,\"bytes\":34124,\"bufferedEnd\":3.570232,\"encryptedBytesReceived\":561831,\"encryptedContentLength\":561831}\nmse-media-fragment-appended {\"elapsedMs\":62.5,\"mediaPairs\":8,\"bytes\":38435,\"bufferedEnd\":4.070732,\"encryptedBytesReceived\":561831,\"encryptedContentLength\":561831}\nmse-media-fragment-appended {\"elapsedMs\":67.8,\"mediaPairs\":9,\"bytes\":42381,\"bufferedEnd\":4.571232,\"encryptedBytesReceived\":561831,\"encryptedContentLength\":561831}\nmse-media-fragment-appended {\"elapsedMs\":71.6,\"mediaPairs\":10,\"bytes\":44165,\"bufferedEnd\":5.071732,\"encryptedBytesReceived\":561831,\"encryptedContentLength\":561831}\nmse-media-fragment-appended {\"elapsedMs\":73.1,\"mediaPairs\":11,\"bytes\":41405,\"bufferedEnd\":5.572232,\"encryptedBytesReceived\":561831,\"encryptedContentLength\":561831}\nmse-media-fragment-appended {\"elapsedMs\":77.6,\"mediaPairs\":12,\"bytes\":37833,\"bufferedEnd\":6.072732,\"encryptedBytesReceived\":561831,\"encryptedContentLength\":561831}\nmse-media-fragment-appended {\"elapsedMs\":78.1,\"mediaPairs\":13,\"bytes\":36460,\"bufferedEnd\":6.573232,\"encryptedBytesReceived\":561831,\"encryptedContentLength\":561831}\nmse-media-fragment-appended {\"elapsedMs\":83.9,\"mediaPairs\":14,\"bytes\":36577,\"bufferedEnd\":7.073732,\"encryptedBytesReceived\":561831,\"encryptedContentLength\":561831}\nmse-media-fragment-appended {\"elapsedMs\":86,\"mediaPairs\":15,\"bytes\":34192,\"bufferedEnd\":7.574232,\"encryptedBytesReceived\":561831,\"encryptedContentLength\":561831}\nmse-media-fragment-appended {\"elapsedMs\":86.3,\"mediaPairs\":16,\"bytes\":34115,\"bufferedEnd\":8.074732,\"encryptedBytesReceived\":561831,\"encryptedContentLength\":561831}\nencrypted-download-complete {\"elapsedMs\":87.1,\"networkBytes\":561831,\"recordNumber\":9,\"mediaPairs\":16,\"clearSha256\":\"6d09b556718a69b40f6f9fa224a89e694ee2849c60950ab0381573e6da4a0c1a\",\"expectedSha256\":\"6d09b556718a69b40f6f9fa224a89e694ee2849c60950ab0381573e6da4a0c1a\",\"matches\":true}\nvideo-ended {\"elapsedMs\":8127.9,\"time\":8.074732,\"duration\":8.074732}"
+    },
+    "progressiveSeekResume": {
+      "started": true
+    },
+    "progressiveSeek": {
+      "currentTime": 3.533971,
+      "duration": 8.074732,
+      "ended": false,
+      "completedDownload": true,
+      "buffered": [
+        [
+          0.066733,
+          8.074732
+        ]
+      ],
+      "log": "mse-media-fragment-appended {\"elapsedMs\":41.4,\"mediaPairs\":1,\"bytes\":32086,\"bufferedEnd\":0.567232,\"encryptedBytesReceived\":98016,\"encryptedContentLength\":561831}\nmse-media-fragment-appended {\"elapsedMs\":41.8,\"mediaPairs\":2,\"bytes\":31020,\"bufferedEnd\":1.067732,\"encryptedBytesReceived\":98016,\"encryptedContentLength\":561831}\nmse-media-fragment-appended {\"elapsedMs\":50.4,\"mediaPairs\":3,\"bytes\":29656,\"bufferedEnd\":1.568232,\"encryptedBytesReceived\":561831,\"encryptedContentLength\":561831}\nmse-media-fragment-appended {\"elapsedMs\":50.8,\"mediaPairs\":4,\"bytes\":29324,\"bufferedEnd\":2.068732,\"encryptedBytesReceived\":561831,\"encryptedContentLength\":561831}\nvideo-playing {\"elapsedMs\":51.2,\"time\":0.000184,\"bufferedEnd\":2.068732}\nmse-media-fragment-appended {\"elapsedMs\":57.1,\"mediaPairs\":5,\"bytes\":27527,\"bufferedEnd\":2.569232,\"encryptedBytesReceived\":561831,\"encryptedContentLength\":561831}\nmse-media-fragment-appended {\"elapsedMs\":57.5,\"mediaPairs\":6,\"bytes\":32027,\"bufferedEnd\":3.069732,\"encryptedBytesReceived\":561831,\"encryptedContentLength\":561831}\nmse-media-fragment-appended {\"elapsedMs\":62,\"mediaPairs\":7,\"bytes\":34124,\"bufferedEnd\":3.570232,\"encryptedBytesReceived\":561831,\"encryptedContentLength\":561831}\nmse-media-fragment-appended {\"elapsedMs\":62.5,\"mediaPairs\":8,\"bytes\":38435,\"bufferedEnd\":4.070732,\"encryptedBytesReceived\":561831,\"encryptedContentLength\":561831}\nmse-media-fragment-appended {\"elapsedMs\":67.8,\"mediaPairs\":9,\"bytes\":42381,\"bufferedEnd\":4.571232,\"encryptedBytesReceived\":561831,\"encryptedContentLength\":561831}\nmse-media-fragment-appended {\"elapsedMs\":71.6,\"mediaPairs\":10,\"bytes\":44165,\"bufferedEnd\":5.071732,\"encryptedBytesReceived\":561831,\"encryptedContentLength\":561831}\nmse-media-fragment-appended {\"elapsedMs\":73.1,\"mediaPairs\":11,\"bytes\":41405,\"bufferedEnd\":5.572232,\"encryptedBytesReceived\":561831,\"encryptedContentLength\":561831}\nmse-media-fragment-appended {\"elapsedMs\":77.6,\"mediaPairs\":12,\"bytes\":37833,\"bufferedEnd\":6.072732,\"encryptedBytesReceived\":561831,\"encryptedContentLength\":561831}\nmse-media-fragment-appended {\"elapsedMs\":78.1,\"mediaPairs\":13,\"bytes\":36460,\"bufferedEnd\":6.573232,\"encryptedBytesReceived\":561831,\"encryptedContentLength\":561831}\nmse-media-fragment-appended {\"elapsedMs\":83.9,\"mediaPairs\":14,\"bytes\":36577,\"bufferedEnd\":7.073732,\"encryptedBytesReceived\":561831,\"encryptedContentLength\":561831}\nmse-media-fragment-appended {\"elapsedMs\":86,\"mediaPairs\":15,\"bytes\":34192,\"bufferedEnd\":7.574232,\"encryptedBytesReceived\":561831,\"encryptedContentLength\":561831}\nmse-media-fragment-appended {\"elapsedMs\":86.3,\"mediaPairs\":16,\"bytes\":34115,\"bufferedEnd\":8.074732,\"encryptedBytesReceived\":561831,\"encryptedContentLength\":561831}\nencrypted-download-complete {\"elapsedMs\":87.1,\"networkBytes\":561831,\"recordNumber\":9,\"mediaPairs\":16,\"clearSha256\":\"6d09b556718a69b40f6f9fa224a89e694ee2849c60950ab0381573e6da4a0c1a\",\"expectedSha256\":\"6d09b556718a69b40f6f9fa224a89e694ee2849c60950ab0381573e6da4a0c1a\",\"matches\":true}\nvideo-ended {\"elapsedMs\":8127.9,\"time\":8.074732,\"duration\":8.074732}\nvideo-playing {\"elapsedMs\":12904.1,\"time\":3.200486,\"bufferedEnd\":8.074732}"
+    },
+    "hevcCtrPlayback": {
+      "video": {
+        "width": 1280,
+        "height": 720,
+        "duration": 8.074732,
+        "ended": true,
+        "currentTime": 8.074732,
+        "buffered": [
+          [
+            0.066733,
+            8.074732
+          ]
+        ]
+      },
+      "log": "2026-10-06T10:32:58.300Z video-waiting {\"currentTime\":0,\"buffered\":[],\"bufferAhead\":0,\"readyState\":0,\"networkState\":2,\"paused\":false}\n2026-10-06T10:32:58.323Z encrypted-stream-metadata {\"fragment\":\"hevc-ctr-crf-32-000.m4s\",\"recordCount\":4,\"clearBytes\":207690,\"expectedClearSha256\":\"9ea6cec7045aaf2b8ea599809a2ed32b18acf42335d12776959abf65aff038b4\"}\n2026-10-06T10:32:58.348Z firstVerifiedClearRecord {\"millisecondsFromStart\":67}\n2026-10-06T10:32:58.363Z encryptedFragmentDownloadComplete {\"millisecondsFromStart\":82.2}\n2026-10-06T10:32:58.363Z decrypted-fragment-sha256 {\"actual\":\"9ea6cec7045aaf2b8ea599809a2ed32b18acf42335d12776959abf65aff038b4\",\"expected\":\"9ea6cec7045aaf2b8ea599809a2ed32b18acf42335d12776959abf65aff038b4\",\"matches\":true}\n2026-10-06T10:32:58.368Z abr-fragment-buffered {\"level\":0,\"uri\":\"/output/hevc-ctr-crf-32-000.m4s\",\"sn\":0,\"duration\":1.9686333333333332}\n2026-10-06T10:32:58.378Z firstDecodedVideoFrame {\"millisecondsFromStart\":97.2}\n2026-10-06T10:32:58.379Z first-frame-metadata {\"mediaTime\":0.066733,\"presentedFrames\":1}\n2026-10-06T10:32:58.380Z video-playing {\"currentTime\":0.002,\"buffered\":[{\"start\":0.067,\"end\":1.969}],\"bufferAhead\":0,\"readyState\":4,\"networkState\":2,\"paused\":false}\n2026-10-06T10:32:58.381Z abr-level-switched {\"level\":0,\"width\":0,\"height\":0,\"automatic\":true}\n2026-10-06T10:32:58.392Z encrypted-stream-metadata {\"fragment\":\"hevc-ctr-crf-32-001.m4s\",\"recordCount\":4,\"clearBytes\":198865,\"expectedClearSha256\":\"dad9e91b2d5892188099fe082e701bad08c541741ae7ed829e10e39869d0c490\"}\n2026-10-06T10:32:58.429Z firstVerifiedClearRecord {\"millisecondsFromStart\":147.8}\n2026-10-06T10:32:58.446Z encryptedFragmentDownloadComplete {\"millisecondsFromStart\":165.6}\n2026-10-06T10:32:58.447Z decrypted-fragment-sha256 {\"actual\":\"dad9e91b2d5892188099fe082e701bad08c541741ae7ed829e10e39869d0c490\",\"expected\":\"dad9e91b2d5892188099fe082e701bad08c541741ae7ed829e10e39869d0c490\",\"matches\":true}\n2026-10-06T10:32:58.449Z abr-fragment-buffered {\"level\":0,\"uri\":\"/output/hevc-ctr-crf-32-001.m4s\",\"sn\":1,\"duration\":2.002}\n2026-10-06T10:32:58.459Z encrypted-stream-metadata {\"fragment\":\"hevc-ctr-crf-32-002.m4s\",\"recordCount\":5,\"clearBytes\":322085,\"expectedClearSha256\":\"c70e5b3ef431fc2050c927b4fe122f57f28450e3aded6c35b534a273f48ab47d\"}\n2026-10-06T10:32:58.492Z firstVerifiedClearRecord {\"millisecondsFromStart\":210.9}\n2026-10-06T10:32:58.511Z encryptedFragmentDownloadComplete {\"millisecondsFromStart\":230}\n2026-10-06T10:32:58.511Z decrypted-fragment-sha256 {\"actual\":\"c70e5b3ef431fc2050c927b4fe122f57f28450e3aded6c35b534a273f48ab47d\",\"expected\":\"c70e5b3ef431fc2050c927b4fe122f57f28450e3aded6c35b534a273f48ab47d\",\"matches\":true}\n2026-10-06T10:32:58.514Z abr-fragment-buffered {\"level\":0,\"uri\":\"/output/hevc-ctr-crf-32-002.m4s\",\"sn\":2,\"duration\":2.0020000000000002}\n2026-10-06T10:32:58.520Z encrypted-stream-metadata {\"fragment\":\"hevc-ctr-crf-32-003.m4s\",\"recordCount\":6,\"clearBytes\":335795,\"expectedClearSha256\":\"dd76b85d01c856d6de5f750127e9a41f3da94d3070e6adda01890dbb63803bd4\"}\n2026-10-06T10:32:58.545Z firstVerifiedClearRecord {\"millisecondsFromStart\":264.2}\n2026-10-06T10:32:58.565Z encryptedFragmentDownloadComplete {\"millisecondsFromStart\":284.1}\n2026-10-06T10:32:58.565Z decrypted-fragment-sha256 {\"actual\":\"dd76b85d01c856d6de5f750127e9a41f3da94d3070e6adda01890dbb63803bd4\",\"expected\":\"dd76b85d01c856d6de5f750127e9a41f3da94d3070e6adda01890dbb63803bd4\",\"matches\":true}\n2026-10-06T10:32:58.568Z abr-fragment-buffered {\"level\":0,\"uri\":\"/output/hevc-ctr-crf-32-003.m4s\",\"sn\":3,\"duration\":2.102099999999999}\n2026-10-06T10:33:06.459Z video-ended {\"currentTime\":8.075,\"buffered\":[{\"start\":0.067,\"end\":8.075}],\"bufferAhead\":0,\"readyState\":4,\"networkState\":2,\"paused\":true}"
+    },
+    "recordBoundaryResume": {
+      "log": "2026-10-06T10:33:07.021Z video-waiting {\"currentTime\":0,\"buffered\":[],\"bufferAhead\":0,\"readyState\":0,\"networkState\":2,\"paused\":false}\n2026-10-06T10:33:07.037Z encrypted-stream-metadata {\"fragment\":\"encrypted-0.m4s\",\"recordCount\":9,\"clearBytes\":561327,\"expectedClearSha256\":\"6d09b556718a69b40f6f9fa224a89e694ee2849c60950ab0381573e6da4a0c1a\"}\n2026-10-06T10:33:07.076Z firstVerifiedClearRecord {\"millisecondsFromStart\":78}\n2026-10-06T10:33:07.078Z intentional-interruption {\"resumeByte\":65592,\"etag\":\"\\\"sha256-d12ccce598c8c9e09710bf0dcc9af0fdb5f63fa17cec0023436883d4828c06f7\\\"\"}\n2026-10-06T10:33:07.093Z video-playing {\"currentTime\":0,\"buffered\":[{\"start\":0.067,\"end\":0.567}],\"bufferAhead\":0,\"readyState\":4,\"networkState\":2,\"paused\":false}\n2026-10-06T10:33:07.095Z firstDecodedVideoFrame {\"millisecondsFromStart\":97}\n2026-10-06T10:33:07.095Z first-frame-metadata {\"mediaTime\":0.066733,\"presentedFrames\":1}\n2026-10-06T10:33:07.145Z encryptedFragmentDownloadComplete {\"millisecondsFromStart\":147.9}\n2026-10-06T10:33:07.146Z decrypted-fragment-sha256 {\"actual\":\"6d09b556718a69b40f6f9fa224a89e694ee2849c60950ab0381573e6da4a0c1a\",\"expected\":\"6d09b556718a69b40f6f9fa224a89e694ee2849c60950ab0381573e6da4a0c1a\",\"matches\":true}\n2026-10-06T10:33:07.149Z abr-level-switched {\"level\":0,\"width\":0,\"height\":0,\"automatic\":true}\n2026-10-06T10:33:07.149Z abr-fragment-buffered {\"level\":0,\"uri\":\"/output/encrypted-0.m4s\",\"sn\":0,\"duration\":1.0677333333333339}",
+      "video": {
+        "width": 854,
+        "height": 480,
+        "duration": 8.008,
+        "buffered": [
+          [
+            0.066733,
+            1.067732
+          ]
+        ]
+      }
+    },
+    "range": {
+      "totalBytes": 561831,
+      "etag": "\"sha256-d12ccce598c8c9e09710bf0dcc9af0fdb5f63fa17cec0023436883d4828c06f7\"",
+      "matching": {
+        "firstStatus": 206,
+        "firstContentRange": "bytes 0-65591/561831",
+        "firstBytes": 65592,
+        "resumeStatus": 206,
+        "resumeContentRange": "bytes 65592-561830/561831",
+        "resumedBytes": 496239,
+        "boundary": 65592,
+        "reconstructedBytes": 561831,
+        "matchesFullResponse": true
+      },
+      "staleIfRange": {
+        "status": 200,
+        "contentRange": null,
+        "bytes": 561831
+      }
+    }
+  },
+  "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36"
+}

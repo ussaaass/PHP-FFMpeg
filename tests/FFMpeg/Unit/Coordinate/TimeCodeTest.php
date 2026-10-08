@@ -16,7 +16,7 @@ class TimeCodeTest extends TestCase
         $this->assertEquals((string) $tc, $expected);
     }
 
-    public function provideTimeCodes()
+    public static function provideTimeCodes()
     {
         return [
             ['1:02:04:05:20', '26:04:05.20'],
@@ -43,7 +43,7 @@ class TimeCodeTest extends TestCase
         $this->assertEquals($expected, (string) $tc);
     }
 
-    public function provideSeconds()
+    public static function provideSeconds()
     {
         return [
             [0.467,  '00:00:00.47'],

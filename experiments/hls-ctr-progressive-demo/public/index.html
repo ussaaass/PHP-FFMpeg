@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PHP-FFMpeg HLS CTR Demo</title>
+    <style>
+      :root { color-scheme: light dark; font: 16px/1.5 system-ui, sans-serif; }
+      body { max-width: 920px; margin: 2rem auto; padding: 0 1rem; }
+      video { display: block; width: 100%; max-height: 60vh; background: #111; }
+      fieldset { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1rem 0; }
+      button, select { padding: .5rem .75rem; }
+      pre { overflow: auto; max-height: 24rem; padding: 1rem; background: #171717; }
+      .note { opacity: .8; }
+    </style>
+  </head>
+  <body>
+    <h1>HLS AES-CTR streaming experiment</h1>
+    <p class="note">Local-only demonstration. The fixed test keys provide no production security.</p>
+    <p><a href="/public/progressive.html">Open the complete Worker-to-MSE progressive experiment</a></p>
+    <p><a href="/codec-abr">Open codec and ABR tests</a></p>
+    <video id="video" controls playsinline></video>
+    <fieldset>
+      <button id="play">Play</button>
+      <button id="stop">Stop</button>
+      <label>Encrypted stream
+        <select id="stream">
+          <option value="/output/demo.m3u8">H.264 480p CTR</option>
+          <option value="/output/abrt-ctr-master.m3u8">H.264 360p / 480p / 720p CTR ABR</option>
+          <option value="/output/hevc-ctr-crf-32.m3u8">HEVC 720p CRF 32 CTR</option>
+          <option value="/output/hevc-ctr-crf-30.m3u8">HEVC 720p CRF 30 CTR</option>
+          <option value="/output/hevc-ctr-crf-28.m3u8">HEVC 720p CRF 28 CTR</option>
+        </select>
+      </label>
+      <label>Network limit
+        <select id="throttle">
+          <option value="0">unlimited</option>
+          <option value="512" selected>512 KiB/s</option>
+          <option value="128">128 KiB/s</option>
+          <option value="64">64 KiB/s</option>
+        </select>
+      </label>
+      <span class="note">HEVC 720p average: CRF 32 ≈128, CRF 30 ≈162, CRF 28 ≈205 KiB/s. Use 256 KiB/s or more for headroom; 128 KiB/s is a stress test.</span>
+      <button id="interrupt">Interrupt after next record</button>
+      <label>Tamper record
+        <select id="tamper-record"></select>
+      </label>
+      <button id="tamper">Play with tampered record</button>
+      <button id="save-report">Save evidence report</button>
+    </fieldset>
+    <h2>Playback measurements and events</h2>
+    <pre id="log" aria-live="polite"></pre>
+    <script type="module" src="/public/player.mjs"></script>
+  </body>
+</html>

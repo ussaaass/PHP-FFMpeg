@@ -1,0 +1,173 @@
+{
+  "browserVersion": "153.0.8010.12",
+  "testMode": "seek",
+  "networkTimeline": [],
+  "status": "passed",
+  "result": {
+    "mode": "seek",
+    "failures": [],
+    "warnings": [],
+    "events": [
+      {
+        "type": "descriptor-loaded",
+        "profile": "phpffmpeg-ctr-hmac-v1",
+        "segmentCount": 9
+      },
+      {
+        "type": "waiting",
+        "currentTime": 4,
+        "duration": 6.005999999999999,
+        "readyState": 0
+      },
+      {
+        "type": "loadedmetadata",
+        "currentTime": 4,
+        "duration": 6.005999999999999,
+        "readyState": 1
+      },
+      {
+        "type": "segment-buffered",
+        "level": 0,
+        "sequence": 0,
+        "duration": 2.0687333333333333,
+        "bytes": 191450,
+        "bandwidthEstimate": 25654941.404271096,
+        "loadMilliseconds": 129,
+        "processingMilliseconds": 8.799999952316284
+      },
+      {
+        "type": "segment-buffered",
+        "level": 2,
+        "sequence": 1,
+        "duration": 2.002,
+        "bytes": 711876,
+        "bandwidthEstimate": 50557506.012740284,
+        "loadMilliseconds": 116,
+        "processingMilliseconds": 5.899999976158142
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 4.005323,
+        "duration": 6.005999999999999,
+        "readyState": 2
+      },
+      {
+        "type": "level-switched",
+        "level": 2,
+        "width": 1280,
+        "height": 720,
+        "automatic": true
+      },
+      {
+        "type": "canplay",
+        "currentTime": 4.005323,
+        "duration": 6.005999999999999,
+        "readyState": 2
+      },
+      {
+        "type": "playing",
+        "currentTime": 4.005323,
+        "duration": 6.005999999999999,
+        "readyState": 2
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 4.005323,
+        "duration": 6.005999999999999,
+        "readyState": 2
+      },
+      {
+        "type": "waiting",
+        "currentTime": 4.005323,
+        "duration": 6.005999999999999,
+        "readyState": 2
+      },
+      {
+        "type": "segment-buffered",
+        "level": 2,
+        "sequence": 2,
+        "duration": 2.0020000000000007,
+        "bytes": 859545,
+        "bandwidthEstimate": 43228228.779326946,
+        "loadMilliseconds": 204.5,
+        "processingMilliseconds": 3.6999999284744263
+      },
+      {
+        "type": "canplay",
+        "currentTime": 4.005471,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "playing",
+        "currentTime": 4.005498,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 4.22687,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 4.492155,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 4.757915,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 5.023701,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 5.288898,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 5.554747,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 5.820226,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "timeupdate",
+        "currentTime": 6.072732,
+        "duration": 6.072732,
+        "readyState": 4
+      },
+      {
+        "type": "ended",
+        "currentTime": 6.072732,
+        "duration": 6.072732,
+        "readyState": 4
+      }
+    ],
+    "serverStatus": {
+      "forcedTruncation": false,
+      "rangeRequests": 0
+    },
+    "duration": 6.072732,
+    "currentTime": 6.072732,
+    "videoWidth": 1280,
+    "videoHeight": 720
+  },
+  "pageErrors": [],
+  "consoleErrors": []
+}

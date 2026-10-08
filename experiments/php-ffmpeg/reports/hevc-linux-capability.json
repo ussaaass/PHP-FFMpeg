@@ -1,0 +1,22 @@
+{
+  "browserVersion": "153.0.8010.12",
+  "testMode": "hevc",
+  "status": "failed",
+  "result": {
+    "mode": "hevc",
+    "failures": [
+      {
+        "source": "capability",
+        "code": "PLAYER_CODEC_UNSUPPORTED",
+        "type": "unsupported-codec",
+        "details": "No declared HLS video codec can be added to this browser MSE pipeline",
+        "codec": "hev1.1.6.L93.90",
+        "fatal": true
+      }
+    ],
+    "warnings": [],
+    "unsupportedCodec": "hev1.1.6.L93.90"
+  },
+  "pageErrors": [],
+  "consoleErrors": []
+}

@@ -1,0 +1,19 @@
+{
+  "acceptance": "ffmpeg9-transcode-progress-stability",
+  "status": "passed",
+  "date": "2026-10-09",
+  "runtime": {
+    "php": "8.5.11",
+    "phpunit": "10.5.65",
+    "ffmpeg": "9.0.2",
+    "dockerImageId": "sha256:baa9ec8821f9a01812f3158609aeafd60aec26ea1bf0dd35d6067c2370088d08",
+    "platform": "linux/arm64"
+  },
+  "test": "Tests\\FFMpeg\\Functional\\VideoTranscodeTest::testSimpleTranscodeX264",
+  "runs": 10,
+  "passedRuns": 10,
+  "failedRuns": 0,
+  "assertionsPerRun": [72, 60, 78, 84, 102, 132, 60, 90, 66, 54],
+  "totalElapsedSeconds": 74.84,
+  "regression": "FFmpeg statistics briefly reporting an earlier media timestamp no longer causes the public progress percentage or current media time to move backwards."
+}

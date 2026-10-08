@@ -1,0 +1,5 @@
+.git
+output/*
+!output/.gitkeep
+node_modules
+npm-debug.log*

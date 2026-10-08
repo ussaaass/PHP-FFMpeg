@@ -1,0 +1,115 @@
+{
+    "acceptance": "multirendition-fmp4-embedded-audio-mapping",
+    "status": "passed",
+    "ffmpegFamily": "ffmpeg9",
+    "sourceSha256": "56ddff7d33c59eea27f1a6b884f2c550b11c6c630269a74af8d5c1c95cffefc5",
+    "toolVersions": {
+        "ffmpeg": "ffmpeg version n9.0.2-14-gebafaee10a-20260928 Copyright (c) 2000-2026 the FFmpeg developers",
+        "ffprobe": "ffprobe version n9.0.2-14-gebafaee10a-20260928 Copyright (c) 2007-2026 the FFmpeg developers"
+    },
+    "commandSummary": {
+        "tool": "ffmpeg",
+        "operation": "hls-vod-transcode",
+        "codec": "h264",
+        "container": "fmp4",
+        "playlistMode": "master",
+        "audioPresent": true,
+        "inputNormalization": {
+            "method": "already-faststart",
+            "sourceFaststart": true,
+            "outputFaststart": true,
+            "sourceUnchanged": true,
+            "remuxFallbackUsed": false
+        },
+        "typedSteps": [],
+        "renditions": [
+            {
+                "id": "360p",
+                "width": 640,
+                "height": 360,
+                "videoBitrate": 800000,
+                "audioBitrate": 128000
+            },
+            {
+                "id": "480p",
+                "width": 854,
+                "height": 480,
+                "videoBitrate": 1400000,
+                "audioBitrate": 128000
+            },
+            {
+                "id": "720p",
+                "width": 1280,
+                "height": 720,
+                "videoBitrate": 2800000,
+                "audioBitrate": 128000
+            }
+        ]
+    },
+    "masterPlaylist": "/workspace/experiments/php-ffmpeg/output/t5-final-ffmpeg9-retry-audio/master.m3u8",
+    "renditions": [
+        {
+            "id": "360p",
+            "playlist": "/workspace/experiments/php-ffmpeg/output/t5-final-ffmpeg9-retry-audio/v360p/index.m3u8",
+            "durationSeconds": 3.069732,
+            "video": {
+                "codec_type": "video",
+                "width": 640,
+                "height": 360
+            },
+            "audio": {
+                "codec_type": "audio",
+                "sample_rate": "48000"
+            },
+            "segments": [
+                "segment_00000.m4s",
+                "segment_00001.m4s"
+            ]
+        },
+        {
+            "id": "480p",
+            "playlist": "/workspace/experiments/php-ffmpeg/output/t5-final-ffmpeg9-retry-audio/v480p/index.m3u8",
+            "durationSeconds": 3.069732,
+            "video": {
+                "codec_type": "video",
+                "width": 854,
+                "height": 480
+            },
+            "audio": {
+                "codec_type": "audio",
+                "sample_rate": "48000"
+            },
+            "segments": [
+                "segment_00000.m4s",
+                "segment_00001.m4s"
+            ]
+        },
+        {
+            "id": "720p",
+            "playlist": "/workspace/experiments/php-ffmpeg/output/t5-final-ffmpeg9-retry-audio/v720p/index.m3u8",
+            "durationSeconds": 3.069732,
+            "video": {
+                "codec_type": "video",
+                "width": 1280,
+                "height": 720
+            },
+            "audio": {
+                "codec_type": "audio",
+                "sample_rate": "48000"
+            },
+            "segments": [
+                "segment_00000.m4s",
+                "segment_00001.m4s"
+            ]
+        }
+    ],
+    "checks": {
+        "common-segment-boundaries": true,
+        "one-video-and-embedded-audio-per-rendition-ffprobe-verified": true,
+        "resolution-matches-typed-rendition": true,
+        "fmp4-initialization-and-segment-uris-validated-by-runner": true
+    },
+    "limitations": [
+        "V1 rejects separate audio/subtitle inputs, multiple embedded audio/video streams, and embedded subtitle tracks during preflight."
+    ]
+}
