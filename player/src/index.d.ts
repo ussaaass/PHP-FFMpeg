@@ -1,16 +1,11 @@
 export const PlaybackProfile: Readonly<{
-  CTR_HMAC_V1: 'phpffmpeg-ctr-hmac-v1';
-}>;
-
-export const KeyProviderKind: Readonly<{
-  APPLICATION: 'application';
+  CTR_HMAC_V2: 'phpffmpeg-ctr-hmac-v2';
 }>;
 
 export const RequestPurpose: Readonly<{
-  DESCRIPTOR: 'descriptor';
+  KEY: 'key';
   HLS: 'hls';
   SEGMENT: 'segment';
-  SIDECAR: 'sidecar';
 }>;
 
 export const HttpCredentials: Readonly<{
@@ -19,37 +14,30 @@ export const HttpCredentials: Readonly<{
   INCLUDE: 'include';
 }>;
 
-export const KeyProviderTimeout: Readonly<{
+export const KeyRequestTimeout: Readonly<{
   DEFAULT_MILLISECONDS: 10000;
   MAXIMUM_MILLISECONDS: 120000;
 }>;
 
+export const PlayerErrorCode: Readonly<{
+  KEY_FETCH_FAILED: 'PLAYER_KEY_FETCH_FAILED';
+  KEY_TIMEOUT: 'PLAYER_KEY_TIMEOUT';
+  KEY_FORMAT_INVALID: 'PLAYER_KEY_FORMAT_INVALID';
+  PLAYBACK_INFO_INVALID: 'PLAYER_PLAYBACK_INFO_INVALID';
+  PLAYBACK_CANCELLED: 'PLAYER_PLAYBACK_CANCELLED';
+}>;
+
 export type PlaybackProfileValue = typeof PlaybackProfile[keyof typeof PlaybackProfile];
-export type KeyProviderKindValue = typeof KeyProviderKind[keyof typeof KeyProviderKind];
 export type RequestPurposeValue = typeof RequestPurpose[keyof typeof RequestPurpose];
-export type KeyId = string & { readonly __keyIdBrand: unique symbol };
 
-export class PlaybackDescriptorUrl {
-  private constructor();
-  readonly href: string;
-  static from(value: string | URL): PlaybackDescriptorUrl;
-  toString(): string;
-}
-
-export interface PlaybackDescriptor {
-  version: 1;
+export interface PlaybackInfo {
   profile: PlaybackProfileValue;
-  masterPlaylistUri: string;
-  keyProvider: KeyProviderKindValue;
-  segmentCount: number;
-}
-
-export interface KeyProviderContext {
-  keyId: KeyId;
+  /** Canonical unsigned 64-bit decimal string. */
+  assetId: string;
+  keyId: number;
   keyUri: string;
-  contentId: string;
-  profile: PlaybackProfileValue;
-  signal: AbortSignal;
+  masterPlaylistUri: string;
+  versionId: string;
 }
 
 export interface PlayerRequestContext {
@@ -82,20 +70,25 @@ export interface PlaybackMetrics {
 }
 
 export interface HlsCtrPlayerOptions {
-  keyProvider: {
-    getMasterKey(context: KeyProviderContext): Promise<Uint8Array | ArrayBuffer> | Uint8Array | ArrayBuffer;
-  };
   requestOptions?: (context: PlayerRequestContext) => RequestInit | undefined;
   hlsConfig?: Record<string, unknown>;
-  keyProviderTimeoutMilliseconds?: number;
+  allowInsecureHttp?: boolean;
+  keyRequestTimeoutMilliseconds?: number;
   onError?: (error: { source: string; code?: string; type?: string; details?: string; codec?: string; error?: string; fatal?: boolean }) => void;
   onEvent?: (event: Record<string, unknown>) => void;
 }
 
+export class HlsCtrPlayerError extends Error {
+  code: string;
+}
+
+export function validatePlaybackInfo(value: unknown, options?: { allowInsecureHttp?: boolean }): PlaybackInfo;
+
 export class HlsCtrPlayer {
-  constructor(video: HTMLMediaElement, options: HlsCtrPlayerOptions);
+  constructor(video: HTMLMediaElement, options?: HlsCtrPlayerOptions);
   static isSupported(): boolean;
-  load(descriptorUrl: PlaybackDescriptorUrl): Promise<PlaybackDescriptor>;
+  /** Fetches the Key exactly once before requesting the master playlist. */
+  load(playbackInfo: PlaybackInfo): Promise<PlaybackInfo>;
   play(): Promise<void>;
   pause(): void;
   getLevels(): PlayerLevel[];
@@ -103,8 +96,4 @@ export class HlsCtrPlayer {
   seek(seconds: number): void;
   getMetrics(): PlaybackMetrics;
   destroy(): void;
-}
-
-export class HlsCtrPlayerError extends Error {
-  code: string;
 }

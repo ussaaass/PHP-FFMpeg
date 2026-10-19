@@ -1,27 +1,28 @@
 import Hls from 'hls.js';
-import { CtrFragmentLoader } from './ctr-fragment-loader.js';
-import { KeyProviderKind, KeyProviderTimeout, PlaybackProfile, PlaybackDescriptorUrl, RequestPurpose } from './constants.js';
+import { V2CtrFragmentLoader } from './v2-fragment-loader.js';
+import { KeyRequestTimeout, PlaybackProfile, PlayerErrorCode, RequestPurpose } from './constants.js';
+import { startPlaybackSession } from './playback-session.js';
+import { HlsCtrPlayerError } from './errors.js';
 
 export class HlsCtrPlayer {
   constructor(video, options = {}) {
     if (!(video instanceof HTMLMediaElement)) throw new TypeError('HlsCtrPlayer requires an HTMLMediaElement');
-    if (!options.keyProvider || typeof options.keyProvider.getMasterKey !== 'function') {
-      throw new TypeError('Provide an application-owned keyProvider.getMasterKey callback');
-    }
-    const keyProviderTimeoutMilliseconds = options.keyProviderTimeoutMilliseconds ?? KeyProviderTimeout.DEFAULT_MILLISECONDS;
-    if (!Number.isInteger(keyProviderTimeoutMilliseconds) || keyProviderTimeoutMilliseconds < 1 || keyProviderTimeoutMilliseconds > KeyProviderTimeout.MAXIMUM_MILLISECONDS) {
-      throw new RangeError(`keyProviderTimeoutMilliseconds must be an integer from 1 to ${KeyProviderTimeout.MAXIMUM_MILLISECONDS}`);
+    const keyRequestTimeoutMilliseconds = options.keyRequestTimeoutMilliseconds ?? KeyRequestTimeout.DEFAULT_MILLISECONDS;
+    if (!Number.isInteger(keyRequestTimeoutMilliseconds) || keyRequestTimeoutMilliseconds < 1 || keyRequestTimeoutMilliseconds > KeyRequestTimeout.MAXIMUM_MILLISECONDS) {
+      throw new RangeError(`keyRequestTimeoutMilliseconds must be an integer from 1 to ${KeyRequestTimeout.MAXIMUM_MILLISECONDS}`);
     }
     if (!Hls.isSupported()) throw new Error('This browser does not support the Media Source Extensions required by HlsCtrPlayer');
 
     this.video = video;
     this.options = options;
+    this.session = null;
+    this.sessionAbortController = null;
     this.unsupportedVideoCodec = null;
     this.metrics = { startedAt: performance.now(), levelSwitches: 0, automaticLevelSwitches: 0, manualLevelSwitches: 0, rebufferCount: 0, rebufferMilliseconds: 0, bufferedSegments: 0, fatalErrors: 0, completed: false };
     this.playbackStarted = false;
     this.rebufferStartedAt = null;
     const requestOptions = options.requestOptions || (() => ({}));
-    const keyProvider = options.keyProvider;
+    const thisPlayer = this;
     this.hls = new Hls({
       // Use short VOD EWMA half-lives so bandwidth changes can affect short
       // HLS assets within a few segments; callers may override either value.
@@ -30,14 +31,11 @@ export class HlsCtrPlayer {
       abrBandWidthUpFactor: 0.85,
       ...(options.hlsConfig || {}),
       progressive: true,
-      fLoader: class extends CtrFragmentLoader {
+      fLoader: class extends V2CtrFragmentLoader {
         constructor() {
-          super({
-            keyProvider,
-            requestOptions,
-            keyProviderTimeoutMilliseconds,
-            onSegmentAuthenticated: result => options.onEvent?.({ type: 'segment-authenticated', ...result }),
-          });
+          const session = thisPlayer.session;
+          if (!session) throw new HlsCtrPlayerError(PlayerErrorCode.PLAYBACK_INFO_INVALID, 'Playback information and Key must load before HLS media requests');
+          super({ playbackInfo: session.playbackInfo, masterKey: session.masterKey, requestOptions, onSegmentAuthenticated: result => options.onEvent?.({ type: 'segment-authenticated', ...result }) });
         }
       },
       fetchSetup: (context, initParams) => {
@@ -48,17 +46,6 @@ export class HlsCtrPlayer {
     });
     this.hls.on(Hls.Events.ERROR, (_event, data) => {
       const hlsErrorMessage = data.error?.message || data.response?.text || '';
-      if (hlsErrorMessage.includes('PLAYER_KEY_PROVIDER_TIMEOUT:')) {
-        this.metrics.fatalErrors += 1;
-        options.onError?.({ source: 'key-provider', code: 'PLAYER_KEY_PROVIDER_TIMEOUT', type: 'key-provider-timeout', fatal: true, error: 'Application key provider exceeded its configured timeout' });
-        return;
-      }
-      if (hlsErrorMessage.includes('PLAYER_KEY_PROVIDER_ABORTED:')) return;
-      if (hlsErrorMessage.includes('PLAYER_KEY_PROVIDER_REJECTED:')) {
-        this.metrics.fatalErrors += 1;
-        options.onError?.({ source: 'key-provider', code: 'PLAYER_KEY_PROVIDER_REJECTED', type: 'key-provider-rejected', fatal: true, error: 'Application key provider rejected the key request or returned invalid material' });
-        return;
-      }
       if (data.details === Hls.ErrorDetails.MANIFEST_INCOMPATIBLE_CODECS_ERROR) {
         const message = data.error?.message || 'No browser MSE codec is compatible with the declared HLS variants';
         const codec = message.match(/CODECS[^\[]*\["([^\"]+)/)?.[1];
@@ -146,25 +133,27 @@ export class HlsCtrPlayer {
     return Hls.isSupported();
   }
 
-  async load(descriptorUrl) {
-    if (!(descriptorUrl instanceof PlaybackDescriptorUrl)) {
-      throw new TypeError('Pass a PlaybackDescriptorUrl created with PlaybackDescriptorUrl.from()');
-    }
-    const url = descriptorUrl.href;
+  async load(playbackInfo) {
+    this.sessionAbortController?.abort();
+    if (this.session) this.hls.stopLoad();
+    this.session?.masterKey.fill(0);
+    this.session = null;
+    this.sessionAbortController = new AbortController();
     const requestOptions = this.options.requestOptions || (() => ({}));
-    const init = requestOptions({ url, purpose: RequestPurpose.DESCRIPTOR, signal: undefined }) || {};
-    if (typeof init.then === 'function') throw new TypeError('requestOptions must return RequestInit synchronously');
-    const response = await fetch(url, { ...init, cache: 'no-store' });
-    if (!response.ok) throw new Error(`Playback descriptor request failed with HTTP ${response.status}`);
-    const descriptor = await response.json();
-    if (descriptor.version !== 1 || descriptor.profile !== PlaybackProfile.CTR_HMAC_V1) throw new Error('Unsupported playback descriptor profile/version');
-    if (descriptor.keyProvider !== KeyProviderKind.APPLICATION) throw new Error('Unsupported playback descriptor key-provider kind');
-    if (typeof descriptor.masterPlaylistUri !== 'string' || descriptor.masterPlaylistUri === '') throw new Error('Playback descriptor is missing masterPlaylistUri');
-    this.descriptorUrl = response.url;
-    this.masterPlaylistUrl = new URL(descriptor.masterPlaylistUri, response.url).href;
-    this.hls.loadSource(this.masterPlaylistUrl);
-    this.options.onEvent?.({ type: 'descriptor-loaded', profile: descriptor.profile, segmentCount: descriptor.segmentCount });
-    return descriptor;
+    const session = await startPlaybackSession(playbackInfo, {
+      requestOptions,
+      signal: this.sessionAbortController.signal,
+      timeoutMilliseconds: this.options.keyRequestTimeoutMilliseconds ?? KeyRequestTimeout.DEFAULT_MILLISECONDS,
+      abortKeyRequest: () => this.sessionAbortController?.abort(),
+      allowInsecureHttp: this.options.allowInsecureHttp === true,
+      onKeyReady: (info, masterKey) => {
+        this.session = { playbackInfo: info, masterKey };
+        this.masterPlaylistUrl = info.masterPlaylistUri;
+        this.hls.loadSource(this.masterPlaylistUrl);
+      },
+    });
+    this.options.onEvent?.({ type: 'playback-key-loaded', profile: PlaybackProfile.CTR_HMAC_V2, assetId: session.playbackInfo.assetId, keyId: session.playbackInfo.keyId });
+    return session.playbackInfo;
   }
 
   play() {
@@ -195,8 +184,11 @@ export class HlsCtrPlayer {
   }
 
   destroy() {
-    for (const [name, handler] of Object.entries(this.videoEventHandlers)) this.video.removeEventListener(name, handler);
+    this.sessionAbortController?.abort();
     this.hls.destroy();
+    this.session?.masterKey.fill(0);
+    this.session = null;
+    for (const [name, handler] of Object.entries(this.videoEventHandlers)) this.video.removeEventListener(name, handler);
     this.video.pause();
     this.video.removeAttribute('src');
     this.video.load();
@@ -204,4 +196,5 @@ export class HlsCtrPlayer {
 }
 
 export { HlsCtrPlayerError } from './errors.js';
-export { HttpCredentials, KeyProviderKind, KeyProviderTimeout, PlaybackDescriptorUrl, PlaybackProfile, RequestPurpose } from './constants.js';
+export { HttpCredentials, KeyRequestTimeout, PlaybackProfile, PlayerErrorCode, RequestPurpose } from './constants.js';
+export { validatePlaybackInfo } from './playback-info.js';

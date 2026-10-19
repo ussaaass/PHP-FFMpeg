@@ -1,16 +1,11 @@
 export const PlaybackProfile = Object.freeze({
-  CTR_HMAC_V1: 'phpffmpeg-ctr-hmac-v1',
-});
-
-export const KeyProviderKind = Object.freeze({
-  APPLICATION: 'application',
+  CTR_HMAC_V2: 'phpffmpeg-ctr-hmac-v2',
 });
 
 export const RequestPurpose = Object.freeze({
-  DESCRIPTOR: 'descriptor',
+  KEY: 'key',
   HLS: 'hls',
   SEGMENT: 'segment',
-  SIDECAR: 'sidecar',
 });
 
 export const HttpCredentials = Object.freeze({
@@ -19,44 +14,15 @@ export const HttpCredentials = Object.freeze({
   INCLUDE: 'include',
 });
 
-export const KeyProviderTimeout = Object.freeze({
+export const KeyRequestTimeout = Object.freeze({
   DEFAULT_MILLISECONDS: 10000,
   MAXIMUM_MILLISECONDS: 120000,
 });
 
-const descriptorUrlToken = Symbol('PlaybackDescriptorUrl');
-
-export class PlaybackDescriptorUrl {
-  constructor(value, token) {
-    if (token !== descriptorUrlToken) {
-      throw new TypeError('Use PlaybackDescriptorUrl.from() to create a descriptor URL');
-    }
-
-    this.href = value;
-    Object.freeze(this);
-  }
-
-  static from(value) {
-    const raw = value instanceof URL ? value.href : value;
-    if (typeof raw !== 'string' || raw.trim() === '') {
-      throw new TypeError('Playback descriptor URL must be a non-empty string or URL');
-    }
-
-    let parsed;
-    try {
-      parsed = new URL(raw, globalThis.location?.href || 'http://localhost/');
-    } catch (_error) {
-      throw new TypeError('Playback descriptor URL is invalid');
-    }
-
-    if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') {
-      throw new TypeError('Playback descriptor URL must use HTTP or HTTPS');
-    }
-
-    return new PlaybackDescriptorUrl(parsed.href, descriptorUrlToken);
-  }
-
-  toString() {
-    return this.href;
-  }
-}
+export const PlayerErrorCode = Object.freeze({
+  KEY_FETCH_FAILED: 'PLAYER_KEY_FETCH_FAILED',
+  KEY_TIMEOUT: 'PLAYER_KEY_TIMEOUT',
+  KEY_FORMAT_INVALID: 'PLAYER_KEY_FORMAT_INVALID',
+  PLAYBACK_INFO_INVALID: 'PLAYER_PLAYBACK_INFO_INVALID',
+  PLAYBACK_CANCELLED: 'PLAYER_PLAYBACK_CANCELLED',
+});

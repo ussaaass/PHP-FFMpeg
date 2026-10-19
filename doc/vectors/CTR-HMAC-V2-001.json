@@ -1,0 +1,58 @@
+{
+  "vectorId": "CTR-HMAC-V2-001",
+  "note": "TEST ONLY. These fixed keys and counters are public interoperability fixtures and must never protect real media.",
+  "fields": {
+    "assetIdDecimal": "42",
+    "assetIdBytes": "000000000000002a",
+    "keyId": 7,
+    "shortEdgePixels": 720,
+    "segmentSequence": 17,
+    "contextBytes": "000000000000002a000702d00011"
+  },
+  "inputs": {
+    "masterKeyHex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+    "contentIdHex": "000102030405060708090a0b0c0d0e0f",
+    "baseCounterHex": "000102030405060708090a0b0c0d0e0f",
+    "clearRecords": [
+      {
+        "sequence": 0,
+        "utf8": "CTR-HMAC-V2 record zero\n",
+        "hex": "4354522d484d41432d5632207265636f7264207a65726f0a"
+      },
+      {
+        "sequence": 1,
+        "utf8": "CTR-HMAC-V2 final record\n",
+        "hex": "4354522d484d41432d56322066696e616c207265636f72640a"
+      }
+    ]
+  },
+  "derived": {
+    "preambleHex": "504646484c53320a000000000000002a000702d000110000000102030405060708090a0b0c0d0e0f",
+    "aesHkdfInfoHex": "70687066666d7065672d6374722d686d61632d7632006165732d3132382d63747200000000000000002a000702d00011",
+    "aesKeyHex": "aeb017f849fdeb32a501e7a7dfa95191",
+    "hmacHkdfInfoHex": "70687066666d7065672d6374722d686d61632d763200686d61632d73686132353600000000000000002a000702d00011",
+    "hmacKeyHex": "ce7dfd6ccf73fb32e5c21d66734a318dc32eafcce8220e1721d3df750c831b12",
+    "hmacDomainHex": "70687066666d7065672d6374722d686d61632d76320a"
+  },
+  "records": [
+    {
+      "sequence": 0,
+      "counterHex": "000102030405060708090a0b0c0d0e0f",
+      "headerHex": "00000000000102030405060708090a0b0c0d0e0f00000018",
+      "ciphertextHex": "2bf224b7ead568b47eb5a8247dabf337b281778889008f1b",
+      "tagHex": "7d8c585ee86d299f4d864922b3f2e91149c9e2102c40cf3c086703ce727a3359"
+    },
+    {
+      "sequence": 1,
+      "counterHex": "000102030405060708090a0b0c0d1e0f",
+      "headerHex": "00000001000102030405060708090a0b0c0d1e0f80000019",
+      "ciphertextHex": "e5eb15e55cf16323c71d25bb796cdc6409e562ee09619942e8",
+      "tagHex": "e7c37692e900e7da18a58f6ba6b23784f330adbf72a9a983cbacc6dd416d8d22"
+    }
+  ],
+  "object": {
+    "byteLength": 201,
+    "sha256": "954997fc759f472bccfe6450a63a43a16347e3ade3b622e4b016ce2d8e33068a",
+    "hex": "504646484c53320a000000000000002a000702d000110000000102030405060708090a0b0c0d0e0f00000000000102030405060708090a0b0c0d0e0f000000182bf224b7ead568b47eb5a8247dabf337b281778889008f1b7d8c585ee86d299f4d864922b3f2e91149c9e2102c40cf3c086703ce727a335900000001000102030405060708090a0b0c0d1e0f80000019e5eb15e55cf16323c71d25bb796cdc6409e562ee09619942e8e7c37692e900e7da18a58f6ba6b23784f330adbf72a9a983cbacc6dd416d8d22"
+  }
+}

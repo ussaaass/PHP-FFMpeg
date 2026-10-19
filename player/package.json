@@ -16,7 +16,10 @@
   ],
   "scripts": {
     "build": "node ./scripts/build.mjs",
-    "check": "node --check src/index.js && node --check src/constants.js && node --check src/ctr-fragment-loader.js && node --check src/record-worker.js && node --check src/v2-record-worker.js && node --check scripts/build.mjs && node --check test/worker-interop.mjs && node --check test/v2-worker-interop.mjs && node --check test/generate-vector.mjs && node --check test/server.mjs && node --check test/chrome-cdp-check.mjs && node --check test/browser-smoke.mjs",
+    "check": "node --check src/index.js && node --check src/constants.js && node --check src/playback-info.js && node --check src/playback-session.js && node --check src/v2-fragment-loader.js && node --check src/ctr-fragment-loader.js && node --check src/record-worker.js && node --check src/v2-record-worker.js && node --check scripts/build.mjs && node --check test/worker-interop.mjs && node --check test/v2-worker-interop.mjs && node --check test/v2-loader-interop.mjs && node --check test/playback-info.mjs && node --check test/playback-session.mjs && node --check test/generate-vector.mjs && node --check test/server.mjs && node --check test/chrome-cdp-check.mjs && node --check test/browser-smoke.mjs",
+    "test:playback-session": "node test/playback-session.mjs",
+    "test:v2-loader": "node test/v2-loader-interop.mjs",
+    "test:playback-info": "node test/playback-info.mjs",
     "test:v2-worker": "node test/v2-worker-interop.mjs",
     "test:browser": "node test/browser-smoke.mjs"
   },
