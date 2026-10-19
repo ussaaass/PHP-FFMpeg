@@ -26,6 +26,16 @@ await Promise.all([
     sourcemap: true,
     legalComments: 'eof',
   }),
+  build({
+    entryPoints: [new URL('../src/v2-record-worker.js', import.meta.url).pathname],
+    outfile: new URL('../dist/v2-record-worker.js', import.meta.url).pathname,
+    bundle: true,
+    format: 'esm',
+    platform: 'browser',
+    target: ['es2022'],
+    sourcemap: true,
+    legalComments: 'eof',
+  }),
 ]);
 await copyFile(new URL('../src/index.d.ts', import.meta.url), new URL('../dist/index.d.ts', import.meta.url));
 console.log(`Built browser package at ${new URL('../dist/', import.meta.url).pathname}`);
