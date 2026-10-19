@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { createHash } from 'node:crypto';
+import { createHash, createHmac } from 'node:crypto';
 import { createReadStream } from 'node:fs';
 import { access, readFile, stat, writeFile } from 'node:fs/promises';
 import { createServer } from 'node:http';
@@ -9,6 +9,7 @@ import { chromium } from 'playwright-core';
 const root = resolve(process.env.V2_ACCEPTANCE_ROOT || '../experiments/hls-ctr-v2-acceptance/output');
 const playerRoot = resolve(new URL('..', import.meta.url).pathname);
 const keyHex = '00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff';
+const signingSecret = 'local-v2-acceptance-signing-secret';
 const requests = [];
 const truncated = new Set();
 const mime = { '.js': 'text/javascript', '.mjs': 'text/javascript', '.html': 'text/html', '.m3u8': 'application/vnd.apple.mpegurl', '.mp4': 'video/mp4', '.m4s': 'video/iso.segment' };
@@ -30,6 +31,15 @@ function signed(url, token) {
   return `${url}?sig=${token}&sig=${token}-duplicate`;
 }
 
+function objectSignature(path, expiresAt) {
+  return createHmac('sha256', signingSecret).update(`${path}\n${expiresAt}`).digest('hex');
+}
+
+function signedObject(path, expiresAt = Math.floor(Date.now() / 1000) + 3600) {
+  const signature = objectSignature(path, expiresAt);
+  return `${path}?exp=${expiresAt}&sig=${signature}&sig=${signature}-duplicate`;
+}
+
 const server = createServer(async (request, response) => {
   const url = new URL(request.url, 'http://127.0.0.1');
   requests.push({ method: request.method, ...safeUrl(url.href), range: request.headers.range || null, ifRange: request.headers['if-range'] || null });
@@ -45,6 +55,8 @@ const server = createServer(async (request, response) => {
       const versionId = hevc ? 'v2-browser-hevc-1' : 'v2-browser-h264-1';
       const origin = location.origin;
       const abrProbe = params.get('mode') === 'abr';
+      const keyFormat = params.get('keyFormat') === 'raw' ? 'raw' : 'json';
+      window.__playbackProfile = PlaybackProfile.CTR_HMAC_V2;
       const video = document.querySelector('#video');
       const player = window.__player = new HlsCtrPlayer(video, {
         allowInsecureHttp: true,
@@ -53,7 +65,7 @@ const server = createServer(async (request, response) => {
         onEvent(event) { events.push(event); },
         onError(error) { events.push({ eventKind: 'player-error', ...error }); },
       });
-      window.__ready = player.load({ profile: PlaybackProfile.CTR_HMAC_V2, assetId, keyId, versionId, keyUri: origin + '/key/' + assetId + '?source=app', masterPlaylistUri: origin + '/master-' + (hevc ? 'hevc' : 'h264') + '.m3u8?sig=master-token' })
+      window.__ready = player.load({ profile: PlaybackProfile.CTR_HMAC_V2, assetId, keyId, versionId, keyUri: origin + '/key/' + assetId + '?source=app&format=' + keyFormat, masterPlaylistUri: origin + '/master-' + (hevc ? 'hevc' : 'h264') + '.m3u8?sig=master-token' })
         .then(() => player.play()).then(() => true).catch(error => { events.push({ type: 'start-error', code: error.code, error: error.message }); return false; });
       video.addEventListener('playing', () => events.push({ type: 'video-playing', currentTime: video.currentTime }));
       video.addEventListener('ended', () => events.push({ type: 'video-ended', duration: video.duration }));
@@ -68,6 +80,7 @@ const server = createServer(async (request, response) => {
     try { return send(response, 200, { 'content-type': mime[extname(path)] || 'application/octet-stream' }, await readFile(path)); } catch { return send(response, 404, {}, 'not found'); }
   }
   if (url.pathname === '/key/42' || url.pathname === '/key/43') {
+    if (url.searchParams.get('format') === 'raw') return send(response, 200, { 'content-type': 'application/octet-stream', 'cache-control': 'no-store' }, Buffer.from(keyHex, 'hex'));
     return send(response, 200, { 'content-type': 'application/json', 'cache-control': 'no-store' }, JSON.stringify({ key: keyHex }));
   }
   if (url.pathname === '/master-h264.m3u8') {
@@ -96,7 +109,7 @@ const server = createServer(async (request, response) => {
     const asset = edge === 'hevc' ? '000000000000002b' : '000000000000002a';
     const id = edge === 'hevc' ? '8' : edge;
     playlist = playlist.replace(/URI="([^"]+)"/, (_all, uri) => `URI="/init/${edge}/${uri}?sig=init-${edge}"`);
-    playlist = playlist.replace(/^\/media\/([^\r\n]+)$/gm, path => signed(path, 'segment-token'));
+    playlist = playlist.replace(/^\/media\/([^\r\n]+)$/gm, path => signedObject(path));
     return send(response, 200, { 'content-type': mime['.m3u8'], 'cache-control': 'no-store' }, playlist);
   }
   const init = /^\/init\/(360|480|720|hevc)\/([^/]+)$/.exec(url.pathname);
@@ -110,7 +123,9 @@ const server = createServer(async (request, response) => {
   }
   if (url.pathname.startsWith('/media/')) {
     const sigs = url.searchParams.getAll('sig');
-    if (sigs.length !== 2 || sigs[0] !== 'segment-token' || sigs[1] !== 'segment-token-duplicate') return send(response, 403, {}, 'invalid segment signature');
+    const expiresAt = Number(url.searchParams.get('exp'));
+    const expectedSignature = objectSignature(url.pathname, expiresAt);
+    if (!Number.isSafeInteger(expiresAt) || expiresAt <= Math.floor(Date.now() / 1000) || sigs.length !== 2 || sigs[0] !== expectedSignature || sigs[1] !== `${expectedSignature}-duplicate`) return send(response, 403, {}, 'invalid or expired segment signature');
     const encoded = decodeURIComponent(url.pathname.slice('/media/'.length));
     const asset = encoded.startsWith('000000000000002b/') ? 'hevc' : encoded.startsWith('000000000000002a/') ? 'h264' : null;
     if (!asset) return send(response, 404, {}, 'unknown asset');
@@ -142,7 +157,11 @@ const server = createServer(async (request, response) => {
 await access(resolve(playerRoot, 'dist/index.js'));
 await access(resolve(root, 'h264'));
 await access(resolve(root, 'hevc'));
-await new Promise(resolveListen => server.listen(8793, '127.0.0.1', resolveListen));
+await new Promise(resolveListen => server.listen(8793, process.env.V2_ACCEPTANCE_BIND || '127.0.0.1', resolveListen));
+if (process.env.V2_ACCEPTANCE_SERVE_ONLY === '1') {
+  process.stdout.write('CTR-HLS V2 fixture server listening on port 8793\n');
+  await new Promise(() => {});
+}
 
 try {
   const executablePath = process.env.CHROMIUM_EXECUTABLE_PATH || '/ms-playwright/chromium-1243/chrome-linux-arm64/chrome';
@@ -176,13 +195,33 @@ try {
   assert.equal(h264.ended, true, 'H.264 VOD playback must reach ended');
   assert.ok(h264.duration >= 7.5 && h264.duration < 9, `Expected an approximately eight-second video, got ${h264.duration}`);
   assert.ok(h264.levels.length >= 2, 'The master playlist must expose multiple renditions');
-  assert.ok(h264.events.some(event => event.type === 'level-switched' && !event.automatic && event.level === 2), 'The high rendition must be selectable');
+  assert.ok(h264.events.some(event => event.type === 'level-switched' && event.level === 2), 'The high rendition selected through setLevel(2) must be observed');
   assert.ok(h264.events.some(event => event.type === 'video-seeking'), 'Seeking must be exercised during playback');
   const h264RequestEnd = requests.length;
 
+  const assetSwitchStart = requests.length;
+  await page.evaluate(async () => {
+    window.__previousMasterKey = window.__player.session.masterKey;
+    await window.__player.load({
+      profile: window.__playbackProfile,
+      assetId: '43', keyId: 8, versionId: 'v2-browser-hevc-1',
+      keyUri: location.origin + '/key/43?source=app&format=json',
+      masterPlaylistUri: location.origin + '/master-hevc.m3u8?sig=master-token',
+    });
+  });
+  await page.waitForFunction(() => window.__events.some(event => event.type === 'segment-authenticated' && event.assetId === '43') || window.__events.some(event => event.eventKind === 'player-error' && event.source === 'capability'), null, { timeout: 30_000 });
+  const assetSwitchRequests = requests.slice(assetSwitchStart);
+  const switchKeyIndex = assetSwitchRequests.findIndex(entry => entry.url.includes('/key/43'));
+  const switchMasterIndex = assetSwitchRequests.findIndex(entry => entry.url.includes('/master-hevc'));
+  const oldKeyZeroized = await page.evaluate(() => window.__previousMasterKey.every(byte => byte === 0));
+  assert.equal(assetSwitchRequests.filter(entry => entry.url.includes('/key/43')).length, 1, 'Switching assets must request exactly one new Key');
+  assert.ok(switchMasterIndex > switchKeyIndex && switchKeyIndex >= 0, 'The new asset Key must load before its master playlist');
+  assert.equal(oldKeyZeroized, true, 'Switching assets must clear the previous master Key buffer');
+
+  const assetSwitchEnd = requests.length;
   const abrPage = await context.newPage();
   abrPage.on('pageerror', error => pageErrors.push(error.message));
-  await abrPage.goto('http://127.0.0.1:8793/?asset=42&mode=abr', { waitUntil: 'domcontentloaded' });
+  await abrPage.goto('http://127.0.0.1:8793/?asset=42&mode=abr&keyFormat=raw', { waitUntil: 'domcontentloaded' });
   const abrCdp = await context.newCDPSession(abrPage);
   await abrCdp.send('Network.enable');
   await abrCdp.send('Network.emulateNetworkConditions', { offline: false, latency: 15, downloadThroughput: 12 * 1024 * 1024, uploadThroughput: 1024 * 1024, connectionType: 'wifi' });
@@ -200,6 +239,9 @@ try {
     throw new Error(`Automatic ABR did not downswitch under the shaped link: ${JSON.stringify(abrDiagnostics)}`, { cause: error });
   }
   const abrEvents = await abrPage.evaluate(() => window.__events.filter(event => event.type === 'level-switched' && event.automatic));
+  const abrRequestEnd = requests.length;
+  const abrRequests = requests.slice(assetSwitchEnd, abrRequestEnd);
+  assert.equal(abrRequests.filter(entry => entry.url.includes('/key/42')).length, 1, 'The raw-octet playback session must request one Key');
   await abrPage.evaluate(() => window.__player.destroy());
 
   const hevcPage = await context.newPage();
@@ -221,6 +263,14 @@ try {
   assert.ok(keyRequestIndex >= 0 && masterRequestIndex > keyRequestIndex, 'Key must load before master playlist');
   assert.equal(requests.some(entry => entry.url.includes('.json')), false, 'Playback must not request JSON sidecars');
   const rangeRequest = h264Requests.find(entry => entry.range);
+  const objectPaths = [...new Set(h264Requests.filter(entry => entry.url.startsWith('http://127.0.0.1/media/')).map(entry => new URL(entry.url).pathname))];
+  assert.ok(objectPaths.length >= 2, 'The signed HLS fixture must expose at least two concrete media objects');
+  const expiresAt = Math.floor(Date.now() / 1000) + 600;
+  const firstObjectSignature = objectSignature(objectPaths[0], expiresAt);
+  const expiredProbe = await fetch(`http://127.0.0.1:8793${signedObject(objectPaths[0], 1)}`);
+  const crossObjectProbe = await fetch(`http://127.0.0.1:8793${objectPaths[1]}?exp=${expiresAt}&sig=${firstObjectSignature}&sig=${firstObjectSignature}-duplicate`);
+  assert.equal(expiredProbe.status, 403, 'Expired object signatures must be rejected');
+  assert.equal(crossObjectProbe.status, 403, 'A signature for another object must be rejected');
   assert.ok(rangeRequest, 'The truncated encrypted segment must resume with Range');
   assert.ok(rangeRequest.queryNames.includes('sig'), 'Range request must keep the signed object URI query');
   assert.equal(rangeRequest.ifRange !== null, true, 'Range request must include If-Range');
@@ -228,12 +278,20 @@ try {
 
   const report = {
     browser: await page.evaluate(() => navigator.userAgent),
-    h264: { duration: h264.duration, ended: h264.ended, levelCount: h264.levels.length, events: h264.events },
+    h264: { duration: h264.duration, ended: h264.ended, levelCount: h264.levels.length, manualSelections: [2, 0], events: h264.events },
     automaticAbr: abrEvents,
     hevc: { supported: hevc.supported, ended: hevc.ended, codecErrors: hevc.events.filter(event => event.eventKind === 'player-error') },
     requestEvidence: {
       keyBeforeMaster: true,
       keyRequestCount: h264Requests.filter(entry => entry.url.includes('/key/42')).length,
+      h264KeyResponseFormat: 'json-hex',
+      automaticAbrKeyRequestCount: abrRequests.filter(entry => entry.url.includes('/key/42')).length,
+      automaticAbrKeyResponseFormat: 'raw-octet-stream',
+      switchedAssetKeyRequestCount: assetSwitchRequests.filter(entry => entry.url.includes('/key/43')).length,
+      switchedAssetKeyBeforeMaster: switchKeyIndex >= 0 && switchMasterIndex > switchKeyIndex,
+      previousKeyBufferZeroized: oldKeyZeroized,
+      expiredSignatureStatus: expiredProbe.status,
+      crossObjectSignatureStatus: crossObjectProbe.status,
       sidecarRequestCount: requests.filter(entry => entry.url.includes('.json')).length,
       rangeRequest: { url: rangeRequest.url, queryNames: rangeRequest.queryNames, range: rangeRequest.range, ifRangePresent: Boolean(rangeRequest.ifRange) },
       serverRangeCount: h264Requests.filter(entry => entry.range).length,

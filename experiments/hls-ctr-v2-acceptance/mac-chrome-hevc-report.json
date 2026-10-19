@@ -1,0 +1,70 @@
+{
+  "acceptance": "CTR-HLS V2 encrypted HEVC playback, Key formats, and asset-switch zeroization in Mac Chrome MCP",
+  "fixture": "Isolated Docker V2 HTTP fixture with object-bound HMAC signatures and PHP-packaged VOD fMP4 objects",
+  "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+  "hevc": {
+    "codec": "hvc1.1.6.L93.B0",
+    "codecSupported": true,
+    "width": 1280,
+    "height": 720,
+    "durationSeconds": 8.074732,
+    "ended": true,
+    "readyState": 4,
+    "authenticatedSegments": 4,
+    "allRecordsFinalAndAuthenticated": true
+  },
+  "keyAndSessionEvidence": {
+    "asset42JsonHexKeyRequests": 1,
+    "asset43RawOctetStreamKeyRequests": 1,
+    "keyLoadedBeforeEachMasterPlaylist": true,
+    "oldAssetKeyBufferZeroizedOnSwitch": true,
+    "sidecarRequests": 0
+  },
+  "objectAuthorization": {
+    "signedQueryNames": ["exp", "sig"],
+    "sameSignedUriUsedForRangeResume": "Verified separately in browser-acceptance-report.json",
+    "expiredSignatureStatus": 403,
+    "crossObjectSignatureStatus": 403
+  },
+  "localNginxProxy": {
+    "image": "nginx:1.29-alpine",
+    "hevcPlaybackThroughProxy": {
+      "url": "http://localhost:8794/?asset=43",
+      "ended": true,
+      "width": 1280,
+      "height": 720,
+      "durationSeconds": 8.074732,
+      "authenticatedSegments": 4,
+      "fatalErrors": 0
+    },
+    "signedRangeProbe": {
+      "uriPath": "/media/000000000000002b/8/720/v2-browser-hevc-1/5ec-00000.m4s",
+      "initialStatus": 200,
+      "rangeOffset": 65632,
+      "rangeStatus": 206,
+      "contentRange": "bytes 65632-207953/207954",
+      "etagStable": true,
+      "signedQueryParameterNamesPreserved": ["exp", "sig", "sig"],
+      "rangeBytes": 142322
+    },
+    "accessLogs": "disabled to avoid logging signed query values"
+  },
+  "h264Control": {
+    "durationSeconds": 8.074732,
+    "ended": true,
+    "authenticatedSegments": 4,
+    "keyEncoding": "JSON lowercase Hex"
+  },
+  "aggregate": {
+    "distinctAuthenticatedMediaObjects": 8,
+    "mediaObjectHttpRequests": 9,
+    "reasonForExtraRequest": "One H.264 object was resumed with Range after the acceptance fixture injected a short read.",
+    "fatalErrors": 0,
+    "recoveredNonFatalBufferHoleMilliseconds": 101
+  },
+  "notes": [
+    "Both assets used the same HlsCtrPlayer instance; the previous 32-byte session key buffer was observed zeroed after switching from assetId 42 to 43.",
+    "The Mac Chrome MCP user agent identifies macOS and HeadlessChrome 155. The result applies only to this tested browser environment.",
+    "Signed query values and key bytes are intentionally omitted."
+  ]
+}

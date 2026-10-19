@@ -4,6 +4,10 @@
     "duration": 8.074732,
     "ended": true,
     "levelCount": 3,
+    "manualSelections": [
+      2,
+      0
+    ],
     "events": [
       {
         "type": "playback-key-loaded",
@@ -32,13 +36,9 @@
         "sequence": 0,
         "duration": 2.0687333333333333,
         "bytes": 75165,
-        "bandwidthEstimate": 60580.90450250802,
-        "loadMilliseconds": 9772.300000011921,
-        "processingMilliseconds": 188.0999999642372
-      },
-      {
-        "type": "video-playing",
-        "currentTime": 0.056616
+        "bandwidthEstimate": 85868.50973881538,
+        "loadMilliseconds": 6996.5,
+        "processingMilliseconds": 56.39999997615814
       },
       {
         "type": "level-switched",
@@ -46,7 +46,11 @@
         "width": 640,
         "height": 360,
         "automatic": true,
-        "atMilliseconds": 10790.5
+        "atMilliseconds": 7375.399999976158
+      },
+      {
+        "type": "video-playing",
+        "currentTime": 0.011793
       },
       {
         "eventKind": "player-error",
@@ -73,7 +77,7 @@
         "width": 1280,
         "height": 720,
         "automatic": false,
-        "atMilliseconds": 11351.800000011921
+        "atMilliseconds": 7601.100000023842
       },
       {
         "type": "segment-buffered",
@@ -81,9 +85,9 @@
         "sequence": 0,
         "duration": 2.0687333333333333,
         "bytes": 306500,
-        "bandwidthEstimate": 684434.0533412655,
-        "loadMilliseconds": 81.39999997615814,
-        "processingMilliseconds": 1.199999988079071
+        "bandwidthEstimate": 788073.5230657912,
+        "loadMilliseconds": 49.89999997615814,
+        "processingMilliseconds": 1.5
       },
       {
         "eventKind": "player-error",
@@ -95,11 +99,11 @@
       },
       {
         "type": "rebuffer-started",
-        "atMilliseconds": 11394.700000047684
+        "atMilliseconds": 7683.199999988079
       },
       {
         "type": "video-waiting",
-        "currentTime": 0.658941
+        "currentTime": 0.313916
       },
       {
         "type": "segment-authenticated",
@@ -118,7 +122,7 @@
         "width": 640,
         "height": 360,
         "automatic": false,
-        "atMilliseconds": 11464
+        "atMilliseconds": 7715.100000023842
       },
       {
         "type": "segment-buffered",
@@ -126,9 +130,9 @@
         "sequence": 0,
         "duration": 2.0687333333333333,
         "bytes": 75165,
-        "bandwidthEstimate": 827274.6390634981,
-        "loadMilliseconds": 87.09999996423721,
-        "processingMilliseconds": 2.199999988079071
+        "bandwidthEstimate": 947900.3069369055,
+        "loadMilliseconds": 65.69999998807907,
+        "processingMilliseconds": 7.399999976158142
       },
       {
         "type": "video-seeking",
@@ -155,9 +159,9 @@
         "sequence": 1,
         "duration": 2.002,
         "bytes": 91887,
-        "bandwidthEstimate": 1006597.1098271805,
-        "loadMilliseconds": 58.39999997615814,
-        "processingMilliseconds": 1
+        "bandwidthEstimate": 1135205.2624334556,
+        "loadMilliseconds": 101.59999996423721,
+        "processingMilliseconds": 0.6000000238418579
       },
       {
         "type": "segment-authenticated",
@@ -176,35 +180,18 @@
         "sequence": 2,
         "duration": 2.0020000000000007,
         "bytes": 122102,
-        "bandwidthEstimate": 1245645.2692861594,
-        "loadMilliseconds": 53.19999998807907,
-        "processingMilliseconds": 2.399999976158142
+        "bandwidthEstimate": 1406182.6166200903,
+        "loadMilliseconds": 35.19999998807907,
+        "processingMilliseconds": 0.800000011920929
       },
       {
         "type": "rebuffer-ended",
-        "durationMilliseconds": 199.69999998807907,
-        "atMilliseconds": 11594.400000035763
+        "durationMilliseconds": 178.19999998807907,
+        "atMilliseconds": 7861.5
       },
       {
         "type": "video-playing",
-        "currentTime": 4.105413
-      },
-      {
-        "type": "rebuffer-started",
-        "atMilliseconds": 11594.5
-      },
-      {
-        "type": "video-waiting",
-        "currentTime": 4.105453
-      },
-      {
-        "type": "rebuffer-ended",
-        "durationMilliseconds": 0.10000002384185791,
-        "atMilliseconds": 11594.700000047684
-      },
-      {
-        "type": "video-playing",
-        "currentTime": 4.105637
+        "currentTime": 4.102169
       },
       {
         "type": "segment-authenticated",
@@ -223,22 +210,22 @@
         "sequence": 3,
         "duration": 2.001999999999999,
         "bytes": 97163,
-        "bandwidthEstimate": 1434244.0173277701,
-        "loadMilliseconds": 55.10000002384186,
-        "processingMilliseconds": 2.399999976158142
+        "bandwidthEstimate": 1614326.8351886726,
+        "loadMilliseconds": 43.19999998807907,
+        "processingMilliseconds": 2.599999964237213
       },
       {
         "type": "playback-completed",
-        "startedAt": 1984,
+        "startedAt": 1076.1000000238419,
         "levelSwitches": 3,
         "automaticLevelSwitches": 1,
         "manualLevelSwitches": 2,
-        "rebufferCount": 2,
-        "rebufferMilliseconds": 199.80000001192093,
+        "rebufferCount": 1,
+        "rebufferMilliseconds": 178.19999998807907,
         "bufferedSegments": 6,
         "fatalErrors": 0,
         "completed": true,
-        "elapsedMilliseconds": 15610.400000035763
+        "elapsedMilliseconds": 11966.100000023842
       },
       {
         "type": "video-ended",
@@ -253,7 +240,7 @@
       "width": 1280,
       "height": 720,
       "automatic": true,
-      "atMilliseconds": 363.89999997615814
+      "atMilliseconds": 236.5
     },
     {
       "type": "level-switched",
@@ -261,7 +248,7 @@
       "width": 640,
       "height": 360,
       "automatic": true,
-      "atMilliseconds": 4311.800000011921
+      "atMilliseconds": 5354.699999988079
     }
   ],
   "hevc": {
@@ -282,10 +269,19 @@
   "requestEvidence": {
     "keyBeforeMaster": true,
     "keyRequestCount": 1,
+    "h264KeyResponseFormat": "json-hex",
+    "automaticAbrKeyRequestCount": 1,
+    "automaticAbrKeyResponseFormat": "raw-octet-stream",
+    "switchedAssetKeyRequestCount": 1,
+    "switchedAssetKeyBeforeMaster": true,
+    "previousKeyBufferZeroized": true,
+    "expiredSignatureStatus": 403,
+    "crossObjectSignatureStatus": 403,
     "sidecarRequestCount": 0,
     "rangeRequest": {
       "url": "http://127.0.0.1/media/000000000000002a/7/360/v2-browser-h264-1/743-00000.m4s",
       "queryNames": [
+        "exp",
         "sig",
         "sig"
       ],

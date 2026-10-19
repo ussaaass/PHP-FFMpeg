@@ -74,6 +74,8 @@ class CtrHmacV2Test extends TestCase
             $playlist = file_get_contents($result['playlist']);
             self::assertStringContainsString('#EXT-X-MAP:URI="init.mp4"', $playlist);
             self::assertStringContainsString('#EXTINF:5.0,', $playlist);
+            self::assertStringContainsString('#EXT-X-ENDLIST', $playlist);
+            self::assertStringNotContainsString('#EXT-X-KEY:', $playlist);
             self::assertStringContainsString('/media/000000000000002a/7/720/release-1/', $playlist);
             self::assertStringNotContainsString('.json', $playlist);
             self::assertSame('clear-init', file_get_contents($output . '/init.mp4'));
@@ -96,6 +98,29 @@ class CtrHmacV2Test extends TestCase
             self::assertFileExists($root . '/multi/media/000000000000002a/7/360/release-2/' . substr(md5('42-360-0'), 0, 3) . '-00000.m4s');
             $this->expectException(\InvalidArgumentException::class);
             (new MediaPlaylistPackager())->package($source . DIRECTORY_SEPARATOR . '720p/index.m3u8', $output, 'release-1', 720, new KeyMaterial('42', 7, str_repeat("\x11", 32)));
+        } finally {
+            $this->removeDirectory($root);
+        }
+    }
+
+    public function testMediaSequenceFilenameBoundariesAndOverflow(): void
+    {
+        $root = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'phpffmpeg-ctr-v2-seq-' . bin2hex(random_bytes(6));
+        $source = $root . DIRECTORY_SEPARATOR . 'source';
+        mkdir($source, 0700, true);
+        file_put_contents($source . '/init.mp4', 'init');
+        file_put_contents($source . '/seg.m4s', pack('N', 8) . 'moof');
+        $packager = new MediaPlaylistPackager();
+        $material = new KeyMaterial('42', 7, str_repeat("\x22", 32));
+        try {
+            foreach ([17 => '00017', 65535 => '65535'] as $sequence => $filenameSequence) {
+                file_put_contents($source . '/index.m3u8', "#EXTM3U\n#EXT-X-MAP:URI=\"init.mp4\"\n#EXT-X-MEDIA-SEQUENCE:$sequence\n#EXTINF:5.0,\nseg.m4s\n#EXT-X-ENDLIST\n");
+                $result = $packager->package($source . '/index.m3u8', $root . '/out-' . $sequence, 'release-boundary-' . $sequence, 720, $material);
+                self::assertSame(substr(md5('42-720-' . $sequence), 0, 3) . '-' . $filenameSequence . '.m4s', basename($result['objects'][0]));
+            }
+            file_put_contents($source . '/index.m3u8', "#EXTM3U\n#EXT-X-MEDIA-SEQUENCE:65536\n#EXTINF:5.0,\nseg.m4s\n#EXT-X-ENDLIST\n");
+            $this->expectException(\OutOfRangeException::class);
+            $packager->package($source . '/index.m3u8', $root . '/out-overflow', 'release-overflow', 720, $material);
         } finally {
             $this->removeDirectory($root);
         }

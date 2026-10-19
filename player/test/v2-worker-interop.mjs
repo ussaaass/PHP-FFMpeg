@@ -45,6 +45,12 @@ assert.equal(offset, object.length);
 assert.equal((await call({ type: 'finish' })).recordCount, 2);
 assert.equal(Buffer.concat(clearParts).toString('hex'), vector.inputs.clearRecords.map(record => record.hex).join(''));
 
+const wrongKey = masterKey.slice();
+wrongKey[0] ^= 1;
+await call({ type: 'init', preamble: preamble.slice().buffer, masterKey: wrongKey.buffer, keyId: vector.fields.keyId });
+const wrongKeyRecord = object.slice(40, 40 + 24 + 24 + 32);
+await assert.rejects(call({ type: 'decrypt', record: wrongKeyRecord.buffer }), /authentication failed/);
+
 await initialize();
 const tampered = object.slice(40, 40 + 24 + 24 + 32);
 tampered[24] ^= 1;
