@@ -49,6 +49,39 @@
     },
     "accessLogs": "disabled to avoid logging signed query values"
   },
+  "rustfsAcceptance": {
+    "role": "Borrowed tools_vue RustFS S3 endpoint used as an isolated CDN/object-delivery surrogate",
+    "endpoint": "http://127.0.0.1:19900",
+    "bucket": "phpffmpeg-ctr-v2-acceptance-20261020",
+    "presignedObjectPath": "/media/5ec-00000.m4s",
+    "fullGet": {
+      "status": 200,
+      "bytes": 207954,
+      "etag": "\"6a6a5e8968c2d0a7f84c2ec891933664\"",
+      "sha256": "5ad4a1d2d1321d4364befac2fe7c67971478ed8c292224efcb7a7ba46d14e99e"
+    },
+    "recordBoundaryRange": {
+      "offset": 65632,
+      "ifRange": "original strong ETag",
+      "status": 206,
+      "contentRange": "bytes 65632-207953/207954",
+      "etagMatchesFullGet": true,
+      "bytes": 142322,
+      "sha256": "784ecb1492ca6765fb71242c7c6904aeeea69fa6a13337746556d26baf9eb7ba"
+    },
+    "samePathObjectReplacement": {
+      "presignedUrlRemainedAuthorized": true,
+      "requestRangeOffset": 65632,
+      "ifRange": "original strong ETag",
+      "rustfsStatus": 206,
+      "rustfsContentRange": "bytes 65632-207953/207954",
+      "etagChanged": true,
+      "clientMustRejectBeforeAppend": true,
+      "reason": "RustFS returned 206 despite the stale If-Range validator; the changed ETag must be rejected by the player rather than appended to the prior object version. The Node 24 loader negative test rejects this wrong-ETag response."
+    },
+    "cleanup": "Temporary bucket deleted and borrowed RustFS container stopped after acceptance.",
+    "scopeLimit": "This verifies the borrowed RustFS S3 endpoint as a CDN surrogate, not an external production CDN deployment."
+  },
   "h264Control": {
     "durationSeconds": 8.074732,
     "ended": true,
