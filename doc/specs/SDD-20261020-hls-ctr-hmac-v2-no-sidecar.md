@@ -1,8 +1,8 @@
 # SDD：CTR-HLS V2 无 Sidecar 播放与对象 URI 契约
 # SDD: CTR-HLS V2 Sidecar-Free Playback and Object URI Contract
 
-> 状态：Approved；维护者已批准 V2 设计与格式，进入实现阶段；V1 明确不兼容且不支持。
-> Status: Approved; the maintainer has approved the V2 design and format, and implementation may proceed; V1 is explicitly unsupported and incompatible.
+> 状态：Implementing；V2 设计与格式已批准；T0–T6 已完成；T7 本地 Docker Chromium 验收通过但 RustFS/CDN 与真机验收未完成；T8 尚有文档和验收项待核销；V1 明确不兼容且不支持。
+> Status: Implementing; the V2 design and format are approved; T0–T6 are complete; local Docker Chromium acceptance for T7 passed, while RustFS/CDN and physical-device acceptance remain incomplete; T8 still has documentation and acceptance items to close; V1 is explicitly unsupported and incompatible.
 > 创建日期：2026-10-20
 > Created: 2026-10-20
 > 负责人：项目维护者
@@ -393,11 +393,11 @@ The Worker and main thread exchange only the necessary authenticated plaintext c
 ## 7. 验收标准
 ## 7. Acceptance criteria
 
-- [ ] 浏览器网络记录证明整个播放过程没有任何 `{segmentUri}.json` 或逐片 metadata/sidecar 请求。
-- [ ] Browser network records prove that playback makes no `{segmentUri}.json` or per-segment metadata/sidecar request.
+- [x] Docker Chromium 网络记录证明整个 H.264 播放过程没有任何 `{segmentUri}.json` 或逐片 metadata/sidecar 请求；报告：`experiments/hls-ctr-v2-acceptance/browser-acceptance-report.json`。
+- [x] Docker Chromium network records prove that H.264 playback makes no `{segmentUri}.json` or per-segment metadata/sidecar request; report: `experiments/hls-ctr-v2-acceptance/browser-acceptance-report.json`.
 
-- [ ] 一次视频播放会话在 master playlist 请求之前恰好请求一次 Key URI；至少两档 rendition、ABR 切换、seek 和多个分片均不增加 Key 请求数。
-- [ ] One video playback session makes exactly one Key URI request before the master-playlist request; at least two renditions, ABR switching, seeking, and multiple segments do not increase the key-request count.
+- [x] Docker Chromium 网络记录证明一个视频会话在 master playlist 前请求一次 Key；播放期间完成三档 rendition、手动切档、seek 和多个分片，Key 请求数仍为一次。独立自动 ABR 会话也通过升档与降档检查。报告：`experiments/hls-ctr-v2-acceptance/browser-acceptance-report.json`。
+- [x] Docker Chromium network records prove that one video session requests the Key once before the master playlist; playback completes across three renditions, manual switches, seeking, and multiple segments without another Key request. A separate automatic-ABR session also passes upswitch and downswitch checks. Report: `experiments/hls-ctr-v2-acceptance/browser-acceptance-report.json`.
 
 - [ ] 切换到不同 `assetId` 会先销毁旧会话并仅为新会话请求一次 Key；销毁播放器或取消播放会 abort 尚未结束的请求，且错误和日志不包含 Key 或签名值。
 - [ ] Switching to a different `assetId` first destroys the old session and requests one Key only for the new session; destroying the player or cancelling playback aborts outstanding requests, and errors/logs contain no Key or signature values.
@@ -414,29 +414,32 @@ The Worker and main thread exchange only the necessary authenticated plaintext c
 - [x] 固定向量 `doc/vectors/CTR-HMAC-V2-001.json` 覆盖前导区、资产/Key/清晰度/分片上下文、HKDF 子密钥、两条记录、counter、`FINAL`、tag、明文和完整对象；PHP 8.5 与 Node.js 24 独立生成结果逐字节一致。
 - [x] The fixed vector `doc/vectors/CTR-HMAC-V2-001.json` covers the preamble, asset/key/rendition/segment context, HKDF subkeys, two records, counters, `FINAL`, tags, cleartext, and complete object; independent PHP 8.5 and Node.js 24 generation matches byte for byte.
 
-- [ ] 实际 PHP 打包器与 Dedicated Worker 实现必须对同一固定向量的完整字节及边界值给出一致结果。
-- [ ] The implemented PHP packager and Dedicated Worker must produce matching exact bytes and boundary behavior for the same fixed vector.
+- [x] PHP `Encryptor` PHPUnit 与 Node Dedicated Worker 测试分别读取同一固定向量；PHP 输出对象 Hex/SHA-256 与向量逐字节/逐哈希一致，Worker 逐记录解密后与向量明文一致。
+- [x] PHP `Encryptor` PHPUnit and Node Dedicated Worker tests independently consume the same fixed vector; the PHP output object Hex/SHA-256 matches the vector byte for byte and hash for hash, and the Worker decrypts each record to the vector cleartext.
 
-- [ ] 篡改前导区任一字段、header、counter、长度/`FINAL` 位、密文或 tag 均导致认证/格式失败，并证明失败记录的明文没有进入 MSE。
-- [ ] Tampering with any preamble field, header, counter, length/`FINAL` bit, ciphertext, or tag causes authentication/format failure, and the failed record's plaintext is proven not to reach MSE.
+- [x] Worker 固定向量与负向测试覆盖前导、header/counter、长度、`FINAL`、密文/tag、序号与截断；loader 篡改记录测试证明认证失败时没有任何媒体单元回调（因此没有明文进入 MSE）。
+- [x] Worker fixed-vector and negative tests cover preamble, header/counter, length, `FINAL`, ciphertext/tag, sequence, and truncation; the loader tampering test proves that no media-unit callback occurs on authentication failure, so no cleartext reaches MSE.
 
-- [ ] 对象只有在最后一条记录的 `FINAL` 位通过 HMAC 验证、且 EOF 紧随该记录 tag 时才被视为完整；正常响应在任意记录边界结束但没有 `FINAL` 必须判为不完整，传输中断则按 Range 策略恢复，重试耗尽后失败关闭；`FINAL` 后追加字节也必须失败。
-- [ ] An object is complete only when the last record's `FINAL` bit passes HMAC and EOF immediately follows that record's tag; a normally completed response ending at any record boundary without `FINAL` is incomplete, while a transport interruption follows the Range-resumption policy and fails closed after retries are exhausted; bytes appended after `FINAL` also fail.
+- [x] PHP 与 Node Worker 固定向量验证带认证 `FINAL` 的完整对象；Node Worker 测试验证缺少 `FINAL`、截断和 `FINAL` 后追加记录均失败。loader Range 测试覆盖未完成响应重试与重试耗尽失败关闭。
+- [x] PHP and Node Worker fixed-vector tests verify a complete object with authenticated `FINAL`; Node Worker tests verify that missing `FINAL`, truncation, and records appended after `FINAL` fail. Loader Range tests cover retrying incomplete responses and failing closed after retries are exhausted.
 
 - [ ] 播放签名 URI 时所有分片 GET 与 Range 请求保留正确签名 query；测试覆盖有效签名、过期签名和跨对象签名拒绝。
 - [ ] When playing signed URIs, all segment GET and Range requests preserve the correct signature query; tests cover valid signatures, expired signatures, and signatures rejected for another object.
 
-- [ ] 注入分片中断后，Range 起点严格等于 40 字节前导区加上此前完整认证记录的 header、密文和 tag 总长度；中途记录被丢弃并重新下载。
-- [ ] After injecting a segment interruption, the Range start equals exactly the 40-byte preamble plus the full header, ciphertext, and tag lengths of prior complete authenticated records; the incomplete record is discarded and downloaded again.
+- [x] Docker Chromium 注入首条完整认证记录后 13 字节处短读；播放器丢弃未完成记录，并从 `40 + header + ciphertext + tag = 65632` 字节边界发送 `Range`，同一签名 URI 携带 `If-Range` 恢复。报告：`experiments/hls-ctr-v2-acceptance/browser-acceptance-report.json`。
+- [x] Docker Chromium injects a short read 13 bytes after the first complete authenticated record; the player discards the incomplete record and resumes from the `40 + header + ciphertext + tag = 65632` byte boundary, retaining the same signed URI and sending `If-Range`. Report: `experiments/hls-ctr-v2-acceptance/browser-acceptance-report.json`.
 
-- [ ] 至少一个大于单条记录的 fMP4 分片证明渐进处理：首个完整、认证并可追加的媒体单元在该对象完整 GET 结束前进入 MSE；记录流、MP4 box 和 `moof`/`mdat` 边界不一致时仍能正确播放。
-- [ ] At least one fMP4 segment larger than a single record proves progressive processing: the first complete, authenticated, appendable media unit reaches MSE before the object's full GET ends; playback remains correct when record, MP4-box, and `moof`/`mdat` boundaries do not align.
+- [x] Node 24 loader 测试使用大于一条 64 KiB 记录的对象，并断言首个完整认证 `moof`/`mdat` 单元在流读取完毕前回调；Docker Chromium 随后通过 V2 H.264 对象完成 MSE 播放。
+- [x] The Node 24 loader test uses an object larger than one 64 KiB record and asserts that its first complete authenticated `moof`/`mdat` unit is emitted before stream completion; Docker Chromium then completes MSE playback using V2 H.264 objects.
 
-- [ ] 错误/弱 ETag、错误 `Content-Range` 起止/总长、响应 byte count 不符、非 identity `Content-Encoding`、HTTP 200 替换响应和 RustFS 对象替换均被拒绝，不发生版本拼接。
-- [ ] A wrong/weak ETag, invalid `Content-Range` start/end/total, mismatched response byte count, non-identity `Content-Encoding`, HTTP 200 replacement response, and RustFS object replacement are rejected without combining versions.
+- [x] Node 24 loader 互操作测试拒绝错误 ETag、错误 `Content-Range` 起点/总长、非 identity `Content-Encoding`、忽略 Range 的 HTTP 200、416 和授权拒绝；拒绝响应不会推进已验证 offset。
+- [x] Node 24 loader interoperability tests reject a wrong ETag, wrong `Content-Range` start/total, non-identity `Content-Encoding`, HTTP 200 that ignores Range, 416, and authorization denial; rejected responses do not advance the verified offset.
 
-- [ ] 初始响应缺少强 ETag 时，连续播放可完成，但中断后只能从 byte 0 重取或明确失败；Range 续传最多执行三次，失败状态不推进 verified offset。
-- [ ] Without a strong ETag on the initial response, uninterrupted playback may complete, but after interruption the player can only restart at byte 0 or fail explicitly; Range resumption is attempted at most three times, and failed responses never advance the verified offset.
+- [ ] V2 RustFS 对象替换故障注入尚未执行；历史 V1 RustFS 报告不能替代 V2 验收。
+- [ ] V2 RustFS object-replacement fault injection has not been run; historical V1 RustFS reports do not replace V2 acceptance.
+
+- [x] Node 24 测试覆盖无强 ETag 时拒绝续传和最多三次续传后明确失败；错误 Range 响应不推进 verified offset。
+- [x] Node 24 tests cover refusing resumption without a strong ETag and an explicit failure after at most three resume attempts; invalid Range responses do not advance the verified offset.
 
 - [ ] 实际对象路径中的 assetId 是 16 字符小写 hex，keyId 与短边像素使用规范十进制；分片序号固定为五位补零且拒绝超过 `65535`；MD5 前缀使用小写 hex 三字符；路径/扩展名不暴露算法；Key 原始/Hex/Base64 形式不出现在产物、URL 或日志。
 - [ ] Actual object paths use a 16-character lowercase-hex assetId and canonical-decimal keyId and short-edge pixel value; segment sequence is five-digit zero-padded and values above `65535` are rejected; the MD5 prefix uses three lowercase hexadecimal characters; paths/extensions do not expose the algorithm; raw/hex/base64 Key forms do not appear in artifacts, URLs, or logs.
@@ -444,17 +447,20 @@ The Worker and main thread exchange only the necessary authenticated plaintext c
 - [ ] 文件名边界用例至少覆盖序号 `0` → `00000`、`17` → `00017`、`65535` → `65535` 和 `65536` 明确拒绝；MD5 前缀使用原始未补零序号计算。
 - [ ] Filename boundary cases cover at least sequence `0` → `00000`, `17` → `00017`, `65535` → `65535`, and explicit rejection of `65536`; the MD5 prefix is calculated using the original unpadded sequence.
 
-- [ ] 完整加密记录通过认证后才追加至 MSE；弱网播放、seek、ABR 和续传最终可完成，卡顿和首帧延迟有测量记录。
-- [ ] Complete encrypted records are appended to MSE only after authentication; weak-network playback, seeking, ABR, and resumption eventually complete, with stalls and first-frame latency recorded.
+- [x] Node 24 渐进测试证明整条记录通过认证且组成完整 `moof`/`mdat` 后才回调；Docker Chromium H.264 VOD 约 8.07 秒播放至 ended，覆盖 seek、三档手动切换、独立会话自动 ABR 升降档及 Range 恢复。Linux Chromium 对 HEVC 能力探测为不支持，播放器在 MSE append 前明确报 `PLAYER_CODEC_UNSUPPORTED`；本结果不代表 HEVC 能播放。报告：`experiments/hls-ctr-v2-acceptance/browser-acceptance-report.json`。
+- [x] Node 24 progressive tests prove callbacks occur only after a complete record authenticates and forms a full `moof`/`mdat`; Docker Chromium plays the approximately 8.07-second H.264 VOD to ended and covers seeking, three manual renditions, automatic ABR up/down in a separate session, and Range resumption. Linux Chromium reports HEVC unsupported, and the player raises `PLAYER_CODEC_UNSUPPORTED` before MSE append; this does not prove HEVC playback. Report: `experiments/hls-ctr-v2-acceptance/browser-acceptance-report.json`.
 
-- [ ] 错误分类通过导出的错误码/常量对外可辨识，至少区分 Key 获取/格式、playlist、对象授权、Range/对象版本、记录认证、MP4 解析、MSE append 和取消；报告不暴露签名 query。
-- [ ] Error categories are externally distinguishable through exported error codes/constants, covering at least Key fetch/format, playlist, object authorization, Range/object version, record authentication, MP4 parsing, MSE append, and cancellation; reports do not expose signed queries.
+- [x] `PlayerErrorCode` 导出 Key、播放取消、playlist、MSE append、对象授权、Range/版本、网络、记录认证和 MP4 分类；HLS 网络错误文本会遮蔽 query 参数值。Node 24 分类测试覆盖 playlist、append、取消状态、对象版本错误与签名脱敏；浏览器报告只保留签名 query 参数名。
+- [x] Exported `PlayerErrorCode` distinguishes Key, playback cancellation, playlist, MSE append, object authorization, Range/version, network, record authentication, and MP4 categories; HLS network diagnostics redact query parameter values. Node 24 classification tests cover playlist, append, cancellation state, object-version errors, and signature redaction; browser reports retain only signed-query parameter names.
 
-- [ ] 原仓库普通 PHP-FFMpeg 媒体格式和 `open()->save()` 回归测试通过；CTR-HLS 运行时仅接受 V2。
-- [ ] The upstream PHP-FFMpeg ordinary-format and `open()->save()` regression tests pass; CTR-HLS runtime accepts V2 only.
+- [x] PHP Docker 全量 PHPUnit 回归通过：PHP 8.5.11，591 tests、1,435 assertions、9 skipped；V2 运行时只接受 V2 profile，普通 PHP-FFMpeg 回归包含在该全量套件内。
+- [x] The full PHP Docker PHPUnit regression passed on PHP 8.5.11: 591 tests, 1,435 assertions, and 9 skipped; the V2 runtime accepts only the V2 profile, and ordinary PHP-FFMpeg regressions are included in the full suite.
 
-- [ ] 所有验收运行在 Docker 中；验证记录区分本地 Docker Nginx/RustFS 与尚未验收的生产 CDN，不把本地代理结果宣称为生产 CDN 证据。
-- [ ] All acceptance runs execute in Docker; reports distinguish local Docker Nginx/RustFS from the unaccepted production CDN and do not present local-proxy results as production-CDN evidence.
+- [x] Node 24 检查、播放器构建、V2 单测、PHPUnit 与 Chromium 浏览器验收均在 Docker 中运行；报告明确标注 Docker Chromium 的本地 HTTP fixture，未宣称 RustFS/CDN 已验收。
+- [x] Node 24 checks, player build, V2 tests, PHPUnit, and Chromium browser acceptance all ran in Docker; the report identifies the local Docker Chromium HTTP fixture and does not claim RustFS/CDN acceptance.
+
+- [ ] V2 RustFS 与生产 CDN 路径仍待单独验收；必须分别报告对象存储和真实 CDN 证据。
+- [ ] V2 RustFS and production-CDN paths still require separate acceptance; object-store and actual CDN evidence must be reported separately.
 
 ## 8. 验证计划
 ## 8. Verification plan
@@ -480,14 +486,14 @@ The Worker and main thread exchange only the necessary authenticated plaintext c
 - [x] **T5 渐进解密与 MSE：** hls.js fragment loader 已连接 V2 Worker；仅在整条记录认证后释放明文，并跨记录缓冲、解析完整 `moof`/`mdat` 媒体单元，再通过 hls.js progressive `onProgress` 回调送入 append 流程。Node 24 流式测试证明首个完整媒体单元在读取最终记录前送出、签名 query 保留、无逐片 sidecar 请求，篡改记录不会送出明文。真实浏览器/MSE 播放验收仍归 T7。
 - [x] **T5 Progressive decryption and MSE:** The hls.js fragment loader is connected to the V2 Worker; clear bytes are released only after whole-record authentication, then buffered across records and parsed into complete `moof`/`mdat` media units before entering the append path through hls.js progressive `onProgress`. Node 24 streaming tests prove the first complete media unit is emitted before the final record is read, signed queries are preserved, no per-segment sidecar request occurs, and a tampered record emits no clear bytes. Real-browser/MSE playback acceptance remains in T7.
 
-- **T6 Range 与授权：** 实现强 ETag、Content-Range、总长、响应字节数校验和最多三次记录边界续传；对同一签名 URL 保留 query，对 401/403、签名过期、416、对象替换和错误范围提供可区分失败，不拼接响应版本。
-- **T6 Range and authorization:** Implement strong-ETag, Content-Range, total-length, and response-byte-count validation and at most three record-boundary resumptions; preserve the query on the same signed URL and provide distinguishable failures for 401/403, expired signatures, 416, object replacement, and invalid ranges without combining response versions.
+- [x] **T6 Range 与授权：** 已实现强 ETag、Content-Range、总长、响应字节数与 identity 编码校验，以及最多三次记录边界续传；复用原始完整签名 URL 和 If-Range；单测覆盖无 ETag、坏 ETag/范围、Range 被忽略、416、403 和重试耗尽。V2 RustFS/对象替换验收仍属于 T7。
+- [x] **T6 Range and authorization:** Strong ETag, Content-Range, total-length, response-byte-count, and identity-encoding validation are implemented, along with up to three record-boundary resumptions; the original full signed URL is reused with If-Range. Unit tests cover missing ETag, bad ETag/ranges, ignored Range, 416, 403, and exhausted retries. V2 RustFS/object-replacement acceptance remains in T7.
 
-- **T7 浏览器与弱网验收：** 在 Docker 浏览器环境验证 Key 调用次数、清晰度切换、seek、签名 URL、RustFS Range/断流/对象替换及 MSE append；覆盖至少一个多 rendition H.264 样本和一个 HEVC 样本，记录浏览器/编解码器边界。
-- **T7 Browser and poor-network acceptance:** In the Docker browser environment, verify Key-call counts, rendition switching, seeking, signed URLs, RustFS Range/interruption/object replacement, and MSE appends; cover at least one multi-rendition H.264 sample and one HEVC sample, recording browser/codec boundaries.
+- [ ] **T7 浏览器与弱网验收（部分完成）：** Docker Chromium 已通过多 rendition H.264 MSE 播放、Key 单次获取、手动切档、seek、渐进认证追加、短读后签名 Range 恢复和自动 ABR 升降档；HEVC 样本在 Linux Chromium 被能力检测明确拒绝。Docker HTTP fixture 不代表 RustFS/CDN；V2 RustFS 对象替换与 iOS/Android 真机尚未验收。
+- [ ] **T7 Browser and poor-network acceptance (partially complete):** Docker Chromium passed multi-rendition H.264 MSE playback, one-time Key retrieval, manual switching, seeking, progressive authenticated append, signed Range resumption after a short read, and automatic ABR up/down switching; capability detection explicitly rejects HEVC in Linux Chromium. The Docker HTTP fixture does not represent RustFS/CDN; V2 RustFS object replacement and physical iOS/Android devices remain untested.
 
-- **T8 上游回归与发布文档：** 在 Docker 中运行全量 PHPUnit、播放器构建和浏览器自动化；确认普通 `open()->save()` 未回归，更新用户文档与验收报告，然后逐项核销本 SDD 验收标准。
-- **T8 Upstream regression and release documentation:** Run full PHPUnit, player build, and browser automation in Docker; confirm ordinary `open()->save()` behavior has not regressed, update user documentation and acceptance reports, and then close each acceptance criterion in this SDD.
+- [ ] **T8 上游回归与发布文档（验证通过，文档核销中）：** Docker 中 Node 24 检查、V2 测试、播放器构建、Chromium 验收和 PHP 8.5.11 全量 PHPUnit 均通过；当前仍需复核剩余格式/错误/发布验收项，并记录 V2 RustFS/CDN 的待验边界。
+- [ ] **T8 Upstream regression and release documentation (verification passed, documentation closure in progress):** Docker Node 24 checks, V2 tests, player build, Chromium acceptance, and the full PHP 8.5.11 PHPUnit suite all passed; remaining format/error/release criteria still need review, and the pending V2 RustFS/CDN acceptance boundary must be recorded.
 
 - PHP PHPUnit 覆盖 V2 记录格式、路径构造、contentId 唯一性、失败清理、单次资产 KeyProvider 调用，并验证 V1 输入被拒绝且不触发 sidecar 请求。
 - PHP PHPUnit covers the V2 record format, path construction, contentId uniqueness, failure cleanup, and one KeyProvider call per asset; it also verifies that V1 input is rejected without a sidecar request.
@@ -534,5 +540,5 @@ There are currently no product or interface decisions awaiting maintainer confir
 ## 11. 实施记录
 ## 11. Implementation notes
 
-CTR-HMAC V2 字节格式已于 2026-10-20 评审并冻结；T1 PHP 编码/解码原语、T2 本地 VOD media-playlist 打包器、T3 Dedicated Worker、T4 播放会话 API 与 T5 渐进 loader/MSE append 接入已实现，并通过固定向量、负向、会话和渐进 loader 测试。T6 Range 恢复、T7 真实浏览器/弱网验收、T8 上游回归仍未完成。
-The CTR-HMAC V2 byte format was reviewed and frozen on 2026-10-20; T1 PHP encoding/decoding primitives, T2 local VOD media-playlist packager, T3 Dedicated Worker, T4 playback-session API, and T5 progressive loader/MSE append integration are implemented and pass fixed-vector, negative, session, and progressive-loader tests. T6 Range resumption, T7 real-browser/poor-network acceptance, and T8 upstream regression remain incomplete.
+CTR-HMAC V2 字节格式已于 2026-10-20 评审并冻结。T0–T6 已实现并通过相应固定向量、负向、互操作、播放会话、渐进处理和 Range 单测。T7 在 Docker Chromium 中通过正式 V2 PHP 产物的 H.264 播放、手动三档切换、seek、弱网短读 Range 恢复和自动 ABR 升降档；Linux Chromium 不支持该 HEVC 样本并在 MSE 前拒绝。T8 的 Node 24 检查、播放器构建、V2 与错误分类测试及 PHP 8.5.11 全量 PHPUnit（591 tests / 1,435 assertions / 9 skipped）已通过。测试报告位于 `experiments/hls-ctr-v2-acceptance/browser-acceptance-report.json`。V2 RustFS/CDN、对象替换故障注入、Safari/iOS 与 Android 真机仍未验收；其余尚未逐项验证的 SDD 标准维持未勾选，不能据此将整份 SDD 标为 Complete。
+The CTR-HMAC V2 byte format was reviewed and frozen on 2026-10-20. T0–T6 are implemented and pass their fixed-vector, negative, interoperability, playback-session, progressive-processing, and Range unit tests. T7 passed H.264 playback of official PHP V2 artifacts in Docker Chromium, three manual renditions, seeking, weak-network short-read Range resumption, and automatic ABR up/down switching; Linux Chromium does not support the HEVC sample and rejects it before MSE. T8 Node 24 checks, player build, V2 and error-classification tests, and the full PHP 8.5.11 PHPUnit suite (591 tests / 1,435 assertions / 9 skipped) passed. The browser report is at `experiments/hls-ctr-v2-acceptance/browser-acceptance-report.json`. V2 RustFS/CDN, object-replacement fault injection, Safari/iOS, and physical Android acceptance remain incomplete; all other acceptance criteria not yet individually verified remain unchecked, so this SDD must not be marked Complete.

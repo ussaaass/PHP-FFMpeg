@@ -1,0 +1,303 @@
+{
+  "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+  "h264": {
+    "duration": 8.074732,
+    "ended": true,
+    "levelCount": 3,
+    "events": [
+      {
+        "type": "playback-key-loaded",
+        "profile": "phpffmpeg-ctr-hmac-v2",
+        "assetId": "42",
+        "keyId": 7
+      },
+      {
+        "type": "video-waiting",
+        "currentTime": 0
+      },
+      {
+        "type": "segment-authenticated",
+        "level": 0,
+        "sequence": 0,
+        "assetId": "42",
+        "keyId": 7,
+        "recordCount": 2,
+        "mediaFragmentCount": 1,
+        "objectBytes": 75165,
+        "complete": true
+      },
+      {
+        "type": "segment-buffered",
+        "level": 0,
+        "sequence": 0,
+        "duration": 2.0687333333333333,
+        "bytes": 75165,
+        "bandwidthEstimate": 60580.90450250802,
+        "loadMilliseconds": 9772.300000011921,
+        "processingMilliseconds": 188.0999999642372
+      },
+      {
+        "type": "video-playing",
+        "currentTime": 0.056616
+      },
+      {
+        "type": "level-switched",
+        "level": 0,
+        "width": 640,
+        "height": 360,
+        "automatic": true,
+        "atMilliseconds": 10790.5
+      },
+      {
+        "eventKind": "player-error",
+        "source": "hls",
+        "type": "networkError",
+        "details": "aborted",
+        "fatal": false,
+        "error": "Aborted"
+      },
+      {
+        "type": "segment-authenticated",
+        "level": 2,
+        "sequence": 0,
+        "assetId": "42",
+        "keyId": 7,
+        "recordCount": 5,
+        "mediaFragmentCount": 1,
+        "objectBytes": 306500,
+        "complete": true
+      },
+      {
+        "type": "level-switched",
+        "level": 2,
+        "width": 1280,
+        "height": 720,
+        "automatic": false,
+        "atMilliseconds": 11351.800000011921
+      },
+      {
+        "type": "segment-buffered",
+        "level": 2,
+        "sequence": 0,
+        "duration": 2.0687333333333333,
+        "bytes": 306500,
+        "bandwidthEstimate": 684434.0533412655,
+        "loadMilliseconds": 81.39999997615814,
+        "processingMilliseconds": 1.199999988079071
+      },
+      {
+        "eventKind": "player-error",
+        "source": "hls",
+        "type": "networkError",
+        "details": "aborted",
+        "fatal": false,
+        "error": "Aborted"
+      },
+      {
+        "type": "rebuffer-started",
+        "atMilliseconds": 11394.700000047684
+      },
+      {
+        "type": "video-waiting",
+        "currentTime": 0.658941
+      },
+      {
+        "type": "segment-authenticated",
+        "level": 0,
+        "sequence": 0,
+        "assetId": "42",
+        "keyId": 7,
+        "recordCount": 2,
+        "mediaFragmentCount": 1,
+        "objectBytes": 75165,
+        "complete": true
+      },
+      {
+        "type": "level-switched",
+        "level": 0,
+        "width": 640,
+        "height": 360,
+        "automatic": false,
+        "atMilliseconds": 11464
+      },
+      {
+        "type": "segment-buffered",
+        "level": 0,
+        "sequence": 0,
+        "duration": 2.0687333333333333,
+        "bytes": 75165,
+        "bandwidthEstimate": 827274.6390634981,
+        "loadMilliseconds": 87.09999996423721,
+        "processingMilliseconds": 2.199999988079071
+      },
+      {
+        "type": "video-seeking",
+        "currentTime": 4.099999
+      },
+      {
+        "type": "video-waiting",
+        "currentTime": 4.099999
+      },
+      {
+        "type": "segment-authenticated",
+        "level": 0,
+        "sequence": 1,
+        "assetId": "42",
+        "keyId": 7,
+        "recordCount": 2,
+        "mediaFragmentCount": 1,
+        "objectBytes": 91887,
+        "complete": true
+      },
+      {
+        "type": "segment-buffered",
+        "level": 0,
+        "sequence": 1,
+        "duration": 2.002,
+        "bytes": 91887,
+        "bandwidthEstimate": 1006597.1098271805,
+        "loadMilliseconds": 58.39999997615814,
+        "processingMilliseconds": 1
+      },
+      {
+        "type": "segment-authenticated",
+        "level": 0,
+        "sequence": 2,
+        "assetId": "42",
+        "keyId": 7,
+        "recordCount": 2,
+        "mediaFragmentCount": 1,
+        "objectBytes": 122102,
+        "complete": true
+      },
+      {
+        "type": "segment-buffered",
+        "level": 0,
+        "sequence": 2,
+        "duration": 2.0020000000000007,
+        "bytes": 122102,
+        "bandwidthEstimate": 1245645.2692861594,
+        "loadMilliseconds": 53.19999998807907,
+        "processingMilliseconds": 2.399999976158142
+      },
+      {
+        "type": "rebuffer-ended",
+        "durationMilliseconds": 199.69999998807907,
+        "atMilliseconds": 11594.400000035763
+      },
+      {
+        "type": "video-playing",
+        "currentTime": 4.105413
+      },
+      {
+        "type": "rebuffer-started",
+        "atMilliseconds": 11594.5
+      },
+      {
+        "type": "video-waiting",
+        "currentTime": 4.105453
+      },
+      {
+        "type": "rebuffer-ended",
+        "durationMilliseconds": 0.10000002384185791,
+        "atMilliseconds": 11594.700000047684
+      },
+      {
+        "type": "video-playing",
+        "currentTime": 4.105637
+      },
+      {
+        "type": "segment-authenticated",
+        "level": 0,
+        "sequence": 3,
+        "assetId": "42",
+        "keyId": 7,
+        "recordCount": 2,
+        "mediaFragmentCount": 1,
+        "objectBytes": 97163,
+        "complete": true
+      },
+      {
+        "type": "segment-buffered",
+        "level": 0,
+        "sequence": 3,
+        "duration": 2.001999999999999,
+        "bytes": 97163,
+        "bandwidthEstimate": 1434244.0173277701,
+        "loadMilliseconds": 55.10000002384186,
+        "processingMilliseconds": 2.399999976158142
+      },
+      {
+        "type": "playback-completed",
+        "startedAt": 1984,
+        "levelSwitches": 3,
+        "automaticLevelSwitches": 1,
+        "manualLevelSwitches": 2,
+        "rebufferCount": 2,
+        "rebufferMilliseconds": 199.80000001192093,
+        "bufferedSegments": 6,
+        "fatalErrors": 0,
+        "completed": true,
+        "elapsedMilliseconds": 15610.400000035763
+      },
+      {
+        "type": "video-ended",
+        "duration": 8.074732
+      }
+    ]
+  },
+  "automaticAbr": [
+    {
+      "type": "level-switched",
+      "level": 2,
+      "width": 1280,
+      "height": 720,
+      "automatic": true,
+      "atMilliseconds": 363.89999997615814
+    },
+    {
+      "type": "level-switched",
+      "level": 0,
+      "width": 640,
+      "height": 360,
+      "automatic": true,
+      "atMilliseconds": 4311.800000011921
+    }
+  ],
+  "hevc": {
+    "supported": false,
+    "ended": false,
+    "codecErrors": [
+      {
+        "eventKind": "player-error",
+        "source": "capability",
+        "code": "PLAYER_CODEC_UNSUPPORTED",
+        "type": "unsupported-codec",
+        "details": "No declared HLS video codec can be added to this browser MSE pipeline",
+        "codec": "hvc1.1.6.L93.B0",
+        "fatal": true
+      }
+    ]
+  },
+  "requestEvidence": {
+    "keyBeforeMaster": true,
+    "keyRequestCount": 1,
+    "sidecarRequestCount": 0,
+    "rangeRequest": {
+      "url": "http://127.0.0.1/media/000000000000002a/7/360/v2-browser-h264-1/743-00000.m4s",
+      "queryNames": [
+        "sig",
+        "sig"
+      ],
+      "range": "bytes=65632-",
+      "ifRangePresent": true
+    },
+    "serverRangeCount": 1,
+    "signedQueriesRetained": true
+  },
+  "errors": [],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: net::ERR_CONTENT_LENGTH_MISMATCH"
+  ]
+}

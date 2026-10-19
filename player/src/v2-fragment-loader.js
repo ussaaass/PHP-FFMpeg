@@ -6,6 +6,21 @@ const HEADER_LENGTH = 24;
 const TAG_LENGTH = 32;
 const MAX_RECORD_LENGTH = 65_536;
 const MAGIC = new TextEncoder().encode('PFFHLS2\n');
+const MAX_RANGE_RESUMPTIONS = 3;
+
+function strongEtag(value) {
+  return typeof value === 'string' && value.length > 0 && !/^W\//i.test(value) ? value : null;
+}
+
+function parseContentRange(value) {
+  const match = /^bytes (\d+)-(\d+)\/(\d+)$/.exec(value || '');
+  if (!match) return null;
+  const start = Number(match[1]);
+  const end = Number(match[2]);
+  const total = Number(match[3]);
+  if (![start, end, total].every(Number.isSafeInteger) || start > end || end >= total) return null;
+  return { start, end, total };
+}
 
 function createStats() {
   return {
@@ -82,7 +97,7 @@ export class V2CtrFragmentLoader {
     this.callbacks = callbacks;
     this.abortController = new AbortController();
     this.completed = false;
-    this.stats = createStats();
+    Object.assign(this.stats, createStats());
     this.run(context, callbacks).catch(error => {
       this.cleanupWorker();
       if (this.abortController?.signal.aborted) {
@@ -90,26 +105,22 @@ export class V2CtrFragmentLoader {
         callbacks.onAbort?.(this.stats, context, null);
       } else {
         this.completed = true;
-        callbacks.onError?.({ code: Number.isInteger(error.status) ? error.status : 0, text: error.message || 'V2 media load failed' }, context, null, this.stats);
+        const errorCode = error.code || (
+          /authentication failed/i.test(error.message || '') ? 'PLAYER_RECORD_AUTH_FAILED'
+            : /MP4 box|moof|mdat|media unit/i.test(error.message || '') ? 'PLAYER_MP4_INVALID'
+              : 'PLAYER_SEGMENT_NETWORK_FAILED'
+        );
+        callbacks.onError?.({ code: Number.isInteger(error.status) ? error.status : 0, text: `${errorCode}: ${error.message || 'V2 media load failed'}` }, context, null, this.stats);
       }
     });
   }
 
   async run(context, callbacks) {
-    const options = await this.getRequestOptions(context.url, RequestPurpose.SEGMENT, context);
-    const response = await fetch(context.url, { ...options, method: 'GET', signal: this.abortController.signal, cache: 'no-store' });
-    if (!response.ok) throw Object.assign(new Error(`Media request failed with HTTP ${response.status}`), { status: response.status });
-    const declaredLength = Number(response.headers.get('content-length'));
-    this.stats.total = Number.isSafeInteger(declaredLength) && declaredLength > 0 ? declaredLength : 0;
-    if (!response.body?.getReader) {
-      const data = new Uint8Array(await response.arrayBuffer());
-      if (isMagic(data)) throw new Error('CTR/HMAC V2 requires a streaming response body');
-      this.finishClearResponse(response, data, context, callbacks);
-      return;
-    }
-
-    const reader = response.body.getReader();
-    let received = 0;
+    let response;
+    let verifiedOffset = 0;
+    let totalLength = null;
+    let etag = null;
+    let resumeCount = 0;
     let sniff = new Uint8Array(0);
     let mode = null;
     let clearParts = [];
@@ -119,95 +130,178 @@ export class V2CtrFragmentLoader {
     let recordCount = 0;
     let mediaFragmentCount = 0;
     let sawFinal = false;
-    try {
-      while (true) {
-        const { value, done } = await reader.read();
-        if (done) break;
-        if (!value?.byteLength) continue;
-        if (!this.stats.loading.first) this.stats.loading.first = performance.now();
-        received += value.byteLength;
-        this.stats.loaded = received;
-        if (mode === null) {
-          sniff = concat(sniff, value);
-          if (sniff.length < MAGIC.length) continue;
-          mode = isMagic(sniff) ? 'v2' : 'clear';
-          if (mode === 'clear') { clearParts.push(sniff); sniff = new Uint8Array(0); continue; }
-          pending = sniff;
-          sniff = new Uint8Array(0);
-        } else if (mode === 'clear') {
-          clearParts.push(value.slice());
-          continue;
-        } else {
-          if (sawFinal) throw new Error('Data received after the authenticated FINAL record');
-          pending = concat(pending, value);
-        }
+    let objectByteCount = 0;
+    let complete = false;
 
-        if (!preamble && pending.length >= PREAMBLE_LENGTH) {
-          preamble = pending.slice(0, PREAMBLE_LENGTH);
-          this.validatePreamble(preamble);
-          pending = pending.slice(PREAMBLE_LENGTH);
-          this.stats.parsing.start = performance.now();
-          await this.initializeWorker(preamble);
+    while (!complete) {
+      const headers = new Headers();
+      let requestUrl = context.url;
+      if (resumeCount > 0) {
+        headers.set('Range', `bytes=${verifiedOffset}-`);
+        headers.set('If-Range', etag);
+      }
+      const requestOptions = await this.getRequestOptions(requestUrl, RequestPurpose.SEGMENT, context);
+      const suppliedHeaders = new Headers(requestOptions.headers || {});
+      for (const [name, value] of suppliedHeaders) headers.set(name, value);
+      if (resumeCount > 0) {
+        headers.set('Range', `bytes=${verifiedOffset}-`);
+        headers.set('If-Range', etag);
+      }
+      try {
+        response = await fetch(requestUrl, { ...requestOptions, headers, method: 'GET', signal: this.abortController.signal, cache: 'no-store' });
+      } catch (error) {
+        if (this.abortController.signal.aborted) throw error;
+        if (resumeCount > 0 && resumeCount < MAX_RANGE_RESUMPTIONS && etag && totalLength && verifiedOffset < totalLength) {
+          resumeCount += 1;
+          continue;
         }
-        while (preamble && pending.length >= HEADER_LENGTH) {
-          const view = new DataView(pending.buffer, pending.byteOffset, pending.byteLength);
-          const sequence = view.getUint32(0, false);
-          const lengthAndFlags = view.getUint32(20, false);
-          const clearLength = lengthAndFlags & 0x7fffffff;
-          if (clearLength < 1 || clearLength > MAX_RECORD_LENGTH) throw new Error(`Invalid V2 record length at sequence ${sequence}`);
-          const recordLength = HEADER_LENGTH + clearLength + TAG_LENGTH;
-          if (pending.length < recordLength) break;
-          const record = pending.slice(0, recordLength);
-          const result = await this.workerRequest({ type: 'decrypt', record: record.buffer }, [record.buffer]);
-          pending = pending.slice(recordLength);
-          recordCount += 1;
-          if (result.final) sawFinal = true;
-          if (sawFinal && pending.length > 0) throw new Error('Data follows the authenticated FINAL record');
-          if (!this.stats.parsing.start) this.stats.parsing.start = performance.now();
-          pendingClear = concat(pendingClear, new Uint8Array(result.clear));
-          const parsed = parseMediaFragments(pendingClear);
-          pendingClear = parsed.remainder;
-          for (const fragment of parsed.fragments) {
-            mediaFragmentCount += 1;
-            this.stats.chunkCount += 1;
-            callbacks.onProgress?.(this.stats, context, fragment.buffer, null);
+        throw Object.assign(new Error('Media request failed before a complete object response'), { code: 'PLAYER_SEGMENT_NETWORK_FAILED', cause: error });
+      }
+      if (response.status === 401 || response.status === 403) throw Object.assign(new Error(`Media authorization failed with HTTP ${response.status}`), { status: response.status, code: 'PLAYER_SEGMENT_AUTHORIZATION_FAILED' });
+      if (response.status === 416) throw Object.assign(new Error('Range request was rejected with HTTP 416'), { status: 416, code: 'PLAYER_SEGMENT_RANGE_INVALID' });
+      if (resumeCount === 0) {
+        if (response.status !== 200 && response.status !== 206) throw Object.assign(new Error(`Media request failed with HTTP ${response.status}`), { status: response.status });
+        etag = strongEtag(response.headers.get('etag'));
+        const rawLength = response.headers.get('content-length');
+        const parsedLength = rawLength !== null && /^\d+$/.test(rawLength) ? Number(rawLength) : NaN;
+        totalLength = Number.isSafeInteger(parsedLength) && parsedLength > 0 ? parsedLength : null;
+        if (response.status === 206) {
+          const range = parseContentRange(response.headers.get('content-range'));
+          if (!range || range.start !== 0 || (totalLength !== null && totalLength !== range.total) || parsedLength !== range.end + 1) {
+            throw Object.assign(new Error('Initial partial response has an invalid Content-Range'), { code: 'PLAYER_SEGMENT_RANGE_INVALID' });
           }
-          this.stats.parsing.end = performance.now();
-          if (pendingClear.length > 2 * 1024 * 1024) throw new Error('Incomplete MP4 fragment exceeded the 2 MiB streaming limit');
+          totalLength = range.total;
+        }
+        this.stats.total = totalLength || 0;
+      } else {
+        const range = parseContentRange(response.headers.get('content-range'));
+        const rangeLength = Number(response.headers.get('content-length'));
+        const responseEtag = strongEtag(response.headers.get('etag'));
+        const encoding = (response.headers.get('content-encoding') || 'identity').toLowerCase();
+        if (response.status !== 206 || !range || range.start !== verifiedOffset || range.end !== totalLength - 1 || range.total !== totalLength || rangeLength !== range.end - range.start + 1 || responseEtag !== etag || encoding !== 'identity') {
+          throw Object.assign(new Error('Range resume response did not match the original object, ETag, encoding, or Content-Range'), { code: 'PLAYER_SEGMENT_VERSION_MISMATCH', status: response.status });
         }
       }
-    } catch (error) {
-      await reader.cancel().catch(() => {});
-      throw error;
-    }
+      const contentEncoding = (response.headers.get('content-encoding') || 'identity').toLowerCase();
+      if (contentEncoding !== 'identity') throw Object.assign(new Error('Encoded media responses cannot be parsed or resumed by byte offset'), { code: 'PLAYER_SEGMENT_RANGE_INVALID' });
 
-    if (mode === 'clear') {
-      const clear = new Uint8Array(clearParts.reduce((size, part) => size + part.length, 0));
-      let offset = 0;
-      for (const part of clearParts) { clear.set(part, offset); offset += part.length; }
-      this.finishClearResponse(response, clear, context, callbacks);
-      return;
+      const reader = response.body?.getReader?.();
+      if (!reader) {
+        const data = new Uint8Array(await response.arrayBuffer());
+        if (resumeCount > 0 || isMagic(data)) throw new Error('CTR/HMAC V2 requires a streaming response body');
+        this.finishClearResponse(response, data, context, callbacks);
+        return;
+      }
+      let responseBytes = 0;
+      const responseStart = resumeCount === 0 ? 0 : verifiedOffset;
+      let transportInterrupted = false;
+      try {
+        while (true) {
+          let chunk;
+          try { chunk = await reader.read(); } catch (error) { transportInterrupted = true; break; }
+          if (chunk.done) break;
+          const value = chunk.value;
+          if (!value?.byteLength) continue;
+          responseBytes += value.byteLength;
+          objectByteCount = responseStart + responseBytes;
+          this.stats.loaded = verifiedOffset + (mode === 'v2' ? pending.length : responseBytes);
+          if (!this.stats.loading.first) this.stats.loading.first = performance.now();
+          if (mode === null) {
+            sniff = concat(sniff, value);
+            if (sniff.length < MAGIC.length) continue;
+            mode = isMagic(sniff) ? 'v2' : 'clear';
+            if (mode === 'clear') { clearParts.push(sniff); sniff = new Uint8Array(0); continue; }
+            pending = sniff;
+            sniff = new Uint8Array(0);
+          } else if (mode === 'clear') {
+            clearParts.push(value.slice());
+            continue;
+          } else {
+            if (sawFinal) throw new Error('Data received after the authenticated FINAL record');
+            pending = concat(pending, value);
+          }
+          if (mode === 'v2') this.stats.loaded = verifiedOffset + pending.length;
+
+          if (!preamble && pending.length >= PREAMBLE_LENGTH) {
+            preamble = pending.slice(0, PREAMBLE_LENGTH);
+            this.validatePreamble(preamble);
+            verifiedOffset = PREAMBLE_LENGTH;
+            pending = pending.slice(PREAMBLE_LENGTH);
+            this.stats.parsing.start = performance.now();
+            await this.initializeWorker(preamble);
+          }
+          while (preamble && pending.length >= HEADER_LENGTH) {
+            const view = new DataView(pending.buffer, pending.byteOffset, pending.byteLength);
+            const sequence = view.getUint32(0, false);
+            const lengthAndFlags = view.getUint32(20, false);
+            const clearLength = lengthAndFlags & 0x7fffffff;
+            if (clearLength < 1 || clearLength > MAX_RECORD_LENGTH) throw new Error(`Invalid V2 record length at sequence ${sequence}`);
+            const recordLength = HEADER_LENGTH + clearLength + TAG_LENGTH;
+            if (pending.length < recordLength) break;
+            const record = pending.slice(0, recordLength);
+            const result = await this.workerRequest({ type: 'decrypt', record: record.buffer }, [record.buffer]);
+            pending = pending.slice(recordLength);
+            verifiedOffset += recordLength;
+            recordCount += 1;
+            if (result.final) sawFinal = true;
+            if (sawFinal && pending.length > 0) throw new Error('Data follows the authenticated FINAL record');
+            pendingClear = concat(pendingClear, new Uint8Array(result.clear));
+            const parsed = parseMediaFragments(pendingClear);
+            pendingClear = parsed.remainder;
+            for (const fragment of parsed.fragments) {
+              mediaFragmentCount += 1;
+              this.stats.chunkCount += 1;
+              callbacks.onProgress?.(this.stats, context, fragment.buffer, response);
+            }
+            this.stats.parsing.end = performance.now();
+            if (pendingClear.length > 2 * 1024 * 1024) throw new Error('Incomplete MP4 fragment exceeded the 2 MiB streaming limit');
+          }
+        }
+      } finally {
+        if (transportInterrupted) await reader.cancel().catch(() => {});
+      }
+
+      if (mode === 'clear') {
+        const clear = new Uint8Array(clearParts.reduce((size, part) => size + part.length, 0));
+        let offset = 0;
+        for (const part of clearParts) { clear.set(part, offset); offset += part.length; }
+        this.finishClearResponse(response, clear, context, callbacks);
+        return;
+      }
+      if (mode !== 'v2') throw new Error('Truncated or unsupported media object preamble');
+      const expectedResponseLength = resumeCount === 0 ? totalLength : totalLength - responseStart;
+      const shortResponse = expectedResponseLength !== null && responseBytes < expectedResponseLength;
+      if ((transportInterrupted || shortResponse) && !sawFinal) {
+        if (resumeCount >= MAX_RANGE_RESUMPTIONS) throw Object.assign(new Error('Media Range resumption limit exceeded'), { code: 'PLAYER_SEGMENT_NETWORK_FAILED' });
+        if (!etag || !totalLength || verifiedOffset >= totalLength) throw Object.assign(new Error('Cannot resume media without a strong ETag and known object length'), { code: 'PLAYER_SEGMENT_NETWORK_FAILED' });
+        resumeCount += 1;
+        pending = new Uint8Array(0);
+        continue;
+      }
+      if (transportInterrupted) throw Object.assign(new Error('Media response was interrupted after its final record'), { code: 'PLAYER_SEGMENT_NETWORK_FAILED' });
+      if (pending.length !== 0) throw new Error('Media object ended with a truncated encrypted record');
+      if (totalLength !== null && verifiedOffset !== totalLength) throw Object.assign(new Error('Verified object length does not match Content-Length'), { code: 'PLAYER_SEGMENT_VERSION_MISMATCH' });
+      const completion = await this.workerRequest({ type: 'finish' });
+      if (pendingClear.length !== 0) throw new Error('Media object ended with an incomplete MP4 moof/mdat unit');
+      complete = true;
+      this.onSegmentAuthenticated({
+        level: context.frag?.level,
+        sequence: context.frag?.sn,
+        assetId: this.playbackInfo.assetId,
+        keyId: this.playbackInfo.keyId,
+        recordCount,
+        mediaFragmentCount,
+        objectBytes: verifiedOffset,
+        complete: completion.complete,
+      });
+      this.stats.loading.end = performance.now();
+      this.stats.loaded = verifiedOffset;
+      this.stats.total = totalLength || verifiedOffset;
+      this.stats.parsing.end = this.stats.loading.end;
+      this.completed = true;
+      callbacks.onSuccess({ url: response.url, data: new ArrayBuffer(0), code: response.status, text: 'CTR/HMAC V2 verified and media units emitted' }, this.stats, context, response);
+      this.cleanupWorker();
     }
-    if (mode !== 'v2' || !preamble) throw new Error('Truncated or unsupported media object preamble');
-    if (pending.length !== 0) throw new Error('Media object ended with a truncated encrypted record');
-    const completion = await this.workerRequest({ type: 'finish' });
-    if (this.stats.total > 0 && received !== this.stats.total) throw new Error('Media response byte count disagrees with Content-Length');
-    if (pendingClear.length !== 0) throw new Error('Media object ended with an incomplete MP4 moof/mdat unit');
-    this.onSegmentAuthenticated({
-      level: context.frag?.level,
-      sequence: context.frag?.sn,
-      assetId: this.playbackInfo.assetId,
-      keyId: this.playbackInfo.keyId,
-      recordCount,
-      mediaFragmentCount,
-      objectBytes: received,
-      complete: completion.complete,
-    });
-    this.stats.loading.end = performance.now();
-    this.stats.parsing.end = this.stats.loading.end;
-    this.completed = true;
-    callbacks.onSuccess({ url: response.url, data: new ArrayBuffer(0), code: response.status, text: 'CTR/HMAC V2 verified and media units emitted' }, this.stats, context, null);
-    this.cleanupWorker();
   }
 
   finishClearResponse(response, bytes, context, callbacks) {
@@ -265,8 +359,10 @@ export class V2CtrFragmentLoader {
   }
 
   abort() {
-    if (!this.completed) this.abortController?.abort();
-    this.stats.aborted = true;
+    if (!this.completed) {
+      this.abortController?.abort();
+      this.stats.aborted = true;
+    }
     this.cleanupWorker();
   }
 

@@ -69,11 +69,40 @@ globalThis.Worker = class FakeWorker {
 };
 
 const originalFetch = globalThis.fetch;
-async function runObject(objectChunks, onProgress = () => {}) {
+async function runObject(objectChunks, onProgress = () => {}, responseMode = null) {
   const requests = [];
   let sent = 0;
   globalThis.fetch = async (url, init) => {
     requests.push({ url: String(url), init });
+    if (responseMode) {
+      const requestIndex = requests.length - 1;
+      const offset = Number(/^bytes=(\d+)-$/.exec(new Headers(init.headers).get('range') || '')?.[1] || 0);
+      const bytes = Buffer.concat(objectChunks.map(chunk => Buffer.from(chunk)));
+      const etag = '"v2-range-fixture"';
+      if (requestIndex === 0) {
+        const cut = 40 + encrypted.recordChunks[0].length + 20;
+        const body = bytes.subarray(0, cut);
+        const headers = { 'content-length': String(bytes.length) };
+        if (responseMode !== 'no-etag') headers.etag = etag;
+        return new Response(new ReadableStream({ start(controller) { controller.enqueue(body); controller.close(); } }), { status: 200, headers });
+      }
+      if (requestIndex > 0) {
+        if (responseMode === 'auth-denied') return new Response('denied', { status: 403 });
+        if (responseMode === 'range-unsatisfied') return new Response('', { status: 416, headers: { 'content-range': `bytes */${bytes.length}` } });
+        if (responseMode === 'range-ignored') return new Response(bytes, { status: 200, headers: { 'content-length': String(bytes.length), etag } });
+        const returnedEtag = responseMode === 'bad-etag' ? '"replacement-object"' : etag;
+        const start = responseMode === 'bad-range' ? offset + 1 : offset;
+        const rangedBody = bytes.subarray(start, responseMode === 'retry-limit' ? Math.min(bytes.length, start + 50) : undefined);
+        const total = responseMode === 'bad-total' ? bytes.length + 1 : bytes.length;
+        const encoding = responseMode === 'encoded' ? 'gzip' : 'identity';
+        const responseHeaders = { 'content-length': String(responseMode === 'retry-limit' ? bytes.length - offset : rangedBody.length), 'content-range': `bytes ${start}-${bytes.length - 1}/${total}`, etag: returnedEtag, 'content-encoding': encoding };
+        if (responseMode === 'no-etag') delete responseHeaders.etag;
+        return new Response(new ReadableStream({ start(controller) { controller.enqueue(rangedBody); controller.close(); } }), {
+          status: 206,
+          headers: responseHeaders,
+        });
+      }
+    }
     const stream = new ReadableStream({
       pull(controller) {
         if (sent >= objectChunks.length) { controller.close(); return; }
@@ -106,6 +135,7 @@ const success = await runObject(wireChunks, (fragment, chunksSent) => emitted.pu
 assert.deepEqual(emitted.map(item => item.fragment), [firstClear, secondClear]);
 assert.equal(emitted[0].chunksSent, 2, 'the first complete MP4 unit must be emitted before the final record is read');
 assert.equal(success.requests.length, 1);
+assert.equal(success.result[1].aborted, false, 'Destroying a completed hls.js loader must not mark its fragment as aborted');
 assert.equal(success.requests[0].url, 'https://cdn.example.test/media/000000000000002a/7/720/version-test/abc-00000.m4s?sig=keep');
 assert.equal(success.requests.some(request => request.url.endsWith('.json')), false);
 assert.equal(success.result[0].data.byteLength, 0, 'MSE payload is delivered only through complete progressive media-unit callbacks');
@@ -115,5 +145,28 @@ corruptedRecords[0][24] ^= 1;
 const failedAppends = [];
 await assert.rejects(runObject([wireChunks[0], ...corruptedRecords], fragment => failedAppends.push(fragment)), /authentication failed/);
 assert.equal(failedAppends.length, 0, 'an unauthenticated record must not produce a media append');
+
+const resumedAppends = [];
+const resumed = await runObject(wireChunks, fragment => resumedAppends.push(Buffer.from(fragment)), 'valid');
+const expectedResumeOffset = 40 + encrypted.recordChunks[0].length;
+assert.deepEqual(resumed.requests.map(request => request.url), [
+  'https://cdn.example.test/media/000000000000002a/7/720/version-test/abc-00000.m4s?sig=keep',
+  'https://cdn.example.test/media/000000000000002a/7/720/version-test/abc-00000.m4s?sig=keep',
+]);
+assert.equal(new Headers(resumed.requests[1].init.headers).get('range'), `bytes=${expectedResumeOffset}-`);
+assert.equal(new Headers(resumed.requests[1].init.headers).get('if-range'), '"v2-range-fixture"');
+assert.deepEqual(resumedAppends, [firstClear, secondClear]);
+
+for (const invalid of ['bad-etag', 'bad-range']) {
+  await assert.rejects(runObject(wireChunks, () => {}, invalid), /Range resume response did not match/);
+}
+for (const invalid of ['bad-total', 'encoded']) {
+  await assert.rejects(runObject(wireChunks, () => {}, invalid), /Range resume response did not match/);
+}
+await assert.rejects(runObject(wireChunks, () => {}, 'no-etag'), /Cannot resume media without a strong ETag and known object length/);
+await assert.rejects(runObject(wireChunks, () => {}, 'range-ignored'), /Range resume response did not match/);
+await assert.rejects(runObject(wireChunks, () => {}, 'range-unsatisfied'), /Range request was rejected with HTTP 416/);
+await assert.rejects(runObject(wireChunks, () => {}, 'auth-denied'), /Media authorization failed with HTTP 403/);
+await assert.rejects(runObject(wireChunks, () => {}, 'retry-limit'), /Range resumption limit exceeded/);
 
 console.log('CTR/HMAC V2 loader streams authenticated MP4 units without sidecars and fails closed on tampering.');

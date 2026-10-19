@@ -3,6 +3,7 @@ import { V2CtrFragmentLoader } from './v2-fragment-loader.js';
 import { KeyRequestTimeout, PlaybackProfile, PlayerErrorCode, RequestPurpose } from './constants.js';
 import { startPlaybackSession } from './playback-session.js';
 import { HlsCtrPlayerError } from './errors.js';
+import { classifyHlsError, redactDiagnostic } from './error-classification.js';
 
 export class HlsCtrPlayer {
   constructor(video, options = {}) {
@@ -46,6 +47,7 @@ export class HlsCtrPlayer {
     });
     this.hls.on(Hls.Events.ERROR, (_event, data) => {
       const hlsErrorMessage = data.error?.message || data.response?.text || '';
+      const classification = classifyHlsError(data);
       if (data.details === Hls.ErrorDetails.MANIFEST_INCOMPATIBLE_CODECS_ERROR) {
         const message = data.error?.message || 'No browser MSE codec is compatible with the declared HLS variants';
         const codec = message.match(/CODECS[^\[]*\["([^\"]+)/)?.[1];
@@ -61,7 +63,7 @@ export class HlsCtrPlayer {
         });
         return;
       }
-      options.onError?.({ source: 'hls', type: data.type, details: data.details, fatal: data.fatal, error: data.error?.message });
+      options.onError?.({ ...classification, type: data.type, details: data.details, fatal: data.fatal, error: redactDiagnostic(hlsErrorMessage) });
       if (data.fatal) this.metrics.fatalErrors += 1;
     });
     this.hls.on(Hls.Events.MANIFEST_PARSED, (_event, data) => {

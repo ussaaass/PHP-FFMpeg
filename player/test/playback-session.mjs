@@ -50,6 +50,13 @@ for (const status of [204, 206, 401, 403]) {
   assert.equal(masterStarted, false, `HTTP ${status} must fail before master-playlist loading`);
 }
 
+const cancelled = new AbortController();
+cancelled.abort();
+await assert.rejects(startPlaybackSession(info, {
+  signal: cancelled.signal,
+  fetchImpl: async (_url, { signal }) => { if (signal.aborted) throw new Error('aborted'); return new Response(rawKey); },
+}), error => error.code === PlayerErrorCode.PLAYBACK_CANCELLED);
+
 const controller = new AbortController();
 await assert.rejects(startPlaybackSession(info, {
   signal: controller.signal,
